@@ -16,6 +16,18 @@
   --font-weight-regular: 400;
   --line-height-body: 32px;
   --letter-spacing-body: 0;
+  --font-size-display: 48px;
+  --font-weight-display: 600;
+  --line-height-display: 64px;
+  --letter-spacing-display: 0;
+  --font-size-headline: 32px;
+  --font-weight-headline: 600;
+  --line-height-headline: 48px;
+  --letter-spacing-headline: 0;
+  --font-size-title: 20px;
+  --font-weight-title: 600;
+  --line-height-title: 30px;
+  --letter-spacing-title: 0;
 
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
@@ -46,12 +58,44 @@ body {
   letter-spacing: var(--letter-spacing-body);
 }
 
+.typesetting-display {
+  font-family: var(--font-brand);
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-display);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--letter-spacing-display);
+}
+
+.typesetting-headline {
+  font-family: var(--font-brand);
+  font-size: var(--font-size-headline);
+  font-weight: var(--font-weight-headline);
+  line-height: var(--line-height-headline);
+  letter-spacing: var(--letter-spacing-headline);
+}
+
+.typesetting-title {
+  font-family: var(--font-brand);
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-title);
+  line-height: var(--line-height-title);
+  letter-spacing: var(--letter-spacing-title);
+}
+
 .typesetting-betagumi {
   font-feature-settings: "palt" 0;
   line-break: strict;
-  word-break: hanging;
   text-autospace: ideograph-alpha;
   text-align: justify;
   text-justify: inter-character;
   text-align-last: left;
+}
+
+.typesetting-tsumegumi {
+  font-feature-settings: "palt" 1;
+}
+
+.typesetting-budoux {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }

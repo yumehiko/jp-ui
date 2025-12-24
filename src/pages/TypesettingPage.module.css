@@ -9,15 +9,14 @@
   max-width: 640px;
 }
 
-.Title {
-  margin: 0 0 16px;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: 0;
-}
-
 .Body {
   margin: 0;
+}
+
+.HeadingGroup {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
 .Body p {
