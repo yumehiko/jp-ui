@@ -1,0 +1,29 @@
+.Page {
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px 80px;
+}
+
+.Content {
+  width: 100%;
+  max-width: 640px;
+}
+
+.Title {
+  margin: 0 0 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.Body {
+  margin: 0;
+}
+
+.Body p {
+  margin: 0 0 16px;
+}
+
+.Body p:last-child {
+  margin-bottom: 0;
+}
