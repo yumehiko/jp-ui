@@ -38,12 +38,15 @@ body {
   min-height: 100vh;
 }
 
-.typesetting-fixed-jp {
+.typesetting-body {
   font-family: var(--font-brand);
   font-size: var(--font-size-body);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-body);
   letter-spacing: var(--letter-spacing-body);
+}
+
+.typesetting-betagumi {
   font-feature-settings: "palt" 0;
   line-break: strict;
   word-break: hanging;

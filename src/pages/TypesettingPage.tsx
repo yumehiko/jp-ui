@@ -5,7 +5,7 @@ export function TypesettingPage() {
     <div className={styles.Page}>
       <div className={styles.Content}>
         <h1 className={styles.Title}>本文スタイル</h1>
-        <div className={`${styles.Body} typesetting-fixed-jp`}>
+        <div className={`${styles.Body} typesetting-body typesetting-betagumi`}>
           <p>
             親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。
           </p>
