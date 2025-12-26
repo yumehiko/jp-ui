@@ -1,3 +1,6 @@
+@import "../tokens/tones.css";
+@import "../tokens/roles.css";
+
 :root {
   font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", "Yu Gothic",
     "Meiryo", system-ui, sans-serif;
@@ -28,6 +31,10 @@
   --font-weight-title: 600;
   --line-height-title: 30px;
   --letter-spacing-title: 0;
+  --font-size-label: 16px;
+  --font-weight-label: 500;
+  --line-height-label: 24px;
+  --letter-spacing-label: 0;
 
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
@@ -36,6 +43,25 @@
   --color-gray-500: #6b7280;
   --color-gray-900: #111827;
   --color-blue: #1d4ed8;
+
+  --radius-none: 0;
+  --radius-xs: 4px;
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 16px;
+  --radius-xl: 28px;
+  --radius-full: 8192px;
+
+  --shadow-rgb: 0 0 0;
+  --elevation-0: none;
+  --elevation-1: 0 0 8px 0 rgb(var(--shadow-rgb) / 0.2);
+  --elevation-2: 0 0 12px 0 rgb(var(--shadow-rgb) / 0.2);
+  --elevation-3: 0 0 16px 0 rgb(var(--shadow-rgb) / 0.2);
+  --elevation-4: 0 0 24px 0 rgb(var(--shadow-rgb) / 0.2);
+  --elevation-5: 0 0 32px 0 rgb(var(--shadow-rgb) / 0.2);
+
+  --true-white: #ffffff;
+  --true-black: #000000;
 }
 
 *,
@@ -48,6 +74,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--surface, #f8f8f6);
+  color: var(--on-surface, #111827);
 }
 
 .typesetting-body {
@@ -80,6 +108,24 @@ body {
   font-weight: var(--font-weight-title);
   line-height: var(--line-height-title);
   letter-spacing: var(--letter-spacing-title);
+}
+
+.typesetting-label {
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  font-feature-settings: "palt" 1;
+}
+
+.typesetting-editable-label {
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  font-feature-settings: "palt" 0;
 }
 
 .typesetting-betagumi {

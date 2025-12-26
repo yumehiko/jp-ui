@@ -5,6 +5,8 @@ type TypesettingPageProps = {
   displayText?: string;
   headlineText?: string;
   titleText?: string;
+  labelText?: string;
+  editableLabelText?: string;
   paragraphs?: string[];
 };
 
@@ -17,6 +19,8 @@ export function TypesettingPage({
   displayText = 'Display: 日本語の視認性を強く押し出す',
   headlineText = 'Headline: セクションの要点を素早く伝える',
   titleText = 'Title: 章やブロックの導線を作る',
+  labelText = 'Label: ボタンやラベルに使う',
+  editableLabelText = 'EditableLabel: 入力に関連するラベル',
   paragraphs = defaultParagraphs,
 }: TypesettingPageProps) {
   return (
@@ -36,6 +40,16 @@ export function TypesettingPage({
           <div>
             <div className="typesetting-title typesetting-tsumegumi typesetting-budoux">
               {budoux(titleText)}
+            </div>
+          </div>
+          <div>
+            <div className="typesetting-label typesetting-budoux">
+              {budoux(labelText)}
+            </div>
+          </div>
+          <div>
+            <div className="typesetting-editable-label typesetting-budoux">
+              {budoux(editableLabelText)}
             </div>
           </div>
         </div>

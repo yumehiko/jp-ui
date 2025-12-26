@@ -2,6 +2,8 @@
   display: flex;
   justify-content: center;
   padding: 48px 16px 80px;
+  color: var(--on-surface);
+  background-color: var(--surface);
 }
 
 .Content {

@@ -9,7 +9,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "generate:tones": "node scripts/generate-tones.mjs",
+    "generate:roles": "node scripts/extract-roles.mjs",
+    "generate:roles-css": "node scripts/generate-roles-css.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
@@ -18,12 +21,14 @@
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@material/material-color-utilities": "^0.3.0",
     "@eslint/js": "^9.39.1",
     "@storybook/react-vite": "^10.1.10",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "vite-plugin-svgr": "^4.3.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",

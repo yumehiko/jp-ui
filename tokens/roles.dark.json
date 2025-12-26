@@ -1,0 +1,200 @@
+{
+  "neutral": {
+    "surface-dim": {
+      "palette": "neutral",
+      "tone": 6
+    },
+    "surface": {
+      "palette": "neutral",
+      "tone": 6
+    },
+    "surface-bright": {
+      "palette": "neutral",
+      "tone": 24
+    },
+    "surface-container-lowest": {
+      "palette": "neutral",
+      "tone": 4
+    },
+    "surface-container-low": {
+      "palette": "neutral",
+      "tone": 10
+    },
+    "surface-container": {
+      "palette": "neutral",
+      "tone": 12
+    },
+    "surface-container-high": {
+      "palette": "neutral",
+      "tone": 17
+    },
+    "surface-container-highest": {
+      "palette": "neutral",
+      "tone": 22
+    },
+    "on-surface": {
+      "palette": "neutral",
+      "tone": 90
+    },
+    "on-surface-variant": {
+      "palette": "neutral-variant",
+      "tone": 80
+    },
+    "outline": {
+      "palette": "neutral-variant",
+      "tone": 60
+    },
+    "outline-variant": {
+      "palette": "neutral-variant",
+      "tone": 30
+    },
+    "inverse-surface": {
+      "palette": "neutral",
+      "tone": 90
+    },
+    "inverse-on-surface": {
+      "palette": "neutral",
+      "tone": 20
+    },
+    "scrim": {
+      "palette": "neutral",
+      "tone": 0
+    },
+    "shadow": {
+      "palette": "neutral",
+      "tone": 0
+    }
+  },
+  "primary": {
+    "primary": {
+      "palette": "primary",
+      "tone": 80
+    },
+    "on-primary": {
+      "palette": "primary",
+      "tone": 20
+    },
+    "inverse-primary": {
+      "palette": "primary",
+      "tone": 40
+    },
+    "primary-container": {
+      "palette": "primary",
+      "tone": 30
+    },
+    "on-primary-container": {
+      "palette": "primary",
+      "tone": 90
+    },
+    "primary-fixed": {
+      "palette": "primary",
+      "tone": 90
+    },
+    "primary-fixed-dim": {
+      "palette": "primary",
+      "tone": 80
+    },
+    "on-primary-fixed": {
+      "palette": "primary",
+      "tone": 10
+    },
+    "on-primary-fixed-variant": {
+      "palette": "primary",
+      "tone": 30
+    }
+  },
+  "secondary": {
+    "secondary": {
+      "palette": "secondary",
+      "tone": 80
+    },
+    "on-secondary": {
+      "palette": "secondary",
+      "tone": 20
+    },
+    "inverse-secondary": {
+      "palette": "secondary",
+      "tone": 40
+    },
+    "secondary-container": {
+      "palette": "secondary",
+      "tone": 30
+    },
+    "on-secondary-container": {
+      "palette": "secondary",
+      "tone": 90
+    },
+    "secondary-fixed": {
+      "palette": "secondary",
+      "tone": 90
+    },
+    "secondary-fixed-dim": {
+      "palette": "secondary",
+      "tone": 80
+    },
+    "on-secondary-fixed": {
+      "palette": "secondary",
+      "tone": 10
+    },
+    "on-secondary-fixed-variant": {
+      "palette": "secondary",
+      "tone": 30
+    }
+  },
+  "tertiary": {
+    "tertiary": {
+      "palette": "tertiary",
+      "tone": 80
+    },
+    "on-tertiary": {
+      "palette": "tertiary",
+      "tone": 20
+    },
+    "inverse-tertiary": {
+      "palette": "tertiary",
+      "tone": 40
+    },
+    "tertiary-container": {
+      "palette": "tertiary",
+      "tone": 30
+    },
+    "on-tertiary-container": {
+      "palette": "tertiary",
+      "tone": 90
+    },
+    "tertiary-fixed": {
+      "palette": "tertiary",
+      "tone": 90
+    },
+    "tertiary-fixed-dim": {
+      "palette": "tertiary",
+      "tone": 80
+    },
+    "on-tertiary-fixed": {
+      "palette": "tertiary",
+      "tone": 10
+    },
+    "on-tertiary-fixed-variant": {
+      "palette": "tertiary",
+      "tone": 30
+    }
+  },
+  "error": {
+    "error": {
+      "palette": "error",
+      "tone": 80
+    },
+    "on-error": {
+      "palette": "error",
+      "tone": 20
+    },
+    "error-container": {
+      "palette": "error",
+      "tone": 30
+    },
+    "on-error-container": {
+      "palette": "error",
+      "tone": 90
+    }
+  }
+}
