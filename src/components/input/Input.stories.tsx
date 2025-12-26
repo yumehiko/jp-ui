@@ -4,6 +4,13 @@ import { Input } from './Input';
 const meta: Meta<typeof Input> = {
   title: 'Components/Input',
   component: Input,
+  decorators: [
+    (Story) => (
+      <div style={{ width: 480 }}>
+        <Story />
+      </div>
+    ),
+  ],
   args: {
     'aria-label': '入力欄',
     placeholder: 'Place Holder',
@@ -22,10 +29,4 @@ export const Filled: Story = {
   },
 };
 
-export const WithFixedWidth: Story = {
-  render: (args) => (
-    <div style={{ width: 480 }}>
-      <Input {...args} />
-    </div>
-  ),
-};
+export const WithFixedWidth: Story = {};

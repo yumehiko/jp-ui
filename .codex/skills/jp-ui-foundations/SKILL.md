@@ -26,6 +26,7 @@ metadata:
 - `typesetting-body` / `typesetting-betagumi` / `typesetting-tsumegumi`
 - 見出し: `typesetting-display`, `typesetting-headline`, `typesetting-title`
 - ラベル: `typesetting-label` (tsumegumi), `typesetting-editable-label` (betagumi)
+- キャプション: `typesetting-caption` (betagumi)
 
 ### Color
 - 役割色: `tokens/roles.css` から `--surface`, `--on-surface`, `--primary`, `--on-primary` など

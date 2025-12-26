@@ -1,3 +1,4 @@
+import * as React from 'react';
 import type { Preview } from '@storybook/react-vite'
 import '../src/index.css';
 
@@ -25,6 +26,23 @@ const withThemeClass = (Story, context) => {
   return Story();
 };
 
+const withCenteredStage = (Story) => {
+  return React.createElement(
+    'div',
+    {
+      style: {
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '32px',
+        boxSizing: 'border-box',
+      },
+    },
+    React.createElement(Story),
+  );
+};
+
 const preview: Preview = {
   parameters: {
     controls: {
@@ -34,7 +52,7 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [withThemeClass],
+  decorators: [withThemeClass, withCenteredStage],
 };
 
 export default preview;

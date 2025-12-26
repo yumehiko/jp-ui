@@ -1,0 +1,210 @@
+.Field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  --field-label-offset: 16px;
+  --field-label-float-offset: 16px;
+  --field-label-float-y: -19px;
+  --field-label-float-scale: 0.625;
+}
+
+.InputBox {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 11px 16px;
+  border: 1px solid var(--on-surface-variant);
+  border-radius: var(--radius-s);
+  background-color: transparent;
+  color: var(--on-surface);
+  transition: border-color 150ms ease-out;
+}
+
+.InputBox::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 2px solid var(--outline);
+  border-radius: calc(var(--radius-s) + 5px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 150ms ease-out;
+}
+
+.StateLayer {
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-s);
+  background-color: var(--on-surface);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 150ms ease-out;
+}
+
+.LeadingIcon,
+.TrailingIcon {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-surface-variant);
+  transition: color 150ms ease-out;
+}
+
+.ClearButton {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  transition: color 150ms ease-out;
+}
+
+.Control {
+  flex: 1;
+  min-width: 0;
+}
+
+.Label {
+  position: absolute;
+  left: var(--field-label-offset);
+  top: 11px;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--on-surface-variant);
+  pointer-events: none;
+  z-index: 1;
+  padding: 0;
+  background-color: transparent;
+  transform-origin: left top;
+  transition: transform 150ms ease-out, color 150ms ease-out;
+}
+
+.SupportingText {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-caption);
+  line-height: var(--line-height-caption);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--on-surface);
+  transition: color 150ms ease-out;
+}
+
+.ErrorText {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-caption);
+  line-height: var(--line-height-caption);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--error);
+  transition: color 150ms ease-out;
+}
+
+.Field[data-leading-icon='true'] {
+  --field-label-offset: 48px;
+}
+
+.Field[data-input-type='path'] .InputBox {
+  border-style: dashed;
+}
+
+.Field[data-input-type='select'] .InputBox,
+.Field[data-input-type='path'] .InputBox {
+  cursor: pointer;
+}
+
+.Field[data-input-type='select'] .Control,
+.Field[data-input-type='path'] .Control {
+  cursor: pointer;
+}
+
+.Field[data-disabled] {
+  opacity: 0.2;
+}
+
+.Field[data-disabled] .InputBox {
+  cursor: not-allowed;
+}
+
+.Field[data-readonly='true'] .StateLayer {
+  opacity: 0.12;
+}
+
+.Field[data-focused] .InputBox {
+  border-color: var(--on-surface);
+}
+
+.Field[data-focused] .InputBox::after {
+  opacity: 1;
+}
+
+.Field[data-focused] .StateLayer {
+  opacity: 0;
+}
+
+.Field[data-focused] .Label,
+.Field[data-filled] .Label {
+  color: var(--on-surface);
+  padding: 0 4px;
+  background-color: var(--surface);
+  transform: translate(
+      calc(var(--field-label-float-offset) - var(--field-label-offset)),
+      var(--field-label-float-y)
+    )
+    scale(var(--field-label-float-scale));
+}
+
+.Field[data-filled] .LeadingIcon,
+.Field[data-focused] .LeadingIcon {
+  color: var(--on-surface);
+}
+
+.Field[data-invalid] .InputBox {
+  border-color: var(--error);
+}
+
+.Field[data-invalid] .Label {
+  color: var(--error);
+}
+
+.Field[data-invalid] .TrailingIcon,
+.Field[data-invalid] .LeadingIcon {
+  color: var(--error);
+}
+
+.Field[data-invalid] .ClearButton {
+  color: var(--error);
+}
+
+.Field:not([data-filled]) .ClearButton {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .Field:not([data-disabled]):not([data-readonly='true']) .InputBox:hover .StateLayer {
+    opacity: 0.08;
+  }
+}
+
+.Field[data-input-type='select'] .InputBox:active .StateLayer,
+.Field[data-input-type='path'] .InputBox:active .StateLayer {
+  opacity: 0.16;
+}
+
+.Field:not([data-focused]):not([data-filled]) .Control::placeholder {
+  color: transparent;
+}

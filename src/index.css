@@ -37,6 +37,10 @@
   --font-weight-editable-label: 300;
   --line-height-editable-label: 24px;
   --letter-spacing-editable-label: 0;
+  --font-size-caption: 12px;
+  --font-weight-caption: 300;
+  --line-height-caption: 20px;
+  --letter-spacing-caption: 0;
 
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
@@ -146,4 +150,13 @@ body {
 .typesetting-budoux {
   word-break: keep-all;
   overflow-wrap: anywhere;
+}
+
+.typesetting-caption {
+  font-family: var(--font-brand);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-caption);
+  line-height: var(--line-height-caption);
+  letter-spacing: var(--letter-spacing-caption);
+  font-feature-settings: "palt" 0;
 }
