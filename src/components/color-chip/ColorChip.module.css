@@ -1,7 +1,7 @@
 .Chip {
   display: flex;
   align-items: center;
-  padding: 8px 16px;
+  padding: 12px;
   min-height: 40px;
   width: 256px;
   background-color: var(--surface);
@@ -10,4 +10,6 @@
 .Label {
   color: inherit;
   white-space: nowrap;
+  font-size: 12px;
+  line-height: 16px;
 }

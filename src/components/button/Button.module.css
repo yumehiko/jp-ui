@@ -1,40 +1,116 @@
 .Button {
   box-sizing: border-box;
-  display: flex;
+  position: relative;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 2.5rem;
-  padding: 0 0.875rem;
+  gap: 8px;
+  min-width: 96px;
+  min-height: 48px;
+  padding: 12px 20px;
   margin: 0;
   outline: 0;
-  border: 1px solid var(--color-gray-200);
-  border-radius: 0.375rem;
-  background-color: var(--color-gray-50);
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-  color: var(--color-gray-900);
+  border: 0;
+  border-radius: var(--radius-full);
+  background-color: transparent;
+  color: var(--button-text-color);
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
   user-select: none;
+  cursor: pointer;
+
+  --button-base-color: var(--inverse-surface);
+  --button-base-opacity: 1;
+  --button-state-color: var(--surface);
+  --button-text-color: var(--inverse-on-surface);
+  --button-state-opacity: 0;
+  --button-border-shadow: none;
+  z-index: 0;
+}
+
+.Button::before,
+.Button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.Button::before {
+  background-color: var(--button-base-color);
+  opacity: var(--button-base-opacity);
+  box-shadow: var(--button-border-shadow);
+}
+
+.Button::after {
+  background-color: var(--button-state-color);
+  opacity: var(--button-state-opacity);
+}
+
+.Button > * {
+  position: relative;
+  z-index: 1;
 }
 
 @media (hover: hover) {
   .Button:hover:not([data-disabled]) {
-    background-color: var(--color-gray-100);
+    --button-state-opacity: 0.08;
   }
 }
 
-.Button:active:not([data-disabled]) {
-  background-color: var(--color-gray-200);
-  box-shadow: inset 0 1px 3px var(--color-gray-200);
-  border-top-color: var(--color-gray-300);
+.Button:focus-visible {
+  outline: 2px solid var(--outline);
+  outline-offset: 2px;
+  --button-state-opacity: 0.12;
 }
 
-.Button:focus-visible {
-  outline: 2px solid var(--color-blue);
-  outline-offset: -1px;
+.Button:active:not([data-disabled]) {
+  --button-state-opacity: 0.16;
 }
 
 .Button[data-disabled] {
-  color: var(--color-gray-500);
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Button[data-variant='filled'] {
+  --button-base-color: var(--inverse-surface);
+  --button-base-opacity: 1;
+  --button-state-color: var(--surface);
+  --button-text-color: var(--inverse-on-surface);
+}
+
+.Button[data-variant='tonal'] {
+  --button-base-color: var(--on-surface);
+  --button-base-opacity: 0.08;
+  --button-state-color: var(--on-surface);
+  --button-text-color: var(--on-surface);
+}
+
+.Button[data-variant='outlined'] {
+  --button-base-color: transparent;
+  --button-base-opacity: 1;
+  --button-state-color: var(--on-surface);
+  --button-text-color: var(--on-surface);
+  --button-border-shadow: inset 0 0 0 1px var(--outline);
+}
+
+.Button[data-variant='ghost'] {
+  --button-base-color: transparent;
+  --button-base-opacity: 0;
+  --button-state-color: var(--on-surface);
+  --button-text-color: var(--on-surface);
+}
+
+.IconButton {
+  padding: 0;
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: var(--radius-full);
+  gap: 0;
 }

@@ -2,8 +2,7 @@
 @import "../tokens/roles.css";
 
 :root {
-  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", "Yu Gothic",
-    "Meiryo", system-ui, sans-serif;
+  font-family: "Hiragino Sans", sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #111827;
@@ -13,8 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --font-brand: "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic",
-    "Meiryo", system-ui, sans-serif;
+  --font-brand: "Hiragino Sans", sans-serif;
   --font-size-body: 16px;
   --font-weight-regular: 400;
   --line-height-body: 32px;
@@ -35,6 +33,10 @@
   --font-weight-label: 500;
   --line-height-label: 24px;
   --letter-spacing-label: 0;
+  --font-size-editable-label: 16px;
+  --font-weight-editable-label: 300;
+  --line-height-editable-label: 24px;
+  --letter-spacing-editable-label: 0;
 
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
@@ -121,10 +123,10 @@ body {
 
 .typesetting-editable-label {
   font-family: var(--font-brand);
-  font-size: var(--font-size-label);
-  font-weight: var(--font-weight-label);
-  line-height: var(--line-height-label);
-  letter-spacing: var(--letter-spacing-label);
+  font-size: var(--font-size-editable-label);
+  font-weight: var(--font-weight-editable-label);
+  line-height: var(--line-height-editable-label);
+  letter-spacing: var(--letter-spacing-editable-label);
   font-feature-settings: "palt" 0;
 }
 

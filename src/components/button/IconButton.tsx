@@ -4,19 +4,22 @@ import styles from './Button.module.css';
 
 type ButtonVariant = 'filled' | 'tonal' | 'outlined' | 'ghost';
 
-type ButtonProps = React.ComponentPropsWithoutRef<typeof BaseButton> & {
+type IconButtonProps = React.ComponentPropsWithoutRef<typeof BaseButton> & {
+  'aria-label': string;
   variant?: ButtonVariant;
 };
 
-type ButtonElement = React.ElementRef<typeof BaseButton>;
+type IconButtonElement = React.ElementRef<typeof BaseButton>;
 
-export const Button = React.forwardRef<ButtonElement, ButtonProps>(
+export const IconButton = React.forwardRef<IconButtonElement, IconButtonProps>(
   ({ className, variant = 'filled', ...props }, ref) => {
     const mergedClassName =
       typeof className === 'function'
         ? (state: Parameters<typeof className>[0]) =>
-            [styles.Button, className(state)].filter(Boolean).join(' ')
-        : [styles.Button, className].filter(Boolean).join(' ');
+            [styles.Button, styles.IconButton, className(state)]
+              .filter(Boolean)
+              .join(' ')
+        : [styles.Button, styles.IconButton, className].filter(Boolean).join(' ');
 
     return (
       <BaseButton
@@ -29,4 +32,4 @@ export const Button = React.forwardRef<ButtonElement, ButtonProps>(
   },
 );
 
-Button.displayName = 'Button';
+IconButton.displayName = 'IconButton';

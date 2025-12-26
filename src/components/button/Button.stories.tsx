@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { Icon } from '../../assets/icons/Icon';
 import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
@@ -6,6 +7,7 @@ const meta: Meta<typeof Button> = {
   component: Button,
   args: {
     children: 'Submit',
+    variant: 'filled',
   },
 };
 
@@ -15,8 +17,43 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {};
 
+export const Filled: Story = {
+  args: {
+    variant: 'filled',
+  },
+};
+
+export const Tonal: Story = {
+  args: {
+    variant: 'tonal',
+  },
+};
+
+export const Outlined: Story = {
+  args: {
+    variant: 'outlined',
+  },
+};
+
+export const Ghost: Story = {
+  args: {
+    variant: 'ghost',
+  },
+};
+
 export const Disabled: Story = {
   args: {
     disabled: true,
+  },
+};
+
+export const IconWithLabel: Story = {
+  args: {
+    children: (
+      <>
+        <Icon name="edit" size={24} />
+        ラベル付き
+      </>
+    ),
   },
 };

@@ -19,8 +19,20 @@ const resolveTextRole = (role: string) => {
     return role.replace(/^on-/, '').replace(/-variant$/, '');
   }
 
+  if (role.startsWith('on-') && role.endsWith('-fixed')) {
+    return role.replace(/^on-/, '');
+  }
+
   if (role.startsWith('on-')) {
     return role.slice(3);
+  }
+
+  if (role.endsWith('-fixed-dim')) {
+    return `on-${role.replace(/-fixed-dim$/, '-fixed-variant')}`;
+  }
+
+  if (role.endsWith('-fixed')) {
+    return `on-${role}`;
   }
 
   if (role.startsWith('surface')) {
