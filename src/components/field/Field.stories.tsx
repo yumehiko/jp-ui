@@ -1,10 +1,23 @@
+import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
+import { Input } from '../input/Input';
+import { InputBox } from '../input-box/InputBox';
 import { Field } from './Field';
 
-const meta: Meta<typeof Field> = {
+type StoryArgs = {
+  label: string;
+  supportingText?: string;
+  errorMessage?: string;
+  placeholder?: string;
+  defaultValue?: string;
+  disabled?: boolean;
+  invalid?: boolean;
+  readOnly?: boolean;
+};
+
+const meta: Meta<StoryArgs> = {
   title: 'Components/Field',
-  component: Field,
   decorators: [
     (Story) => (
       <div style={{ width: 640 }}>
@@ -13,10 +26,6 @@ const meta: Meta<typeof Field> = {
     ),
   ],
   argTypes: {
-    inputType: {
-      control: 'select',
-      options: ['text', 'select', 'path'],
-    },
     invalid: { control: 'boolean' },
     errorMessage: { control: 'text' },
     supportingText: { control: 'text' },
@@ -24,43 +33,58 @@ const meta: Meta<typeof Field> = {
     readOnly: { control: 'boolean' },
     placeholder: { control: 'text' },
     defaultValue: { control: 'text' },
-    leadingIcon: { control: false },
-    trailingIcon: { control: false },
   },
   args: {
     label: 'Label',
     supportingText: 'Supporting text.',
     placeholder: 'Place Holder',
-    inputType: 'text',
+    defaultValue: '',
+    disabled: false,
+    invalid: false,
+    readOnly: false,
   },
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Field>;
+type Story = StoryObj<StoryArgs>;
 
-const baseArgs = {
-  leadingIcon: <Icon name="edit" size={24} />,
-  errorMessage: 'Validation Error Text.',
-};
+export const Default: Story = {
+  render: (args) => {
+    const [value, setValue] = React.useState(args.defaultValue ?? '');
 
-export const Text: Story = {
-  args: {
-    ...baseArgs,
-    inputType: 'text',
-  },
-};
+    React.useEffect(() => {
+      setValue(args.defaultValue ?? '');
+    }, [args.defaultValue]);
 
-export const Select: Story = {
-  args: {
-    ...baseArgs,
-    inputType: 'select',
-  },
-};
-
-export const Path: Story = {
-  args: {
-    ...baseArgs,
-    inputType: 'path',
+    return (
+      <Field
+        label={args.label}
+        supportingText={args.supportingText}
+        errorMessage={args.errorMessage}
+        invalid={args.invalid}
+        disabled={args.disabled}
+        readOnly={args.readOnly}
+      >
+        <InputBox
+          leadingIcon={<Icon name="edit" size={24} />}
+          filled={value.length > 0}
+          invalid={args.invalid}
+          disabled={args.disabled}
+          readOnly={args.readOnly}
+          trailingIcon={
+            args.invalid ? <Icon name="exclamation-circle" size={24} /> : undefined
+          }
+        >
+          <Input
+            placeholder={args.placeholder}
+            value={value}
+            disabled={args.disabled}
+            readOnly={args.readOnly}
+            onChange={(event) => setValue(event.target.value)}
+          />
+        </InputBox>
+      </Field>
+    );
   },
 };

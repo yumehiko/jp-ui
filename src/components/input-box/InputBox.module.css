@@ -1,0 +1,177 @@
+.InputBox {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 11px 15px;
+  border: 1px solid var(--on-surface-variant);
+  border-radius: var(--radius-s);
+  background-color: transparent;
+  color: var(--on-surface);
+  transition: border-color 150ms ease-out;
+
+  --inputbox-state-opacity: 0;
+  --inputbox-state-color: var(--on-surface);
+  --inputbox-label-offset: 15px;
+  --inputbox-label-float-offset: 15px;
+  --inputbox-label-float-y: -7px;
+}
+
+.InputBox::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 2px solid var(--outline);
+  border-radius: calc(var(--radius-s) + 4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+  z-index: 0;
+}
+
+.InputBox[data-leading-icon] {
+  --inputbox-label-offset: 48px;
+}
+
+.Label {
+  position: absolute;
+  left: var(--inputbox-label-offset);
+  top: 11px;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--on-surface);
+  pointer-events: none;
+  padding: 0;
+  background-color: transparent;
+  transition:
+    transform 150ms ease-out,
+    color 150ms ease-out,
+    top 150ms ease-out,
+    font-size 150ms ease-out,
+    line-height 150ms ease-out;
+  z-index: 1;
+}
+
+.Control {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 3;
+}
+
+.LeadingIcon,
+.TrailingIcon,
+.ClearButton {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-surface-variant);
+  position: relative;
+  z-index: 3;
+}
+
+.ClearButton {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.StateLayer {
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-s);
+  background-color: var(--inputbox-state-color);
+  opacity: var(--inputbox-state-opacity);
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+  z-index: 2;
+}
+
+.InputBox[data-filled] {
+  border-color: var(--on-surface);
+}
+
+.InputBox[data-filled] .LeadingIcon,
+.InputBox[data-filled] .TrailingIcon,
+.InputBox[data-filled] .ClearButton {
+  color: var(--on-surface);
+}
+
+.InputBox[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.InputBox[data-disabled] .StateLayer {
+  opacity: 0;
+}
+
+.InputBox[data-readonly] {
+  cursor: default;
+}
+
+.InputBox[data-readonly] .StateLayer {
+  opacity: 0.12;
+}
+
+.InputBox[data-readonly][data-filled] {
+  border-color: transparent;
+}
+
+.InputBox[data-invalid] {
+  border-color: var(--error);
+  --inputbox-state-color: var(--error);
+}
+
+.InputBox[data-invalid] .Label {
+  color: var(--error);
+}
+
+.InputBox[data-invalid] .LeadingIcon,
+.InputBox[data-invalid] .TrailingIcon,
+.InputBox[data-invalid] .ClearButton {
+  color: var(--error);
+}
+
+.InputBox:focus-within:not([data-readonly]):not([data-disabled]) {
+  --inputbox-state-opacity: 0;
+}
+
+.InputBox:focus-within:not([data-readonly]):not([data-disabled])::after {
+  opacity: 1;
+}
+
+.InputBox:focus-within:not([data-readonly]):not([data-disabled]):not([data-invalid]) {
+  border-color: var(--on-surface);
+}
+
+.InputBox:focus-within .Label,
+.InputBox[data-filled] .Label {
+  top: var(--inputbox-label-float-y);
+  left: var(--inputbox-label-float-offset);
+  font-size: 10px;
+  line-height: 12px;
+  background-color: var(--surface);
+  padding: 0 4px;
+}
+
+@media (hover: hover) {
+  .InputBox:hover:not([data-disabled]):not([data-readonly]) {
+    --inputbox-state-opacity: 0.08;
+  }
+}
+
+.InputBox:active:not([data-disabled]):not([data-readonly]) {
+  --inputbox-state-opacity: 0.16;
+}
+
+.InputBox:not(:focus-within):not([data-filled]) .Control::placeholder {
+  color: transparent;
+}

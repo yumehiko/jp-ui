@@ -21,12 +21,21 @@ export default meta;
 
 type Story = StoryObj<typeof Input>;
 
-export const Placeholder: Story = {};
+export const Placeholder: Story = {
+  render: (args) => <Input {...args} />,
+};
 
 export const Filled: Story = {
   args: {
     defaultValue: 'Input Text',
   },
+  render: (args) => <Input {...args} />,
 };
 
-export const WithFixedWidth: Story = {};
+export const WithFixedWidth: Story = {
+  render: (args) => (
+    <div style={{ width: 320 }}>
+      <Input {...args} />
+    </div>
+  ),
+};

@@ -1,115 +1,68 @@
 import * as React from 'react';
 import { Field as BaseField } from '@base-ui/react/field';
-import { Icon } from '../../assets/icons/Icon';
-import { Input } from '../input/Input';
-import inputStyles from '../input/Input.module.css';
+import { InputBox } from '../input-box/InputBox';
 import styles from './Field.module.css';
-
-type FieldInputType = 'text' | 'select' | 'path';
 
 type FieldProps = {
   label: string;
   supportingText?: string;
   errorMessage?: string;
-  inputType?: FieldInputType;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
-} & Omit<React.ComponentPropsWithoutRef<typeof BaseField.Root>, 'children'> &
-  Omit<React.ComponentPropsWithoutRef<typeof Input>, 'className'>;
+  children: React.ReactNode;
+  readOnly?: boolean;
+} & Omit<React.ComponentPropsWithoutRef<typeof BaseField.Root>, 'children'>;
 
-const getTrailingIcon = (
-  inputType: FieldInputType,
-  invalid: boolean | undefined,
+const mergeControlClassName = (
+  className: unknown,
+  controlClassName: string,
 ) => {
-  if (invalid) {
-    return <Icon name="exclamation-circle" size={24} />;
+  if (!className) return controlClassName;
+  if (typeof className === 'function') {
+    return (state: Parameters<typeof className>[0]) =>
+      [controlClassName, className(state)].filter(Boolean).join(' ');
   }
-
-  if (inputType === 'select') {
-    return <Icon name="caret-down" size={24} />;
-  }
-
-  if (inputType === 'path') {
-    return <Icon name="drag-drop" size={24} />;
-  }
-
-  return null;
+  return [controlClassName, className].filter(Boolean).join(' ');
 };
 
 export function Field({
   label,
   supportingText,
   errorMessage,
-  inputType = 'text',
-  leadingIcon,
-  trailingIcon,
   disabled,
   invalid,
   readOnly,
-  ...inputProps
+  children,
+  className,
+  ...props
 }: FieldProps) {
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const resolvedTrailingIcon = trailingIcon ?? getTrailingIcon(inputType, invalid);
-  const hasLeadingIcon = Boolean(leadingIcon);
-  const inputReadOnly = readOnly ?? inputType !== 'text';
-  const visualReadOnly = Boolean(readOnly);
-  const inputClassName = [inputStyles.Input, styles.Control]
-    .filter(Boolean)
-    .join(' ');
-  const showClearButton =
-    inputType === 'text' && !invalid && !disabled && !inputReadOnly && !trailingIcon;
-
-  const handleClear = () => {
-    const input = inputRef.current;
-    if (!input) return;
-    const setter = Object.getOwnPropertyDescriptor(
-      window.HTMLInputElement.prototype,
-      'value',
-    )?.set;
-    if (setter) {
-      setter.call(input, '');
-    } else {
-      input.value = '';
-    }
-    input.dispatchEvent(new Event('input', { bubbles: true }));
-    input.focus();
-  };
+  const labelNode = (
+    <BaseField.Label data-floating-label>{label}</BaseField.Label>
+  );
+  const isInputBox =
+    React.isValidElement(children) && children.type === InputBox;
+  const control = React.isValidElement(children)
+    ? React.cloneElement(children, {
+        className: mergeControlClassName(children.props.className, styles.Control),
+        ...(isInputBox
+          ? {
+              floatingLabel: labelNode,
+              invalid: children.props.invalid ?? invalid,
+              disabled: children.props.disabled ?? disabled,
+              readOnly: children.props.readOnly ?? readOnly,
+            }
+          : null),
+      })
+    : children;
 
   return (
     <BaseField.Root
-      className={styles.Field}
-      data-input-type={inputType}
-      data-leading-icon={hasLeadingIcon}
-      data-readonly={visualReadOnly || undefined}
+      className={[styles.Field, className].filter(Boolean).join(' ')}
+      data-readonly={readOnly || undefined}
       disabled={disabled}
       invalid={invalid}
+      {...props}
     >
-      <div className={styles.InputBox}>
-        {hasLeadingIcon && <span className={styles.LeadingIcon}>{leadingIcon}</span>}
-        <Input
-          className={inputClassName}
-          readOnly={inputReadOnly}
-          disabled={disabled}
-          ref={inputRef}
-          {...inputProps}
-        />
-        {showClearButton ? (
-          <button
-            type="button"
-            className={styles.ClearButton}
-            aria-label="入力をクリア"
-            onClick={handleClear}
-          >
-            <Icon name="x" size={24} />
-          </button>
-        ) : (
-          resolvedTrailingIcon && (
-            <span className={styles.TrailingIcon}>{resolvedTrailingIcon}</span>
-          )
-        )}
-        <span className={styles.Label}>{label}</span>
-        <span className={styles.StateLayer} />
-      </div>
+      {control}
+      {!isInputBox && labelNode}
       {supportingText && (
         <BaseField.Description className={styles.SupportingText}>
           {supportingText}
