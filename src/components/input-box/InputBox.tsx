@@ -1,56 +1,97 @@
 import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
+import { Input } from '../input/Input';
 import styles from './InputBox.module.css';
 
-type InputBoxProps = {
-  children: React.ReactNode;
+type InputBoxBaseProps = Omit<
+  React.ComponentPropsWithoutRef<typeof Input>,
+  'className' | 'children' | 'value' | 'defaultValue' | 'onChange'
+> & {
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
-  onClear?: () => void;
   clearLabel?: string;
-  filled?: boolean;
   invalid?: boolean;
   disabled?: boolean;
   readOnly?: boolean;
   floatingLabel?: React.ReactNode;
   className?: string;
+  inputClassName?: React.ComponentPropsWithoutRef<typeof Input>['className'];
+  onClear?: () => void;
+  onValueChange?: (value: string) => void;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-type ControlClassName =
-  | string
-  | ((state: unknown) => string | undefined)
-  | undefined;
+type ControlledInputBoxProps = {
+  value: string;
+  defaultValue?: never;
+  onValueChange: (value: string) => void;
+};
+
+type UncontrolledInputBoxProps = {
+  value?: undefined;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+};
+
+type InputBoxProps = InputBoxBaseProps &
+  (ControlledInputBoxProps | UncontrolledInputBoxProps);
+
+type InputClassName = React.ComponentPropsWithoutRef<typeof Input>['className'];
+type InputClassNameFn = Exclude<InputClassName, string | undefined>;
+type InputClassNameState = Parameters<InputClassNameFn>[0];
 
 const mergeControlClassName = (
-  className: ControlClassName,
+  className: InputClassName,
   controlClassName: string,
-): ControlClassName => {
+): InputClassName => {
   if (!className) return controlClassName;
   if (typeof className === 'function') {
-    return (state: unknown) =>
+    return (state: InputClassNameState) =>
       [controlClassName, className(state)].filter(Boolean).join(' ');
   }
   return [controlClassName, className].filter(Boolean).join(' ');
 };
 
 export function InputBox({
-  children,
   leadingIcon,
   trailingIcon,
   onClear,
   clearLabel = '入力をクリア',
-  filled = false,
   invalid = false,
   disabled,
   readOnly,
   floatingLabel,
   className,
+  inputClassName,
+  value,
+  defaultValue = '',
+  onValueChange,
+  onChange,
+  placeholder,
+  ...inputProps
 }: InputBoxProps) {
-  const control = React.isValidElement<{ className?: ControlClassName }>(children)
-    ? React.cloneElement(children, {
-        className: mergeControlClassName(children.props.className, styles.Control),
-      })
-    : children;
+  const isControlled = value !== undefined;
+  const [uncontrolledValue, setUncontrolledValue] = React.useState(defaultValue);
+  const currentValue = isControlled ? value : uncontrolledValue;
+  const filled = currentValue.length > 0;
+  const control = (
+    <Input
+      className={mergeControlClassName(inputClassName, styles.Control)}
+      value={currentValue}
+      onChange={(event) => {
+        const nextValue = event.target.value;
+        if (!isControlled) {
+          setUncontrolledValue(nextValue);
+        }
+        onValueChange?.(nextValue);
+        onChange?.(event);
+      }}
+      placeholder={placeholder}
+      disabled={disabled}
+      readOnly={readOnly}
+      {...inputProps}
+    />
+  );
   const label = React.isValidElement<{
     className?: string;
     'data-inputbox-label'?: boolean;
@@ -63,8 +104,15 @@ export function InputBox({
       })
     : floatingLabel;
   const showClearButton = Boolean(
-    onClear && filled && !invalid && !disabled && !readOnly,
+    filled && !invalid && !disabled && !readOnly,
   );
+  const handleClear = () => {
+    if (!isControlled) {
+      setUncontrolledValue('');
+    }
+    onValueChange?.('');
+    onClear?.();
+  };
   return (
     <label
       className={[styles.InputBox, className].filter(Boolean).join(' ')}
@@ -80,7 +128,7 @@ export function InputBox({
       ) : null}
       {control}
       {showClearButton ? (
-        <button type="button" className={styles.ClearButton} onClick={onClear}>
+        <button type="button" className={styles.ClearButton} onClick={handleClear}>
           <Icon name="x" size={24} aria-label={clearLabel} />
         </button>
       ) : (

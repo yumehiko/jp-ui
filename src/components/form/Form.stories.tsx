@@ -2,7 +2,6 @@ import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../button/Button';
 import { Field } from '../field/Field';
-import { Input } from '../input/Input';
 import { InputBox } from '../input-box/InputBox';
 import { Form } from './Form';
 import styles from './Form.module.css';
@@ -73,19 +72,13 @@ const FormStory = (args: StoryArgs) => {
         readOnly={args.readOnly}
       >
         <InputBox
-          filled={value.length > 0}
+          value={value}
+          onValueChange={setValue}
           invalid={args.invalid}
           disabled={args.disabled}
           readOnly={args.readOnly}
-        >
-          <Input
-            placeholder={args.placeholder}
-            value={value}
-            disabled={args.disabled}
-            readOnly={args.readOnly}
-            onChange={(event) => setValue(event.target.value)}
-          />
-        </InputBox>
+          placeholder={args.placeholder}
+        />
       </Field>
       <div className={styles.Actions}>
         <Button type="button" variant="ghost">
