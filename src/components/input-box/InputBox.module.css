@@ -81,6 +81,12 @@
   margin: 0;
   background: transparent;
   cursor: pointer;
+  border-radius: var(--radius-full);
+}
+
+.ClearButton:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .StateLayer {

@@ -19,44 +19,25 @@ const labelClassName = `typesetting-label typesetting-tsumegumi ${styles.Label}`
 
 export const Default: Story = {
   render: (args) => (
-    <label className={labelClassName}>
-      <Checkbox {...args} />
-      通知を有効にする
-    </label>
-  ),
-};
-
-export const Checked: Story = {
-  args: {
-    defaultChecked: true,
-  },
-  render: (args) => (
-    <label className={labelClassName}>
-      <Checkbox {...args} />
-      通知を有効にする
-    </label>
-  ),
-};
-
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-  },
-  render: (args) => (
-    <label className={labelClassName}>
-      <Checkbox {...args} />
-      通知を有効にする
-    </label>
-  ),
-};
-
-export const WithFieldLabel: Story = {
-  render: (args) => (
-    <Field.Root name="notifications">
-      <Field.Label className={labelClassName}>
+    <div style={{ display: 'grid', gap: 12 }}>
+      <label className={labelClassName}>
         <Checkbox {...args} />
         通知を有効にする
-      </Field.Label>
-    </Field.Root>
+      </label>
+      <label className={labelClassName}>
+        <Checkbox {...args} defaultChecked />
+        通知を有効にする（選択済み）
+      </label>
+      <label className={labelClassName}>
+        <Checkbox {...args} disabled />
+        通知を有効にする（無効）
+      </label>
+      <Field.Root name="notifications">
+        <Field.Label className={labelClassName}>
+          <Checkbox {...args} />
+          通知を有効にする（Field）
+        </Field.Label>
+      </Field.Root>
+    </div>
   ),
 };

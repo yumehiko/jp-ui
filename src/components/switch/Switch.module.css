@@ -43,11 +43,8 @@
 .Switch::after {
   content: "";
   position: absolute;
-  left: -2px;
-  top: -2px;
-  right: -2px;
-  bottom: -2px;
-  border: 2px solid var(--outline);
+  inset: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  border: var(--focus-ring-width) solid var(--focus-ring-color);
   border-radius: var(--radius-full);
   opacity: 0;
   pointer-events: none;
@@ -103,10 +100,12 @@
   opacity: 0;
 }
 
+.Switch:focus-visible,
 .Switch[data-focused] {
   --switch-state-opacity: 0.12;
 }
 
+.Switch:focus-visible::after,
 .Switch[data-focused]::after {
   opacity: 1;
 }

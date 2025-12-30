@@ -16,33 +16,6 @@ const labelClassName = `typesetting-label typesetting-tsumegumi ${styles.Label}`
 
 export const Default: Story = {
   render: (args) => (
-    <label className={labelClassName}>
-      <Radio {...args} />
-      Option
-    </label>
-  ),
-};
-
-export const Checked: Story = {
-  render: (args) => (
-    <label className={labelClassName}>
-      <Radio {...args} defaultChecked />
-      Option
-    </label>
-  ),
-};
-
-export const Disabled: Story = {
-  render: (args) => (
-    <label className={labelClassName}>
-      <Radio {...args} disabled />
-      Option
-    </label>
-  ),
-};
-
-export const Group: Story = {
-  render: () => (
     <RadioGroup defaultValue="tokyo" style={{ display: 'grid', gap: 12 }}>
       <label className={labelClassName}>
         <Radio value="tokyo" />

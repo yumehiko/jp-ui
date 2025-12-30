@@ -32,11 +32,11 @@
 .Checkbox::after {
   content: "";
   position: absolute;
-  left: -6px;
-  top: -6px;
-  width: 36px;
-  height: 36px;
-  border: 2px solid var(--outline);
+  left: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  top: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  width: calc(24px + 2 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  height: calc(24px + 2 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  border: var(--focus-ring-width) solid var(--focus-ring-color);
   border-radius: var(--radius-full);
   opacity: 0;
   pointer-events: none;
@@ -101,10 +101,12 @@
   opacity: 0;
 }
 
+.Checkbox:focus-visible,
 .Checkbox[data-focused] {
   --checkbox-state-opacity: 0.12;
 }
 
+.Checkbox:focus-visible::after,
 .Checkbox[data-focused]::after {
   opacity: 1;
 }

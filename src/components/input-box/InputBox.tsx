@@ -54,9 +54,8 @@ export function InputBox({
   const showClearButton = Boolean(
     onClear && filled && !invalid && !disabled && !readOnly,
   );
-
   return (
-    <div
+    <label
       className={[styles.InputBox, className].filter(Boolean).join(' ')}
       data-filled={filled || undefined}
       data-invalid={invalid || undefined}
@@ -77,6 +76,6 @@ export function InputBox({
         trailingIcon && <span className={styles.TrailingIcon}>{trailingIcon}</span>
       )}
       <span aria-hidden="true" className={styles.StateLayer} />
-    </div>
+    </label>
   );
 }

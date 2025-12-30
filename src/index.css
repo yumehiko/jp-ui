@@ -58,6 +58,10 @@
   --radius-xl: 28px;
   --radius-full: 8192px;
 
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--outline);
+
   --shadow-rgb: 0 0 0;
   --elevation-0: none;
   --elevation-1: 0 0 8px 0 rgb(var(--shadow-rgb) / 0.2);
