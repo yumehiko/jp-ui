@@ -45,7 +45,12 @@ metadata:
 
 ### Shadow
 - `--shadow-rgb: 0 0 0`
-- `--elevation-0..5`（blur: 0,8,12,16,24,32 / opacity 0.2）
+- `--elevation-0..5`
+- `--elevation-1`: `0 0 8px 0 rgb(var(--shadow-rgb) / 0.2), 1px 1px 4px 0 rgb(var(--shadow-rgb) / 0.1)`
+- `--elevation-2`: `0 0 12px 0 rgb(var(--shadow-rgb) / 0.2), 1px 1px 6px 0 rgb(var(--shadow-rgb) / 0.15)`
+- `--elevation-3`: `0 0 16px 0 rgb(var(--shadow-rgb) / 0.2), 2px 2px 8px 0 rgb(var(--shadow-rgb) / 0.2)`
+- `--elevation-4`: `0 0 20px 0 rgb(var(--shadow-rgb) / 0.2), 3px 3px 12px 0 rgb(var(--shadow-rgb) / 0.2)`
+- `--elevation-5`: `0 0 24px 0 rgb(var(--shadow-rgb) / 0.2), 4px 4px 16px 0 rgb(var(--shadow-rgb) / 0.3)`
 
 ### Icons
 - アイコン: `src/assets/icons/Icon.tsx`
@@ -55,3 +60,8 @@ metadata:
 ## 更新時のルール
 - Foundation トークンを更新したら、このスキルの記載も更新する
 - 新しい参照先ファイルを追加したら `参照先` セクションに追加
+
+## スクリプト実行コマンド
+- `pnpm gen:tones`
+- `pnpm gen:roles`
+- `pnpm gen:roles-css`

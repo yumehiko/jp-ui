@@ -1,0 +1,319 @@
+.SelectTrigger {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  padding: 11px 15px;
+  margin: 0;
+  border: 1px solid var(--on-surface-variant);
+  border-radius: var(--radius-s);
+  background-color: transparent;
+  color: var(--on-surface);
+  transition: border-color 150ms ease-out;
+  cursor: pointer;
+  text-align: left;
+  user-select: none;
+
+  --select-state-opacity: 0;
+  --select-state-color: var(--on-surface);
+  --select-label-offset: 15px;
+  --select-label-float-offset: 15px;
+  --select-label-float-y: -7px;
+}
+
+.SelectTrigger[data-leading-icon] {
+  --select-label-offset: 48px;
+}
+
+.SelectTrigger:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  --select-state-opacity: 0.12;
+}
+
+.SelectTrigger[data-popup-open] {
+  --select-state-opacity: 0.12;
+}
+
+.SelectTrigger[data-filled] {
+  border-color: var(--on-surface);
+}
+
+.SelectTrigger[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.SelectTrigger[data-disabled] .StateLayer {
+  opacity: 0;
+}
+
+.SelectTrigger[data-readonly] {
+  cursor: default;
+}
+
+.SelectTrigger[data-readonly] .StateLayer {
+  opacity: 0.12;
+}
+
+.SelectTrigger[data-readonly][data-filled] {
+  border-color: transparent;
+}
+
+.Label {
+  position: absolute;
+  left: var(--select-label-offset);
+  top: 11px;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--on-surface);
+  pointer-events: none;
+  padding: 0;
+  background-color: transparent;
+  transition:
+    transform 150ms ease-out,
+    color 150ms ease-out,
+    top 150ms ease-out,
+    font-size 150ms ease-out,
+    line-height 150ms ease-out;
+  z-index: 1;
+}
+
+.Value {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-editable-label);
+  font-weight: var(--font-weight-editable-label);
+  line-height: var(--line-height-editable-label);
+  letter-spacing: var(--letter-spacing-editable-label);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Value [data-placeholder] {
+  color: var(--on-surface-variant);
+}
+
+.SelectTrigger:not([data-filled]):not([data-popup-open]):not(:focus-visible)
+  .Value
+  [data-placeholder] {
+  color: transparent;
+}
+
+.LeadingIcon,
+.Icon {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-surface-variant);
+  position: relative;
+  z-index: 3;
+}
+
+.StateLayer {
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-s);
+  background-color: var(--select-state-color);
+  opacity: var(--select-state-opacity);
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+  z-index: 2;
+}
+
+.SelectTrigger[data-filled] .LeadingIcon,
+.SelectTrigger[data-filled] .Icon {
+  color: var(--on-surface);
+}
+
+.SelectTrigger:focus-visible .Label,
+.SelectTrigger[data-filled] .Label,
+.SelectTrigger[data-popup-open] .Label {
+  top: var(--select-label-float-y);
+  left: var(--select-label-float-offset);
+  font-size: 10px;
+  line-height: 12px;
+  background-color: var(--surface);
+  padding: 0 4px;
+}
+
+@media (hover: hover) {
+  .SelectTrigger:hover:not([data-disabled]):not([data-readonly]) {
+    --select-state-opacity: 0.08;
+  }
+}
+
+.SelectTrigger:active:not([data-disabled]):not([data-readonly]) {
+  --select-state-opacity: 0.16;
+}
+
+.Popup {
+  background-color: var(--surface-container-low);
+  border-radius: var(--radius-l);
+  padding: 0;
+  box-shadow: var(--elevation-2);
+  min-width: calc(var(--anchor-width) + 16px);
+  overflow: hidden;
+}
+
+.Positioner {
+  z-index: 10;
+}
+
+.List {
+  display: grid;
+  gap: 4px;
+  padding: calc(8px + var(--focus-ring-offset) + var(--focus-ring-width));
+  max-height: var(--available-height);
+  overflow-y: auto;
+  overflow-x: visible;
+}
+
+.ScrollArrow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  color: var(--on-surface);
+  background-color: transparent;
+  z-index: 3;
+}
+
+.ScrollArrow[data-direction='up'] {
+  top: 0;
+  border-top-left-radius: var(--radius-l);
+  border-top-right-radius: var(--radius-l);
+  background-image: linear-gradient(
+    180deg,
+    var(--surface-container-low) 0%,
+    transparent 100%
+  );
+}
+
+.ScrollArrow[data-direction='down'] {
+  bottom: 0;
+  border-bottom-left-radius: var(--radius-l);
+  border-bottom-right-radius: var(--radius-l);
+  background-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--surface-container-low) 100%
+  );
+}
+
+.Item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: var(--radius-s);
+  width: 100%;
+  overflow: visible;
+  cursor: pointer;
+  outline: none;
+  color: var(--on-surface);
+  background-color: transparent;
+  text-align: left;
+  user-select: none;
+
+  --select-item-state-opacity: 0;
+  --select-item-state-color: var(--on-surface);
+}
+
+.Item:focus {
+  outline: none;
+}
+
+.ItemIndicator {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-surface);
+  position: relative;
+  z-index: 1;
+}
+
+.ItemText {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ItemStateLayer {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-s);
+  background-color: var(--select-item-state-color);
+  opacity: var(--select-item-state-opacity);
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+  z-index: 0;
+}
+
+.Item[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Item[data-disabled] .ItemStateLayer {
+  opacity: 0;
+}
+
+@media (hover: hover) {
+  .Item:hover:not([data-disabled]) {
+    --select-item-state-opacity: 0.08;
+  }
+}
+
+.Item[data-highlighted]:not([data-disabled]) {
+  --select-item-state-opacity: 0.08;
+}
+
+.Item:active:not([data-disabled]) {
+  --select-item-state-opacity: 0.16;
+}
+
+.SelectSeparator {
+  width: 100%;
+  padding: 9px 4px 8px;
+}
+
+.SelectSeparatorLine {
+  width: 100%;
+}
+
+.GroupLabel {
+  padding: 8px 12px 4px;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-caption);
+  line-height: var(--line-height-caption);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--on-surface-variant);
+}

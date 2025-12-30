@@ -10,9 +10,11 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "generate:tones": "node scripts/generate-tones.mjs",
-    "generate:roles": "node scripts/extract-roles.mjs",
-    "generate:roles-css": "node scripts/generate-roles-css.mjs"
+    "gen:icons": "node scripts/generate-icons.mjs",
+    "gen:tones": "node scripts/generate-tones.mjs",
+    "gen:roles": "node scripts/extract-roles.mjs",
+    "gen:roles-css": "node scripts/generate-roles-css.mjs",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",

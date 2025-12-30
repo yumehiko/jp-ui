@@ -4,7 +4,9 @@
 import type { ComponentType, SVGProps } from 'react';
 
 import CaretDown from './caret-down.svg?react';
+import CaretLeft from './caret-left.svg?react';
 import CaretRight from './caret-right.svg?react';
+import CaretUp from './caret-up.svg?react';
 import Check from './check.svg?react';
 import ChevronRight from './chevron-right.svg?react';
 import CircleFill from './circle-fill.svg?react';
@@ -25,11 +27,14 @@ import Search from './search.svg?react';
 import Settings from './settings.svg?react';
 import SwitchHorizontal from './switch-horizontal.svg?react';
 import Trash from './trash.svg?react';
+import User from './user.svg?react';
 import X from './x.svg?react';
 
 export const iconMap = {
   'caret-down': CaretDown,
+  'caret-left': CaretLeft,
   'caret-right': CaretRight,
+  'caret-up': CaretUp,
   'check': Check,
   'chevron-right': ChevronRight,
   'circle-fill': CircleFill,
@@ -50,6 +55,7 @@ export const iconMap = {
   'settings': Settings,
   'switch-horizontal': SwitchHorizontal,
   'trash': Trash,
+  'user': User,
   'x': X,
 } satisfies Record<string, ComponentType<SVGProps<SVGSVGElement>>>;
 
