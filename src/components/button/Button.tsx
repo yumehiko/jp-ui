@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Button as BaseButton } from '@base-ui/react/button';
+import { mergeClassName } from '../utils/mergeClassName';
 import styles from './Button.module.css';
 
 type ButtonVariant = 'filled' | 'tonal' | 'outlined' | 'ghost';
@@ -12,16 +13,10 @@ type ButtonElement = React.ElementRef<typeof BaseButton>;
 
 export const Button = React.forwardRef<ButtonElement, ButtonProps>(
   ({ className, variant = 'filled', ...props }, ref) => {
-    const mergedClassName =
-      typeof className === 'function'
-        ? (state: Parameters<typeof className>[0]) =>
-            [styles.Button, className(state)].filter(Boolean).join(' ')
-        : [styles.Button, className].filter(Boolean).join(' ');
-
     return (
       <BaseButton
         ref={ref}
-        className={mergedClassName}
+        className={mergeClassName<typeof BaseButton>(className, styles.Button)}
         data-variant={variant}
         {...props}
       />

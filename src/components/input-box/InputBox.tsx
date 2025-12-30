@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
 import { Input } from '../input/Input';
+import { mergeClassName } from '../utils/mergeClassName';
 import styles from './InputBox.module.css';
 
 type InputBoxBaseProps = Omit<
@@ -36,22 +37,6 @@ type UncontrolledInputBoxProps = {
 type InputBoxProps = InputBoxBaseProps &
   (ControlledInputBoxProps | UncontrolledInputBoxProps);
 
-type InputClassName = React.ComponentPropsWithoutRef<typeof Input>['className'];
-type InputClassNameFn = Exclude<InputClassName, string | undefined>;
-type InputClassNameState = Parameters<InputClassNameFn>[0];
-
-const mergeControlClassName = (
-  className: InputClassName,
-  controlClassName: string,
-): InputClassName => {
-  if (!className) return controlClassName;
-  if (typeof className === 'function') {
-    return (state: InputClassNameState) =>
-      [controlClassName, className(state)].filter(Boolean).join(' ');
-  }
-  return [controlClassName, className].filter(Boolean).join(' ');
-};
-
 export function InputBox({
   leadingIcon,
   trailingIcon,
@@ -76,7 +61,7 @@ export function InputBox({
   const filled = currentValue.length > 0;
   const control = (
     <Input
-      className={mergeControlClassName(inputClassName, styles.Control)}
+      className={mergeClassName<typeof Input>(inputClassName, styles.Control)}
       value={currentValue}
       onChange={(event) => {
         const nextValue = event.target.value;

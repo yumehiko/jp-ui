@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Select as BaseSelect } from '@base-ui/react/select';
 import { Icon } from '../../assets/icons/Icon';
 import { Separator } from '../separator/Separator';
+import { mergeClassName } from '../utils/mergeClassName';
 import styles from './Select.module.css';
 
 type SelectTriggerProps = React.ComponentPropsWithoutRef<
@@ -17,26 +18,6 @@ type SelectTriggerProps = React.ComponentPropsWithoutRef<
 type TriggerClassName = React.ComponentPropsWithoutRef<
   typeof BaseSelect.Trigger
 >['className'];
-
-type ClassNameProp<T extends React.ElementType> =
-  React.ComponentPropsWithoutRef<T>['className'];
-type ClassNameFn<T extends React.ElementType> = Exclude<
-  ClassNameProp<T>,
-  string | undefined
->;
-type ClassNameState<T extends React.ElementType> = Parameters<ClassNameFn<T>>[0];
-
-const mergeClassName = <T extends React.ElementType>(
-  className: ClassNameProp<T>,
-  baseClassName: string,
-): ClassNameProp<T> => {
-  if (!className) return baseClassName as ClassNameProp<T>;
-  if (typeof className === 'function') {
-    return ((state: ClassNameState<T>) =>
-      [baseClassName, className(state)].filter(Boolean).join(' ')) as ClassNameProp<T>;
-  }
-  return [baseClassName, className].filter(Boolean).join(' ') as ClassNameProp<T>;
-};
 
 const mergeTriggerClassName = (
   className: TriggerClassName,
