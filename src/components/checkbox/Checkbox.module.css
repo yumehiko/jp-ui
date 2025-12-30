@@ -1,0 +1,128 @@
+.Label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--on-surface);
+  cursor: pointer;
+}
+
+.Label:has(.Checkbox[data-disabled]) {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Checkbox {
+  position: relative;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  color: var(--inverse-on-surface);
+  cursor: pointer;
+  outline: none;
+
+  --checkbox-state-opacity: 0;
+}
+
+.Checkbox::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: -6px;
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--outline);
+  border-radius: var(--radius-full);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.Box {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--outline);
+  background-color: transparent;
+}
+
+.StateLayer {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background-color: var(--on-surface);
+  opacity: var(--checkbox-state-opacity);
+  transition: opacity 150ms ease-out;
+  pointer-events: none;
+}
+
+.Indicator {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--inverse-on-surface);
+}
+
+.Icon {
+  width: 12px;
+  height: 12px;
+}
+
+.Checkbox[data-unchecked] .Indicator {
+  opacity: 0;
+}
+
+.Checkbox[data-checked] .Box {
+  border: 0;
+  background-color: var(--inverse-surface);
+}
+
+.Checkbox[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Checkbox[data-disabled] .StateLayer {
+  opacity: 0;
+}
+
+.Checkbox[data-focused] {
+  --checkbox-state-opacity: 0.12;
+}
+
+.Checkbox[data-focused]::after {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .Checkbox:hover:not([data-disabled]) {
+    --checkbox-state-opacity: 0.08;
+  }
+
+  .Label:hover .Checkbox:not([data-disabled]) {
+    --checkbox-state-opacity: 0.08;
+  }
+}
+
+.Checkbox:active:not([data-disabled]) {
+  --checkbox-state-opacity: 0.16;
+}
+
+.Label:active .Checkbox:not([data-disabled]) {
+  --checkbox-state-opacity: 0.16;
+}
