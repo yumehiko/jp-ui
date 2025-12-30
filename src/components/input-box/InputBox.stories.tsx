@@ -16,7 +16,7 @@ const meta: Meta<StoryArgs> = {
   title: 'Components/InputBox',
   decorators: [
     (Story) => (
-      <div style={{ width: 480 }}>
+      <div style={{ width: 640 }}>
         <Story />
       </div>
     ),
