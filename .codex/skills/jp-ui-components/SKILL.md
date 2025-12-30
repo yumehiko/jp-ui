@@ -1,9 +1,9 @@
 ---
-name: storybook-page
-description: Storybook Pageの新規作成や既存Pageのレイアウト/余白/幅ルールの適用を行うためのスキル。特に「幅を満たす系（Field, InputBoxなど）」を含むページで、適切なmax-widthと中央配置ルールを守る必要がある場合に使う。
+name: jp-ui-components
+description: jp-uiのコンポーネント作成とStorybook Page作成のルールを守るためのスキル。Base UIラッパーの方針、render/useRenderの維持、レイアウト/余白/幅ルールを適用する。
 ---
 
-# Storybook Page
+# jp-ui Components
 
 ## 方針
 
@@ -26,6 +26,20 @@ description: Storybook Pageの新規作成や既存Pageのレイアウト/余白
 3) **幅を満たす系アイテム（Field, InputBox など）**
    - **コンテナ内で `width: 100%`** とし、コンテナのmax-widthで制約する。
    - 画面全幅に引き伸ばさない。必ず中央寄せコンテナの中に置く。
+
+## コンポーネント作成ルール（必須）
+
+1) **Base UIラッパーが原則**
+   - Base UIコンポーネントは原則ラッパーTSXを作り、利用体験を統一する（className自動付与・variant/slotの共通化など）。
+   - 例外として、ラッパーが不要なほど単純な場合のみBase UIを直接使用する。
+
+2) **render/useRenderの維持**
+   - Base UIの`render`の仕組みは壊さない。`className` が関数のときも必ずマージする。
+   - 自前コンポーネントは`useRender`を使い、`render`を透過できるAPIにする。
+
+3) **テンプレ利用**
+   - Base UIラッパーは `templates/base-ui-wrapper.tsx` をベースに作成する。
+   - 自前コンポーネントは `templates/custom-use-render.tsx` をベースに作成する。
 
 ## 推奨構成（最小形）
 

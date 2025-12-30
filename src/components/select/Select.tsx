@@ -17,20 +17,32 @@ type SelectTriggerProps = React.ComponentPropsWithoutRef<
 type TriggerClassName = React.ComponentPropsWithoutRef<
   typeof BaseSelect.Trigger
 >['className'];
-type TriggerClassNameFn = Exclude<TriggerClassName, string | undefined>;
-type TriggerClassNameState = Parameters<TriggerClassNameFn>[0];
+
+type ClassNameProp<T extends React.ElementType> =
+  React.ComponentPropsWithoutRef<T>['className'];
+type ClassNameFn<T extends React.ElementType> = Exclude<
+  ClassNameProp<T>,
+  string | undefined
+>;
+type ClassNameState<T extends React.ElementType> = Parameters<ClassNameFn<T>>[0];
+
+const mergeClassName = <T extends React.ElementType>(
+  className: ClassNameProp<T>,
+  baseClassName: string,
+): ClassNameProp<T> => {
+  if (!className) return baseClassName as ClassNameProp<T>;
+  if (typeof className === 'function') {
+    return ((state: ClassNameState<T>) =>
+      [baseClassName, className(state)].filter(Boolean).join(' ')) as ClassNameProp<T>;
+  }
+  return [baseClassName, className].filter(Boolean).join(' ') as ClassNameProp<T>;
+};
 
 const mergeTriggerClassName = (
   className: TriggerClassName,
   baseClassName: string,
-): TriggerClassName => {
-  if (!className) return baseClassName;
-  if (typeof className === 'function') {
-    return (state: TriggerClassNameState) =>
-      [baseClassName, className(state)].filter(Boolean).join(' ');
-  }
-  return [baseClassName, className].filter(Boolean).join(' ');
-};
+): TriggerClassName =>
+  mergeClassName<typeof BaseSelect.Trigger>(className, baseClassName);
 
 export const SelectRoot = BaseSelect.Root;
 export const SelectValue = BaseSelect.Value;
@@ -48,7 +60,10 @@ export const SelectGroupLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <BaseSelect.GroupLabel
     ref={ref}
-    className={[styles.GroupLabel, className].filter(Boolean).join(' ')}
+    className={mergeClassName<typeof BaseSelect.GroupLabel>(
+      className,
+      styles.GroupLabel,
+    )}
     {...props}
   />
 ));
@@ -65,7 +80,10 @@ export const SelectPositioner = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <BaseSelect.Positioner
     ref={ref}
-    className={[styles.Positioner, className].filter(Boolean).join(' ')}
+    className={mergeClassName<typeof BaseSelect.Positioner>(
+      className,
+      styles.Positioner,
+    )}
     {...props}
   />
 ));
@@ -80,7 +98,7 @@ export const SelectPopup = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <BaseSelect.Popup
     ref={ref}
-    className={[styles.Popup, className].filter(Boolean).join(' ')}
+    className={mergeClassName<typeof BaseSelect.Popup>(className, styles.Popup)}
     {...props}
   />
 ));
@@ -95,7 +113,7 @@ export const SelectList = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <BaseSelect.List
     ref={ref}
-    className={[styles.List, className].filter(Boolean).join(' ')}
+    className={mergeClassName<typeof BaseSelect.List>(className, styles.List)}
     {...props}
   />
 ));
@@ -112,7 +130,10 @@ export const SelectScrollUpArrow = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <BaseSelect.ScrollUpArrow
     ref={ref}
-    className={[styles.ScrollArrow, className].filter(Boolean).join(' ')}
+    className={mergeClassName<typeof BaseSelect.ScrollUpArrow>(
+      className,
+      styles.ScrollArrow,
+    )}
     {...props}
   >
     {children ?? <Icon name="caret-up" size={24} />}
@@ -127,7 +148,10 @@ export const SelectScrollDownArrow = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <BaseSelect.ScrollDownArrow
     ref={ref}
-    className={[styles.ScrollArrow, className].filter(Boolean).join(' ')}
+    className={mergeClassName<typeof BaseSelect.ScrollDownArrow>(
+      className,
+      styles.ScrollArrow,
+    )}
     {...props}
   >
     {children ?? <Icon name="caret-down" size={24} />}
@@ -223,20 +247,11 @@ type SelectItemProps = React.ComponentPropsWithoutRef<typeof BaseSelect.Item> & 
 };
 
 type ItemClassName = React.ComponentPropsWithoutRef<typeof BaseSelect.Item>['className'];
-type ItemClassNameFn = Exclude<ItemClassName, string | undefined>;
-type ItemClassNameState = Parameters<ItemClassNameFn>[0];
 
 const mergeItemClassName = (
   className: ItemClassName,
   baseClassName: string,
-): ItemClassName => {
-  if (!className) return baseClassName;
-  if (typeof className === 'function') {
-    return (state: ItemClassNameState) =>
-      [baseClassName, className(state)].filter(Boolean).join(' ');
-  }
-  return [baseClassName, className].filter(Boolean).join(' ');
-};
+): ItemClassName => mergeClassName<typeof BaseSelect.Item>(className, baseClassName);
 
 export const SelectItem = React.forwardRef<
   React.ElementRef<typeof BaseSelect.Item>,
