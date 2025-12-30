@@ -1,0 +1,130 @@
+.Label {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--on-surface);
+  cursor: pointer;
+}
+
+.Label:has(.Switch[data-disabled]) {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Switch {
+  position: relative;
+  display: inline-flex;
+  width: 56px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+
+  --switch-base-color: var(--on-surface);
+  --switch-base-opacity: 0.08;
+  --switch-state-color: var(--on-surface);
+  --switch-state-opacity: 0;
+}
+
+.Switch::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--switch-base-color);
+  opacity: var(--switch-base-opacity);
+}
+
+.Switch::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--outline);
+  border-radius: var(--radius-full);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.StateLayer {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--switch-state-color);
+  opacity: var(--switch-state-opacity);
+  transition: opacity 150ms ease-out;
+  pointer-events: none;
+}
+
+.Thumb {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background-color: var(--on-surface);
+  color: var(--on-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 150ms ease-out, background-color 150ms ease-out;
+}
+
+.Icon {
+  width: 20px;
+  height: 20px;
+}
+
+.Switch[data-checked] {
+  --switch-base-opacity: 1;
+  --switch-state-color: var(--surface);
+}
+
+.Switch[data-checked] .Thumb {
+  transform: translateX(24px);
+  background-color: var(--surface);
+}
+
+.Switch[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Switch[data-disabled] .StateLayer {
+  opacity: 0;
+}
+
+.Switch[data-focused] {
+  --switch-state-opacity: 0.12;
+}
+
+.Switch[data-focused]::after {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .Switch:hover:not([data-disabled]) {
+    --switch-state-opacity: 0.08;
+  }
+
+  .Label:hover .Switch:not([data-disabled]) {
+    --switch-state-opacity: 0.08;
+  }
+}
+
+.Switch:active:not([data-disabled]) {
+  --switch-state-opacity: 0.16;
+}
+
+.Label:active .Switch:not([data-disabled]) {
+  --switch-state-opacity: 0.16;
+}
