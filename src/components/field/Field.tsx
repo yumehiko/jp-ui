@@ -11,13 +11,26 @@ type FieldProps = {
   readOnly?: boolean;
 } & Omit<React.ComponentPropsWithoutRef<typeof BaseField.Root>, 'children'>;
 
+type ControlClassName =
+  | string
+  | ((state: unknown) => string | undefined)
+  | undefined;
+
+type ControlElementProps = {
+  className?: ControlClassName;
+  floatingLabel?: React.ReactNode;
+  invalid?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+};
+
 const mergeControlClassName = (
-  className: unknown,
+  className: ControlClassName,
   controlClassName: string,
-) => {
+): ControlClassName => {
   if (!className) return controlClassName;
   if (typeof className === 'function') {
-    return (state: Parameters<typeof className>[0]) =>
+    return (state: unknown) =>
       [controlClassName, className(state)].filter(Boolean).join(' ');
   }
   return [controlClassName, className].filter(Boolean).join(' ');
@@ -39,7 +52,7 @@ export function Field({
   );
   const isInputBox =
     React.isValidElement(children) && children.type === InputBox;
-  const control = React.isValidElement(children)
+  const control = React.isValidElement<ControlElementProps>(children)
     ? React.cloneElement(children, {
         className: mergeControlClassName(children.props.className, styles.Control),
         ...(isInputBox

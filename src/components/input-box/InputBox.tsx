@@ -16,10 +16,18 @@ type InputBoxProps = {
   className?: string;
 };
 
-const mergeControlClassName = (className: unknown, controlClassName: string) => {
+type ControlClassName =
+  | string
+  | ((state: unknown) => string | undefined)
+  | undefined;
+
+const mergeControlClassName = (
+  className: ControlClassName,
+  controlClassName: string,
+): ControlClassName => {
   if (!className) return controlClassName;
   if (typeof className === 'function') {
-    return (state: Parameters<typeof className>[0]) =>
+    return (state: unknown) =>
       [controlClassName, className(state)].filter(Boolean).join(' ');
   }
   return [controlClassName, className].filter(Boolean).join(' ');
@@ -38,12 +46,15 @@ export function InputBox({
   floatingLabel,
   className,
 }: InputBoxProps) {
-  const control = React.isValidElement(children)
+  const control = React.isValidElement<{ className?: ControlClassName }>(children)
     ? React.cloneElement(children, {
         className: mergeControlClassName(children.props.className, styles.Control),
       })
     : children;
-  const label = React.isValidElement(floatingLabel)
+  const label = React.isValidElement<{
+    className?: string;
+    'data-inputbox-label'?: boolean;
+  }>(floatingLabel)
     ? React.cloneElement(floatingLabel, {
         className: [styles.Label, floatingLabel.props.className]
           .filter(Boolean)

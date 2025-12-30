@@ -8,10 +8,19 @@ type SeparatorProps = React.ComponentPropsWithoutRef<typeof BaseSeparator> & {
   style?: SeparatorStyle;
 };
 
-const mergeSeparatorClassName = (className: unknown, baseClassName: string) => {
+type SeparatorClassName = React.ComponentPropsWithoutRef<
+  typeof BaseSeparator
+>['className'];
+type SeparatorClassNameFn = Exclude<SeparatorClassName, string | undefined>;
+type SeparatorClassNameState = Parameters<SeparatorClassNameFn>[0];
+
+const mergeSeparatorClassName = (
+  className: SeparatorClassName,
+  baseClassName: string,
+): SeparatorClassName => {
   if (!className) return baseClassName;
   if (typeof className === 'function') {
-    return (state: Parameters<typeof className>[0]) =>
+    return (state: SeparatorClassNameState) =>
       [baseClassName, className(state)].filter(Boolean).join(' ');
   }
   return [baseClassName, className].filter(Boolean).join(' ');

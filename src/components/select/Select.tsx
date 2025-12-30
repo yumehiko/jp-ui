@@ -14,10 +14,19 @@ type SelectTriggerProps = React.ComponentPropsWithoutRef<
   readOnly?: boolean;
 };
 
-const mergeTriggerClassName = (className: unknown, baseClassName: string) => {
+type TriggerClassName = React.ComponentPropsWithoutRef<
+  typeof BaseSelect.Trigger
+>['className'];
+type TriggerClassNameFn = Exclude<TriggerClassName, string | undefined>;
+type TriggerClassNameState = Parameters<TriggerClassNameFn>[0];
+
+const mergeTriggerClassName = (
+  className: TriggerClassName,
+  baseClassName: string,
+): TriggerClassName => {
   if (!className) return baseClassName;
   if (typeof className === 'function') {
-    return (state: Parameters<typeof className>[0]) =>
+    return (state: TriggerClassNameState) =>
       [baseClassName, className(state)].filter(Boolean).join(' ');
   }
   return [baseClassName, className].filter(Boolean).join(' ');
@@ -168,7 +177,10 @@ export const SelectTrigger = React.forwardRef<
     },
     ref,
   ) => {
-    const label = React.isValidElement(floatingLabel)
+    const label = React.isValidElement<{
+      className?: string;
+      'data-select-label'?: boolean;
+    }>(floatingLabel)
       ? React.cloneElement(floatingLabel, {
           className: [styles.Label, floatingLabel.props.className]
             .filter(Boolean)
@@ -210,10 +222,17 @@ type SelectItemProps = React.ComponentPropsWithoutRef<typeof BaseSelect.Item> & 
   indicator?: React.ReactNode;
 };
 
-const mergeItemClassName = (className: unknown, baseClassName: string) => {
+type ItemClassName = React.ComponentPropsWithoutRef<typeof BaseSelect.Item>['className'];
+type ItemClassNameFn = Exclude<ItemClassName, string | undefined>;
+type ItemClassNameState = Parameters<ItemClassNameFn>[0];
+
+const mergeItemClassName = (
+  className: ItemClassName,
+  baseClassName: string,
+): ItemClassName => {
   if (!className) return baseClassName;
   if (typeof className === 'function') {
-    return (state: Parameters<typeof className>[0]) =>
+    return (state: ItemClassNameState) =>
       [baseClassName, className(state)].filter(Boolean).join(' ');
   }
   return [baseClassName, className].filter(Boolean).join(' ');
