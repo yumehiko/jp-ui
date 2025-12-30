@@ -15,7 +15,7 @@ type Story = StoryObj<typeof Radio>;
 const labelClassName = `typesetting-label typesetting-tsumegumi ${styles.Label}`;
 
 export const Default: Story = {
-  render: (args) => (
+  render: () => (
     <RadioGroup defaultValue="tokyo" style={{ display: 'grid', gap: 12 }}>
       <label className={labelClassName}>
         <Radio value="tokyo" />

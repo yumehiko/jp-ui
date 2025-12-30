@@ -25,5 +25,3 @@ export function Icon({ name, size = 24, className, style, ...rest }: IconProps) 
     />
   );
 }
-
-export const icons = iconMap;

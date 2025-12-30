@@ -41,36 +41,39 @@ export default meta;
 
 type Story = StoryObj<StoryArgs>;
 
-export const Default: Story = {
-  render: (args) => {
-    const [value, setValue] = React.useState(args.defaultValue);
-    React.useEffect(() => {
-      setValue(args.defaultValue);
-    }, [args.defaultValue]);
+const InputBoxStory = (args: StoryArgs) => {
+  const [value, setValue] = React.useState(args.defaultValue);
 
-    return (
-      <InputBox
-        floatingLabel={<span>Label</span>}
-        leadingIcon={<Icon name="dummy" size={24} />}
-        filled={value.length > 0}
-        invalid={args.invalid}
-        readOnly={args.readOnly}
-        trailingIcon={
-          args.invalid ? <Icon name="exclamation-circle" size={24} /> : undefined
-        }
-        onClear={
-          args.disabled || args.invalid || args.readOnly ? undefined : () => setValue('')
-        }
+  React.useEffect(() => {
+    setValue(args.defaultValue);
+  }, [args.defaultValue]);
+
+  return (
+    <InputBox
+      floatingLabel={<span>Label</span>}
+      leadingIcon={<Icon name="dummy" size={24} />}
+      filled={value.length > 0}
+      invalid={args.invalid}
+      readOnly={args.readOnly}
+      trailingIcon={
+        args.invalid ? <Icon name="exclamation-circle" size={24} /> : undefined
+      }
+      onClear={
+        args.disabled || args.invalid || args.readOnly ? undefined : () => setValue('')
+      }
+      disabled={args.disabled}
+    >
+      <Input
+        placeholder={args.placeholder}
+        value={value}
         disabled={args.disabled}
-      >
-        <Input
-          placeholder={args.placeholder}
-          value={value}
-          disabled={args.disabled}
-          readOnly={args.readOnly}
-          onChange={(event) => setValue(event.target.value)}
-        />
-      </InputBox>
-    );
-  },
+        readOnly={args.readOnly}
+        onChange={(event) => setValue(event.target.value)}
+      />
+    </InputBox>
+  );
+};
+
+export const Default: Story = {
+  render: (args) => <InputBoxStory {...args} />,
 };

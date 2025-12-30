@@ -1,4 +1,5 @@
-import { Icon, icons } from '../assets/icons/Icon';
+import { Icon } from '../assets/icons/Icon';
+import { icons } from '../assets/icons/icons';
 import styles from './IconsPage.module.css';
 
 const iconNames = Object.keys(icons).sort();

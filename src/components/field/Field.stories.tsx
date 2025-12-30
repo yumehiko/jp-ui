@@ -49,42 +49,44 @@ export default meta;
 
 type Story = StoryObj<StoryArgs>;
 
-export const Default: Story = {
-  render: (args) => {
-    const [value, setValue] = React.useState(args.defaultValue ?? '');
+const FieldStory = (args: StoryArgs) => {
+  const [value, setValue] = React.useState(args.defaultValue ?? '');
 
-    React.useEffect(() => {
-      setValue(args.defaultValue ?? '');
-    }, [args.defaultValue]);
+  React.useEffect(() => {
+    setValue(args.defaultValue ?? '');
+  }, [args.defaultValue]);
 
-    return (
-      <Field
-        label={args.label}
-        supportingText={args.supportingText}
-        errorMessage={args.errorMessage}
+  return (
+    <Field
+      label={args.label}
+      supportingText={args.supportingText}
+      errorMessage={args.errorMessage}
+      invalid={args.invalid}
+      disabled={args.disabled}
+      readOnly={args.readOnly}
+    >
+      <InputBox
+        leadingIcon={<Icon name="edit" size={24} />}
+        filled={value.length > 0}
         invalid={args.invalid}
         disabled={args.disabled}
         readOnly={args.readOnly}
+        trailingIcon={
+          args.invalid ? <Icon name="exclamation-circle" size={24} /> : undefined
+        }
       >
-        <InputBox
-          leadingIcon={<Icon name="edit" size={24} />}
-          filled={value.length > 0}
-          invalid={args.invalid}
+        <Input
+          placeholder={args.placeholder}
+          value={value}
           disabled={args.disabled}
           readOnly={args.readOnly}
-          trailingIcon={
-            args.invalid ? <Icon name="exclamation-circle" size={24} /> : undefined
-          }
-        >
-          <Input
-            placeholder={args.placeholder}
-            value={value}
-            disabled={args.disabled}
-            readOnly={args.readOnly}
-            onChange={(event) => setValue(event.target.value)}
-          />
-        </InputBox>
-      </Field>
-    );
-  },
+          onChange={(event) => setValue(event.target.value)}
+        />
+      </InputBox>
+    </Field>
+  );
+};
+
+export const Default: Story = {
+  render: (args) => <FieldStory {...args} />,
 };
