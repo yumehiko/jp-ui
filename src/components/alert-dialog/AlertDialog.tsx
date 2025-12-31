@@ -2,6 +2,8 @@ import * as React from 'react';
 import { AlertDialog as BaseAlertDialog } from '@base-ui/react/alert-dialog';
 import { mergeProps } from '@base-ui/react/merge-props';
 import { useRender } from '@base-ui/react/use-render';
+import { useDialogPopupMeasurements } from '../dialog/dialogPopupMeasurements';
+import { composeRefs } from '../utils/composeRefs';
 import { mergeClassName } from '../utils/mergeClassName';
 import styles from '../dialog/Dialog.module.css';
 
@@ -57,17 +59,33 @@ export const AlertDialogPopup = React.forwardRef<
   React.ElementRef<typeof BaseAlertDialog.Popup>,
   AlertDialogPopupProps
 >(({ className, ...props }, ref) => (
-  <BaseAlertDialog.Popup
-    ref={ref}
-    className={mergeClassName<typeof BaseAlertDialog.Popup>(
-      className,
-      styles.Popup,
-    )}
-    {...props}
-  />
+  <AlertDialogPopupWithMeasure className={className} ref={ref} {...props} />
 ));
 
 AlertDialogPopup.displayName = 'AlertDialogPopup';
+
+const AlertDialogPopupWithMeasure = React.forwardRef<
+  React.ElementRef<typeof BaseAlertDialog.Popup>,
+  AlertDialogPopupProps
+>(({ className, ...props }, ref) => {
+  const localRef = React.useRef<React.ElementRef<typeof BaseAlertDialog.Popup>>(
+    null,
+  );
+  useDialogPopupMeasurements(localRef as React.RefObject<HTMLElement>);
+
+  return (
+    <BaseAlertDialog.Popup
+      ref={composeRefs(ref, localRef)}
+      className={mergeClassName<typeof BaseAlertDialog.Popup>(
+        className,
+        styles.Popup,
+      )}
+      {...props}
+    />
+  );
+});
+
+AlertDialogPopupWithMeasure.displayName = 'AlertDialogPopupWithMeasure';
 
 type AlertDialogTitleProps = React.ComponentPropsWithoutRef<
   typeof BaseAlertDialog.Title

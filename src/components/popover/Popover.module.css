@@ -1,0 +1,54 @@
+.Backdrop {
+}
+
+.Positioner {
+  width: var(--positioner-width);
+  height: var(--positioner-height);
+  max-width: var(--available-width);
+  max-height: var(--available-height);
+}
+
+.Popup {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-l);
+  background-color: var(--surface-container-low);
+  color: var(--on-surface);
+  box-shadow: var(--elevation-2);
+  transform-origin: var(--transform-origin);
+  overflow: hidden;
+}
+
+.Arrow {
+  display: flex;
+}
+
+.Title {
+  margin: 0;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-title);
+  line-height: var(--line-height-title);
+  letter-spacing: var(--letter-spacing-title);
+  color: var(--on-surface);
+}
+
+.Description {
+  margin: 0;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-body);
+  color: var(--on-surface-variant);
+}
+
+.Close {
+  appearance: none;
+}
+
+.Viewport {
+}

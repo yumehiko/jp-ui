@@ -26,12 +26,15 @@ const withThemeClass = (Story, context) => {
   return Story();
 };
 
-const withCenteredStage = (Story) => {
+const withCenteredStage = (Story, context) => {
+  if (context?.parameters?.centeredStage === false) {
+    return Story();
+  }
   return React.createElement(
     'div',
     {
       style: {
-        minHeight: '100vh',
+        height: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -45,6 +48,7 @@ const withCenteredStage = (Story) => {
 
 const preview: Preview = {
   parameters: {
+    layout: 'fullscreen',
     controls: {
       matchers: {
        color: /(background|color)$/i,

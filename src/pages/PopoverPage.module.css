@@ -1,0 +1,98 @@
+.Page {
+  padding: 32px 16px 80px;
+  background-color: var(--surface, #f8f8f6);
+  color: var(--on-surface, #111827);
+}
+
+.Container {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  display: grid;
+  gap: 32px;
+}
+
+.Section {
+  display: grid;
+  gap: 16px;
+}
+
+.SectionTitle {
+  margin: 0;
+}
+
+.ExampleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.Trigger {
+  border: 1px solid var(--outline-variant, #d1d5db);
+  border-radius: var(--radius-s, 8px);
+  background-color: var(--surface, #f8f8f6);
+  padding: 8px 12px;
+  font: inherit;
+  color: inherit;
+}
+
+.Popup {
+  width: min(400px, 100%);
+  min-height: 256px;
+}
+
+.Content {
+  display: grid;
+  gap: 16px;
+}
+
+.Header {
+  display: grid;
+  gap: 6px;
+}
+
+.Row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.RowLabel {
+  font-size: var(--font-size-label, 16px);
+  font-weight: var(--font-weight-label, 500);
+}
+
+.Separator {
+  margin: 4px 0;
+}
+
+.Actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.ShortcutList {
+  display: grid;
+  gap: 8px;
+}
+
+.ShortcutRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ShortcutLabel {
+  font-size: var(--font-size-label, 16px);
+}
+
+.ShortcutKey {
+  padding: 2px 8px;
+  border-radius: var(--radius-xs, 4px);
+  background-color: var(--surface-container, #f0efef);
+  font-size: var(--font-size-caption, 12px);
+}

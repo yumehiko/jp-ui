@@ -33,10 +33,22 @@
   --font-weight-label: 500;
   --line-height-label: 24px;
   --letter-spacing-label: 0;
+  --font-size-label-small: 12px;
+  --font-weight-label-small: 500;
+  --line-height-label-small: 16px;
+  --letter-spacing-label-small: 0;
+  --font-size-label-mini: 10px;
+  --font-weight-label-mini: 500;
+  --line-height-label-mini: 12px;
+  --letter-spacing-label-mini: 0;
   --font-size-editable-label: 16px;
   --font-weight-editable-label: 300;
   --line-height-editable-label: 24px;
   --letter-spacing-editable-label: 0;
+  --font-size-editable-label-small: 12px;
+  --font-weight-editable-label-small: 300;
+  --line-height-editable-label-small: 16px;
+  --letter-spacing-editable-label-small: 0;
   --font-size-caption: 12px;
   --font-weight-caption: 300;
   --line-height-caption: 20px;
@@ -94,6 +106,11 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 body {

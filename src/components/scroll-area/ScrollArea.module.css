@@ -1,0 +1,87 @@
+.Root {
+  position: relative;
+}
+
+.Viewport {
+  width: 100%;
+  height: 100%;
+  padding: var(--space-6);
+  border-radius: var(--radius-m);
+  background-color: var(--surface-container);
+}
+
+.Content {
+  display: flow-root;
+  --scrollarea-edge-offset: -8px;
+}
+
+.Content > :first-child {
+  margin-top: var(--scrollarea-edge-offset);
+}
+
+.Content > :last-child {
+  margin-bottom: var(--scrollarea-edge-offset);
+}
+
+.Scrollbar {
+  display: flex;
+  position: relative;
+  align-items: center;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+  pointer-events: none;
+}
+
+.Scrollbar[data-orientation='vertical'] {
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-block: var(--space-2);
+  width: 20px;
+}
+
+.Scrollbar[data-orientation='horizontal'] {
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-inline: var(--space-2);
+  height: 20px;
+}
+
+.Scrollbar[data-scrolling] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.Scrollbar::before {
+  content: '';
+  position: absolute;
+}
+
+.Scrollbar[data-orientation='vertical']::before {
+  width: 20px;
+  height: 100%;
+}
+
+.Scrollbar[data-orientation='horizontal']::before {
+  width: 100%;
+  height: 20px;
+}
+
+.Thumb {
+  border-radius: var(--radius-full);
+  background-color: var(--outline);
+  opacity: 0.5;
+}
+
+.Scrollbar[data-orientation='vertical'] .Thumb {
+  width: 4px;
+}
+
+.Scrollbar[data-orientation='horizontal'] .Thumb {
+  height: 4px;
+}
+
+.Corner {
+  width: 24px;
+  height: 24px;
+}
