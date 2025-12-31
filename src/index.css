@@ -70,6 +70,9 @@
   --focus-ring-offset: 2px;
   --focus-ring-color: var(--outline);
 
+  --z-dialog-backdrop: 1000;
+  --z-dialog-popup: 1001;
+
   --shadow-rgb: 0 0 0;
   --elevation-0: none;
   --elevation-1: 0 0 8px 0 rgb(var(--shadow-rgb) / 0.2),
