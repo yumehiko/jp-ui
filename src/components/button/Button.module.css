@@ -4,10 +4,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-width: 96px;
-  min-height: 48px;
-  padding: 12px 20px;
+  gap: var(--space-1);
+  min-width: var(--button-min-width);
+  min-height: var(--button-height);
+  padding: var(--button-padding-y) var(--button-padding-x);
   margin: 0;
   outline: 0;
   border: 0;
@@ -15,10 +15,10 @@
   background-color: transparent;
   color: var(--button-text-color);
   font-family: var(--font-brand);
-  font-size: var(--font-size-label);
-  font-weight: var(--font-weight-label);
-  line-height: var(--line-height-label);
-  letter-spacing: var(--letter-spacing-label);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
+  letter-spacing: var(--button-letter-spacing);
   user-select: none;
   cursor: pointer;
 
@@ -29,6 +29,14 @@
   --button-state-opacity: 0;
   --button-border-shadow: none;
   --focus-ring-radius: var(--radius-full);
+  --button-height: 48px;
+  --button-min-width: 96px;
+  --button-padding-x: var(--space-4);
+  --button-padding-y: var(--space-3);
+  --button-font-size: var(--font-size-label);
+  --button-font-weight: var(--font-weight-label);
+  --button-line-height: var(--line-height-label);
+  --button-letter-spacing: var(--letter-spacing-label);
   z-index: 0;
 }
 
@@ -79,6 +87,17 @@
   cursor: not-allowed;
 }
 
+.Button[data-size='small'] {
+  --button-height: 32px;
+  --button-min-width: 80px;
+  --button-padding-x: var(--space-3);
+  --button-padding-y: var(--space-2);
+  --button-font-size: var(--font-size-label-small);
+  --button-font-weight: var(--font-weight-label-small);
+  --button-line-height: var(--line-height-label-small);
+  --button-letter-spacing: var(--letter-spacing-label-small);
+}
+
 .Button[data-variant='filled'] {
   --button-base-color: var(--inverse-surface);
   --button-base-opacity: 1;
@@ -110,8 +129,8 @@
 
 .IconButton {
   padding: 0;
-  min-width: 48px;
-  min-height: 48px;
+  min-width: var(--button-height);
+  min-height: var(--button-height);
   border-radius: var(--radius-full);
   gap: 0;
 }

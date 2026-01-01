@@ -57,3 +57,15 @@ export const IconWithLabel: Story = {
     ),
   },
 };
+
+export const Small: Story = {
+  args: {
+    size: 'small',
+    children: (
+      <>
+        <Icon name="edit" size={16} />
+        Small
+      </>
+    ),
+  },
+};

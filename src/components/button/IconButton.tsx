@@ -4,16 +4,18 @@ import { mergeClassName } from '../utils/mergeClassName';
 import styles from './Button.module.css';
 
 type ButtonVariant = 'filled' | 'tonal' | 'outlined' | 'ghost';
+type ButtonSize = 'large' | 'small';
 
 type IconButtonProps = React.ComponentPropsWithoutRef<typeof BaseButton> & {
   'aria-label': string;
   variant?: ButtonVariant;
+  size?: ButtonSize;
 };
 
 type IconButtonElement = React.ElementRef<typeof BaseButton>;
 
 export const IconButton = React.forwardRef<IconButtonElement, IconButtonProps>(
-  ({ className, variant = 'filled', ...props }, ref) => {
+  ({ className, variant = 'filled', size = 'large', ...props }, ref) => {
     return (
       <BaseButton
         ref={ref}
@@ -23,6 +25,7 @@ export const IconButton = React.forwardRef<IconButtonElement, IconButtonProps>(
           styles.IconButton,
         )}
         data-variant={variant}
+        data-size={size}
         {...props}
       />
     );

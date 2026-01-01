@@ -1,0 +1,156 @@
+.TabsRoot {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.List {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+}
+
+.List[data-orientation='vertical'] {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.Tab {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--tab-padding-y) var(--tab-padding-x);
+  margin: 0;
+  border: 0;
+  border-radius: var(--radius-s);
+  background: transparent;
+  color: var(--on-surface);
+  font-family: var(--font-brand);
+  font-size: var(--tab-font-size);
+  font-weight: var(--tab-font-weight);
+  line-height: var(--tab-line-height);
+  letter-spacing: var(--tab-letter-spacing);
+  user-select: none;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+
+  --tab-content-opacity: 0.75;
+  --tab-icon-size: 24px;
+  --tab-gap: var(--space-2);
+  --tab-padding-x: var(--space-2);
+  --tab-padding-y: var(--space-2);
+  --tab-font-size: var(--font-size-label);
+  --tab-font-weight: var(--font-weight-label);
+  --tab-line-height: var(--line-height-label);
+  --tab-letter-spacing: var(--letter-spacing-label);
+}
+
+.Tab::after {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  border: var(--focus-ring-width) solid var(--focus-ring-color);
+  border-radius: calc(var(--radius-s) + var(--focus-ring-offset));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.Tab[data-size='small'] {
+  --tab-icon-size: 16px;
+  --tab-gap: var(--space-1);
+  --tab-padding-y: 6px;
+  --tab-font-size: var(--font-size-label-small);
+  --tab-font-weight: var(--font-weight-label-small);
+  --tab-line-height: var(--line-height-label-small);
+  --tab-letter-spacing: var(--letter-spacing-label-small);
+}
+
+.TabContent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tab-gap);
+  opacity: var(--tab-content-opacity);
+  transition: opacity 150ms ease-out;
+}
+
+.TabIcon {
+  width: var(--tab-icon-size);
+  height: var(--tab-icon-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.TabIcon > * {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.TabLabel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Tab[data-active] {
+  --tab-content-opacity: 1;
+}
+
+.Tab:focus-visible::after,
+.Tab[data-focused]::after {
+  opacity: 1;
+}
+
+.Tab[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) {
+  .Tab:hover:not([data-disabled]) {
+    --tab-content-opacity: 1;
+  }
+}
+
+.Tab:active:not([data-disabled]) {
+  --tab-content-opacity: 1;
+}
+
+.Indicator {
+  position: absolute;
+  z-index: 0;
+  left: var(--active-tab-left);
+  top: var(--active-tab-top);
+  width: var(--active-tab-width);
+  height: var(--active-tab-height);
+  border-radius: var(--radius-s);
+  background-color: var(--on-surface);
+  opacity: 0.12;
+  pointer-events: none;
+  transition: left 200ms ease, top 200ms ease, width 200ms ease,
+    height 200ms ease;
+}
+
+.Panel {
+  outline: none;
+}
+
+.Panel:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-m);
+}
+
+.Panel[hidden] {
+  display: none;
+}

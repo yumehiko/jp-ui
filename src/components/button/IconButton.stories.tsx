@@ -35,3 +35,10 @@ export const Ghost: Story = {
     variant: 'ghost',
   },
 };
+
+export const Small: Story = {
+  args: {
+    size: 'small',
+    children: <Icon name="edit" size={16} />,
+  },
+};
