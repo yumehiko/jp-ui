@@ -1,0 +1,39 @@
+.Page {
+  padding: 32px 16px 80px;
+  background-color: var(--surface);
+  color: var(--on-surface);
+}
+
+.Container {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.Section {
+  display: grid;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.Section:first-of-type {
+  margin-top: 0;
+}
+
+.SectionTitle {
+  margin: 0;
+}
+
+.Row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.Group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
