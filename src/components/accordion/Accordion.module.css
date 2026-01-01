@@ -1,0 +1,137 @@
+.Root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--on-surface);
+}
+
+.Item {
+  width: 100%;
+  border-bottom: 1px solid var(--outline);
+}
+
+.Header {
+  margin: 0;
+}
+
+.Trigger {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  width: 100%;
+  gap: var(--space-2);
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: var(--space-3);
+  border: 0;
+  border-bottom: 0;
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  text-align: left;
+  cursor: pointer;
+  outline: 0;
+
+  --accordion-state-opacity: 0;
+}
+
+.Trigger::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -1px 0;
+  background-color: var(--on-surface);
+  opacity: var(--accordion-state-opacity);
+  transition: opacity 150ms ease-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.Trigger::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  border: var(--focus-ring-width) solid var(--focus-ring-color);
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.Trigger > * {
+  position: relative;
+  z-index: 1;
+}
+
+.TriggerLabel {
+  flex: 1;
+  min-width: 0;
+}
+
+.TriggerIcon {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.TriggerIconOpen {
+  display: none;
+}
+
+.Trigger[data-panel-open] .TriggerIconOpen {
+  display: inline-flex;
+}
+
+.Trigger[data-panel-open] .TriggerIconClosed {
+  display: none;
+}
+
+.Trigger[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Trigger[data-disabled]::before {
+  opacity: 0;
+}
+
+.Trigger:focus-visible {
+  --accordion-state-opacity: 0.12;
+}
+
+.Trigger:focus-visible::after {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .Trigger:hover:not([data-disabled]) {
+    --accordion-state-opacity: 0.08;
+  }
+}
+
+.Trigger:active:not([data-disabled]) {
+  --accordion-state-opacity: 0.16;
+}
+
+.Panel {
+  height: var(--accordion-panel-height);
+  overflow: hidden;
+  transition: height 150ms ease-out;
+  background: var(--surface);
+}
+
+.Panel[data-starting-style],
+.Panel[data-ending-style] {
+  height: 0;
+}
+
+.Content {
+  width: 100%;
+  padding: var(--space-3);
+}

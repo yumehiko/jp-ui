@@ -1,0 +1,212 @@
+.Viewport {
+  position: fixed;
+  top: var(--space-4);
+  left: 50%;
+  width: 100%;
+  max-width: 480px;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.Toast {
+  --toast-background: var(--inverse-surface);
+  --toast-foreground: var(--inverse-on-surface);
+
+  --gap: var(--space-3);
+  --peek: var(--space-3);
+  --scale: calc(max(0, 1 - (var(--toast-index) * 0.1)));
+  --shrink: calc(1 - var(--scale));
+  --height: var(--toast-frontmost-height, var(--toast-height));
+  --offset-y: calc(
+    var(--toast-offset-y) + (var(--toast-index) * var(--gap)) +
+      var(--toast-swipe-movement-y)
+  );
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: var(--radius-s);
+  box-shadow: var(--elevation-3);
+  background-clip: padding-box;
+  background-color: var(--toast-background);
+  color: var(--toast-foreground);
+  padding: var(--space-3) var(--space-4);
+  transform-origin: top center;
+  cursor: default;
+  user-select: none;
+  z-index: calc(1000 - var(--toast-index));
+  height: var(--height);
+  transform:
+    translateX(var(--toast-swipe-movement-x))
+    translateY(
+      calc(
+        var(--toast-swipe-movement-y) + (var(--toast-index) * var(--peek)) +
+          (var(--shrink) * var(--height))
+      )
+    )
+    scale(var(--scale));
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s,
+    height 0.15s;
+}
+
+.Toast::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: calc(var(--gap) + 1px);
+}
+
+.Toast[data-expanded] {
+  transform: translateX(var(--toast-swipe-movement-x)) translateY(var(--offset-y));
+  height: var(--toast-height);
+}
+
+.Toast[data-starting-style],
+.Toast[data-ending-style] {
+  transform: translateY(-150%);
+}
+
+.Toast[data-limited] {
+  opacity: 0;
+}
+
+.Toast[data-ending-style] {
+  opacity: 0;
+}
+
+.Toast[data-ending-style][data-swipe-direction='down'] {
+  transform: translateY(calc(var(--toast-swipe-movement-y) + 150%));
+}
+
+.Toast[data-ending-style][data-swipe-direction='up'] {
+  transform: translateY(calc(var(--toast-swipe-movement-y) - 150%));
+}
+
+.Toast[data-ending-style][data-swipe-direction='left'] {
+  transform: translateX(calc(var(--toast-swipe-movement-x) - 150%)) translateY(var(--offset-y));
+}
+
+.Toast[data-ending-style][data-swipe-direction='right'] {
+  transform: translateX(calc(var(--toast-swipe-movement-x) + 150%)) translateY(var(--offset-y));
+}
+
+.Toast[data-type='info'] {
+  --toast-background: var(--inverse-surface);
+  --toast-foreground: var(--inverse-on-surface);
+}
+
+.Toast[data-type='error'] {
+  --toast-background: var(--error);
+  --toast-foreground: var(--on-error);
+}
+
+.Toast[data-type='primary'] {
+  --toast-background: var(--primary);
+  --toast-foreground: var(--on-primary);
+}
+
+.Content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  overflow: hidden;
+  transition: opacity 250ms ease-out;
+}
+
+.Content[data-behind] {
+  opacity: 0;
+}
+
+.Content[data-expanded] {
+  opacity: 1;
+}
+
+.LeadingIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.Body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.Title {
+  margin: 0;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  color: currentColor;
+}
+
+.Description {
+  margin: 0;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-caption);
+  line-height: var(--line-height-caption);
+  letter-spacing: var(--letter-spacing-caption);
+  color: currentColor;
+}
+
+.Action {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  border: 0;
+  background: transparent;
+  color: currentColor;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  cursor: pointer;
+}
+
+.Close {
+  margin-left: auto;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: currentColor;
+  cursor: pointer;
+}
+
+.CloseIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.Positioner {
+  z-index: 1000;
+}
+
+.Arrow {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background-color: var(--toast-background);
+  box-shadow: var(--elevation-3);
+}

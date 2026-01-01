@@ -1,0 +1,145 @@
+.Root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  color: var(--on-surface);
+}
+
+.Label {
+  color: var(--on-surface);
+}
+
+.Control {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--slider-thumb-size, 24px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+
+  --slider-thumb-size: 24px;
+  --slider-track-opacity: 0.08;
+  --slider-indicator-color: var(--on-surface-variant);
+  --slider-thumb-handle-color: var(--on-surface-variant);
+  --slider-thumb-handle-inset: 4px;
+  --slider-thumb-ring-inset: 2px;
+  --slider-thumb-ring-opacity: 0;
+}
+
+.Control[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Track {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  border-radius: var(--radius-full);
+  overflow: visible;
+  z-index: 0;
+}
+
+.Track::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--on-surface-variant);
+  opacity: var(--slider-track-opacity);
+  transition: opacity 150ms ease-out;
+}
+
+.Indicator {
+  position: relative;
+  height: 100%;
+  border-radius: inherit;
+  background-color: var(--slider-indicator-color);
+  transition: background-color 150ms ease-out;
+  z-index: 0;
+}
+
+.Thumb {
+  position: absolute;
+  width: var(--slider-thumb-size);
+  height: var(--slider-thumb-size);
+  border-radius: var(--radius-full);
+  background-color: transparent;
+  z-index: 2;
+}
+
+.Thumb::before {
+  content: "";
+  position: absolute;
+  inset: var(--slider-thumb-handle-inset);
+  border-radius: inherit;
+  background-color: var(--slider-thumb-handle-color);
+  box-shadow: var(--elevation-1);
+  pointer-events: none;
+  transition:
+    inset 150ms ease-out,
+    background-color 150ms ease-out;
+}
+
+.Thumb::after {
+  content: "";
+  position: absolute;
+  inset: var(--slider-thumb-ring-inset);
+  border-radius: inherit;
+  border: 2px solid var(--outline);
+  opacity: var(--slider-thumb-ring-opacity);
+  pointer-events: none;
+  transition:
+    inset 150ms ease-out,
+    opacity 150ms ease-out;
+}
+
+.Thumb[data-focused] {
+  --slider-thumb-handle-inset: 2px;
+  --slider-thumb-handle-color: var(--on-surface);
+  --slider-thumb-ring-inset: 0;
+  --slider-thumb-ring-opacity: 1;
+}
+
+.Thumb[data-dragging],
+.Thumb:active:not([data-disabled]) {
+  --slider-thumb-handle-inset: 0;
+  --slider-thumb-handle-color: var(--on-surface);
+  --slider-thumb-ring-inset: -2px;
+  --slider-thumb-ring-opacity: 0;
+}
+
+@media (hover: hover) {
+  .Control:hover:not([data-disabled]) {
+    --slider-track-opacity: 0.12;
+    --slider-indicator-color: var(--on-surface);
+  }
+
+  .Thumb:hover:not([data-disabled]) {
+    --slider-thumb-handle-inset: 2px;
+    --slider-thumb-ring-inset: 0;
+  }
+}
+
+.Control:active:not([data-disabled]),
+.Control[data-dragging] {
+  --slider-track-opacity: 0.16;
+  --slider-indicator-color: var(--on-surface);
+}
+
+.Value {
+  align-self: flex-start;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--on-surface);
+}

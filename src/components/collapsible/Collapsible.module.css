@@ -1,0 +1,44 @@
+.Root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  color: var(--on-surface);
+}
+
+.Trigger {
+  justify-content: flex-start;
+  gap: var(--space-2);
+}
+
+.TriggerIcon {
+  display: inline-flex;
+  transition: transform 150ms ease-out;
+}
+
+.Trigger[data-panel-open] .TriggerIcon {
+  transform: rotate(90deg);
+}
+
+.Panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: var(--collapsible-panel-height);
+  transition: height 150ms ease-out;
+}
+
+.Panel[hidden]:not([hidden='until-found']) {
+  display: none;
+}
+
+.Panel[data-starting-style],
+.Panel[data-ending-style] {
+  height: 0;
+}
+
+.Content {
+  padding: var(--space-5);
+  border-radius: var(--radius-l);
+  background-color: var(--surface-container);
+  color: var(--on-surface);
+}
