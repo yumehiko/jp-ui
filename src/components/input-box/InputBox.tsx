@@ -17,6 +17,9 @@ type InputBoxBaseProps = Omit<
   floatingLabel?: React.ReactNode;
   className?: string;
   inputClassName?: React.ComponentPropsWithoutRef<typeof Input>['className'];
+  inputComponent?: React.ElementType<
+    React.ComponentPropsWithoutRef<typeof Input>
+  >;
   onClear?: () => void;
   onValueChange?: (value: string) => void;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -48,6 +51,7 @@ export function InputBox({
   floatingLabel,
   className,
   inputClassName,
+  inputComponent,
   value,
   defaultValue = '',
   onValueChange,
@@ -55,12 +59,13 @@ export function InputBox({
   placeholder,
   ...inputProps
 }: InputBoxProps) {
+  const InputComponent = inputComponent ?? Input;
   const isControlled = value !== undefined;
   const [uncontrolledValue, setUncontrolledValue] = React.useState(defaultValue);
   const currentValue = isControlled ? value : uncontrolledValue;
   const filled = currentValue.length > 0;
   const control = (
-    <Input
+    <InputComponent
       className={mergeClassName<typeof Input>(inputClassName, styles.Control)}
       value={currentValue}
       onChange={(event) => {

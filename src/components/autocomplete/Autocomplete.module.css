@@ -1,0 +1,60 @@
+.Input {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: var(--on-surface);
+  font-family: var(--font-brand);
+  font-size: var(--font-size-editable-label);
+  font-weight: var(--font-weight-editable-label);
+  line-height: var(--line-height-editable-label);
+  letter-spacing: var(--letter-spacing-editable-label);
+  font-feature-settings: "palt" 0;
+  caret-color: var(--on-surface);
+  outline: none;
+}
+
+.Input::placeholder {
+  color: var(--on-surface-variant);
+}
+
+.Input:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Positioner {
+  width: var(--anchor-width);
+  max-width: var(--available-width);
+}
+
+.Popup {
+  box-sizing: border-box;
+  width: var(--anchor-width);
+  max-width: var(--available-width);
+  max-height: var(--available-height);
+}
+
+.Row {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.Item {
+  overflow: hidden;
+  cursor: default;
+}
+
+.Item[data-highlighted] {
+  background-color: var(--surface-container-high);
+}
+
+.Item[data-disabled] {
+  opacity: 0.2;
+}
+
+.Arrow {
+  display: none;
+}

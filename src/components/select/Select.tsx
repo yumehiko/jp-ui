@@ -3,6 +3,7 @@ import { Select as BaseSelect } from '@base-ui/react/select';
 import { Icon } from '../../assets/icons/Icon';
 import { Separator } from '../separator/Separator';
 import { mergeClassName } from '../utils/mergeClassName';
+import listboxStyles from '../listbox/Listbox.module.css';
 import styles from './Select.module.css';
 
 type SelectTriggerProps = React.ComponentPropsWithoutRef<
@@ -43,7 +44,7 @@ export const SelectGroupLabel = React.forwardRef<
     ref={ref}
     className={mergeClassName<typeof BaseSelect.GroupLabel>(
       className,
-      styles.GroupLabel,
+      listboxStyles.GroupLabel,
     )}
     {...props}
   />
@@ -63,7 +64,7 @@ export const SelectPositioner = React.forwardRef<
     ref={ref}
     className={mergeClassName<typeof BaseSelect.Positioner>(
       className,
-      styles.Positioner,
+      listboxStyles.Positioner,
     )}
     {...props}
   />
@@ -79,7 +80,11 @@ export const SelectPopup = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <BaseSelect.Popup
     ref={ref}
-    className={mergeClassName<typeof BaseSelect.Popup>(className, styles.Popup)}
+    className={mergeClassName<typeof BaseSelect.Popup>(
+      className,
+      listboxStyles.Popup,
+      styles.Popup,
+    )}
     {...props}
   />
 ));
@@ -94,7 +99,11 @@ export const SelectList = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <BaseSelect.List
     ref={ref}
-    className={mergeClassName<typeof BaseSelect.List>(className, styles.List)}
+    className={mergeClassName<typeof BaseSelect.List>(
+      className,
+      listboxStyles.List,
+      styles.List,
+    )}
     {...props}
   />
 ));
@@ -240,7 +249,10 @@ export const SelectItem = React.forwardRef<
 >(({ className, children, indicator, ...props }, ref) => (
   <BaseSelect.Item
     ref={ref}
-    className={mergeItemClassName(className, styles.Item)}
+    className={mergeItemClassName(
+      className,
+      [listboxStyles.Item, styles.Item].join(' '),
+    )}
     {...props}
   >
     <BaseSelect.ItemIndicator className={styles.ItemIndicator}>

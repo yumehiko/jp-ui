@@ -158,24 +158,10 @@
 }
 
 .Popup {
-  background-color: var(--surface-container-low);
-  border-radius: var(--radius-l);
-  padding: 0;
-  box-shadow: var(--elevation-2);
   min-width: calc(var(--anchor-width) + 16px);
-  overflow: hidden;
-}
-
-.Positioner {
-  z-index: 10;
 }
 
 .List {
-  display: grid;
-  gap: 4px;
-  padding: calc(8px + var(--focus-ring-offset) + var(--focus-ring-width));
-  max-height: var(--available-height);
-  overflow-y: auto;
   overflow-x: visible;
 }
 
@@ -215,21 +201,11 @@
 }
 
 .Item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border: 0;
-  border-radius: var(--radius-s);
-  width: 100%;
   overflow: visible;
   cursor: pointer;
   outline: none;
-  color: var(--on-surface);
   background-color: transparent;
   text-align: left;
-  user-select: none;
 
   --select-item-state-opacity: 0;
   --select-item-state-color: var(--on-surface);
@@ -306,14 +282,4 @@
 
 .SelectSeparatorLine {
   width: 100%;
-}
-
-.GroupLabel {
-  padding: 8px 12px 4px;
-  font-family: var(--font-brand);
-  font-size: var(--font-size-caption);
-  font-weight: var(--font-weight-caption);
-  line-height: var(--line-height-caption);
-  letter-spacing: var(--letter-spacing-caption);
-  color: var(--on-surface-variant);
 }
