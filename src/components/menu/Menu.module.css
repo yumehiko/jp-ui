@@ -6,6 +6,7 @@
   height: var(--positioner-height);
   max-width: var(--available-width);
   max-height: var(--available-height);
+  outline: 0;
 }
 
 .Popup {
@@ -19,6 +20,7 @@
   max-width: min(320px, var(--available-width));
   max-height: var(--available-height);
   overflow: hidden;
+  outline: 0;
 }
 
 .Popup[data-starting-style],
@@ -132,6 +134,7 @@
   color: var(--on-surface);
   user-select: none;
   cursor: default;
+  outline: none;
 }
 
 .Item::before {
@@ -260,6 +263,7 @@
   color: var(--on-surface);
   user-select: none;
   cursor: default;
+  outline: none;
 }
 
 .OptionItem::before {
@@ -363,6 +367,7 @@
   color: var(--on-surface);
   user-select: none;
   cursor: default;
+  outline: none;
 }
 
 .SubmenuTrigger::before {
