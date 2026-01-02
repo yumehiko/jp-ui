@@ -20,6 +20,7 @@ import Ghost3 from './ghost-3.svg?react';
 import GripVertical from './grip-vertical.svg?react';
 import HandFinger from './hand-finger.svg?react';
 import Menu from './menu.svg?react';
+import Minus from './minus.svg?react';
 import Note from './note.svg?react';
 import Plus from './plus.svg?react';
 import Reload from './reload.svg?react';
@@ -48,6 +49,7 @@ export const iconMap = {
   'grip-vertical': GripVertical,
   'hand-finger': HandFinger,
   'menu': Menu,
+  'minus': Minus,
   'note': Note,
   'plus': Plus,
   'reload': Reload,
