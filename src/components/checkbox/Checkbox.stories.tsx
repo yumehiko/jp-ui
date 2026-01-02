@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Field } from '@base-ui/react/field';
 import { Checkbox } from './Checkbox';
 import styles from './Checkbox.module.css';
 
@@ -32,12 +31,6 @@ export const Default: Story = {
         <Checkbox {...args} disabled />
         通知を有効にする（無効）
       </label>
-      <Field.Root name="notifications">
-        <Field.Label className={labelClassName}>
-          <Checkbox {...args} />
-          通知を有効にする（Field）
-        </Field.Label>
-      </Field.Root>
     </div>
   ),
 };
