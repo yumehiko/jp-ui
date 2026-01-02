@@ -1,0 +1,60 @@
+.Root {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-1) var(--space-3);
+  width: 100%;
+  color: var(--on-surface);
+}
+
+.Label {
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--on-surface);
+}
+
+.Value {
+  margin: 0;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--on-surface-variant);
+  text-align: right;
+}
+
+.Track {
+  grid-column: 1 / -1;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-container-low);
+  box-shadow: inset 0 0 0 1px var(--surface-container-high);
+  overflow: hidden;
+}
+
+.Indicator {
+  height: 100%;
+  background-color: var(--on-surface);
+  transition: width 400ms ease-out;
+}
+
+.Indicator[data-indeterminate] {
+  width: 40%;
+  transform-origin: left center;
+  animation: progress-indeterminate 1.2s ease-in-out infinite;
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(160%);
+  }
+}
