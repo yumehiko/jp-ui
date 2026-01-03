@@ -1,5 +1,19 @@
 # jp-ui
 
+## Install
+
+- `pnpm add @yumehiko/jp-ui @base-ui/react react react-dom`
+
+## Usage
+
+```tsx
+import { Button } from '@yumehiko/jp-ui';
+
+export function App() {
+  return <Button>OK</Button>;
+}
+```
+
 ## Scripts
 
 - `pnpm dev`

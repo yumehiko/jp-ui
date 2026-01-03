@@ -7,7 +7,7 @@ import { mergeClassName } from '../utils/mergeClassName';
 import styles from './Toast.module.css';
 
 export const ToastProvider = BaseToast.Provider;
-export const ToastPortal = BaseToast.Portal;
+export const ToastPortal: typeof BaseToast.Portal = BaseToast.Portal;
 
 type ToastViewportProps = React.ComponentPropsWithoutRef<
   typeof BaseToast.Viewport
