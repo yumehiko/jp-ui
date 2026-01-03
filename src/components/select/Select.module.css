@@ -4,6 +4,8 @@
   gap: 8px;
   align-items: center;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   padding: 11px 15px;
   margin: 0;
   border: 1px solid var(--on-surface-variant);
@@ -98,14 +100,13 @@
   white-space: nowrap;
 }
 
-.Value [data-placeholder] {
+.Value[data-placeholder] {
   color: var(--on-surface-variant);
 }
 
 .SelectTrigger:not([data-filled]):not([data-popup-open]):not(:focus-visible)
-  .Value
-  [data-placeholder] {
-  color: transparent;
+  .Value[data-placeholder] {
+  visibility: hidden;
 }
 
 .LeadingIcon,

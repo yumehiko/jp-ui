@@ -33,14 +33,12 @@ export default meta;
 type Story = StoryObj;
 
 const itemsDefault = [
-  { label: 'Select option', value: null },
   { label: 'Tokyo', value: 'tokyo' },
   { label: 'Osaka', value: 'osaka' },
   { label: 'Sapporo', value: 'sapporo' },
 ];
 
 const itemsMany = [
-  { label: 'Select option', value: null },
   { label: 'Tokyo', value: 'tokyo' },
   { label: 'Osaka', value: 'osaka' },
   { label: 'Sapporo', value: 'sapporo' },
@@ -57,11 +55,6 @@ const itemsMany = [
 const DefaultStory = () => {
   const [value, setValue] = React.useState<string | null>(null);
   const filled = value !== null;
-  const labelByValue = React.useMemo(
-    () => new Map(itemsDefault.map((item) => [item.value, item.label])),
-    [],
-  );
-
   return (
     <SelectRoot
       items={itemsDefault}
@@ -75,19 +68,13 @@ const DefaultStory = () => {
         leadingIcon={<Icon name="dummy" size={24} />}
         filled={filled}
       >
-        <SelectValue>
-          {(currentValue) =>
-            currentValue == null
-              ? 'Select option'
-              : (labelByValue.get(currentValue) ?? String(currentValue))
-          }
-        </SelectValue>
+        <SelectValue />
       </SelectTrigger>
       <SelectPortal>
         <SelectPositioner sideOffset={8}>
           <SelectPopup>
             <SelectList>
-              {itemsDefault.slice(1).map((item) => (
+              {itemsDefault.map((item) => (
                 <SelectItem key={item.label} value={item.value}>
                   {item.label}
                 </SelectItem>
@@ -103,11 +90,6 @@ const DefaultStory = () => {
 const ManyItemsStory = () => {
   const [value, setValue] = React.useState<string | null>(null);
   const filled = value !== null;
-  const labelByValue = React.useMemo(
-    () => new Map(itemsMany.map((item) => [item.value, item.label])),
-    [],
-  );
-
   return (
     <SelectRoot
       items={itemsMany}
@@ -121,13 +103,7 @@ const ManyItemsStory = () => {
         leadingIcon={<Icon name="dummy" size={24} />}
         filled={filled}
       >
-        <SelectValue>
-          {(currentValue) =>
-            currentValue == null
-              ? 'Select option'
-              : (labelByValue.get(currentValue) ?? String(currentValue))
-          }
-        </SelectValue>
+        <SelectValue />
       </SelectTrigger>
       <SelectPortal>
         <SelectPositioner sideOffset={8} alignItemWithTrigger={false}>
@@ -136,7 +112,7 @@ const ManyItemsStory = () => {
             <SelectList style={{ maxHeight: 180 }}>
               <SelectGroup>
                 <SelectGroupLabel>Kanto</SelectGroupLabel>
-                {itemsMany.slice(1, 5).map((item) => (
+                {itemsMany.slice(0, 4).map((item) => (
                   <SelectItem key={item.label} value={item.value}>
                     {item.label}
                   </SelectItem>
@@ -145,7 +121,7 @@ const ManyItemsStory = () => {
               <SelectSeparator />
               <SelectGroup>
                 <SelectGroupLabel>Other</SelectGroupLabel>
-                {itemsMany.slice(5).map((item) => (
+                {itemsMany.slice(4).map((item) => (
                   <SelectItem
                     key={item.label}
                     value={item.value}

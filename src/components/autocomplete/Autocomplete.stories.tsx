@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
-import { Field } from '../field/Field';
-import { InputBox } from '../input-box/InputBox';
+import { AutocompleteInputBox } from './AutocompleteInputBox';
 import {
-  AutocompleteRoot,
-  AutocompleteInput,
   AutocompletePortal,
   AutocompletePositioner,
   AutocompletePopup,
@@ -47,15 +44,14 @@ const DefaultStory = () => {
   const [value, setValue] = React.useState('com');
 
   return (
-    <AutocompleteRoot items={tags} value={value} onValueChange={setValue} defaultOpen>
-      <Field label="Search tags">
-        <InputBox
-          inputComponent={AutocompleteInput}
-          value={value}
-          onValueChange={setValue}
-          placeholder="e.g. feature"
-        />
-      </Field>
+    <AutocompleteInputBox
+      items={tags}
+      value={value}
+      onValueChange={setValue}
+      placeholder="e.g. feature"
+      rootProps={{ defaultOpen: true }}
+      fieldProps={{ label: 'Search tags' }}
+    >
       <AutocompletePortal>
         <AutocompletePositioner sideOffset={8}>
           <AutocompletePopup>
@@ -70,7 +66,7 @@ const DefaultStory = () => {
           </AutocompletePopup>
         </AutocompletePositioner>
       </AutocompletePortal>
-    </AutocompleteRoot>
+    </AutocompleteInputBox>
   );
 };
 

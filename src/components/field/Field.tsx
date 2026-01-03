@@ -4,11 +4,13 @@ import { InputBox } from '../input-box/InputBox';
 import styles from './Field.module.css';
 
 type FieldProps = {
-  label: string;
+  label: React.ReactNode;
   supportingText?: string;
   errorMessage?: string;
   children: React.ReactNode;
   readOnly?: boolean;
+  labelPlacement?: 'start' | 'end';
+  labelClassName?: string;
 } & Omit<React.ComponentPropsWithoutRef<typeof BaseField.Root>, 'children'>;
 
 type ControlClassName =
@@ -43,12 +45,16 @@ export function Field({
   disabled,
   invalid,
   readOnly,
+  labelPlacement = 'end',
+  labelClassName,
   children,
   className,
   ...props
 }: FieldProps) {
   const labelNode = (
-    <BaseField.Label data-floating-label>{label}</BaseField.Label>
+    <BaseField.Label data-floating-label className={labelClassName}>
+      {label}
+    </BaseField.Label>
   );
   const isInputBox =
     React.isValidElement(children) && children.type === InputBox;
@@ -74,8 +80,9 @@ export function Field({
       invalid={invalid}
       {...props}
     >
+      {!isInputBox && labelPlacement === 'start' ? labelNode : null}
       {control}
-      {!isInputBox && labelNode}
+      {!isInputBox && labelPlacement !== 'start' ? labelNode : null}
       {supportingText && (
         <BaseField.Description className={styles.SupportingText}>
           {supportingText}

@@ -5,7 +5,7 @@
   width: 100%;
   max-width: 480px;
   transform: translateX(-50%);
-  z-index: 1000;
+  z-index: var(--z-toast);
 }
 
 .Toast {
@@ -37,7 +37,7 @@
   transform-origin: top center;
   cursor: default;
   user-select: none;
-  z-index: calc(1000 - var(--toast-index));
+  z-index: calc(var(--z-toast) - var(--toast-index));
   height: var(--height);
   transform:
     translateX(var(--toast-swipe-movement-x))
@@ -200,7 +200,7 @@
 }
 
 .Positioner {
-  z-index: 1000;
+  z-index: var(--z-toast);
 }
 
 .Arrow {

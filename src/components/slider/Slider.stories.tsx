@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Field } from '@base-ui/react/field';
+import { Field } from '../field/Field';
 import {
   SliderControl,
   SliderIndicator,
@@ -43,8 +43,12 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   render: () => (
-    <Field.Root name="volume">
-      <Field.Label className={labelClassName}>音量</Field.Label>
+    <Field
+      name="volume"
+      label="音量"
+      labelPlacement="start"
+      labelClassName={labelClassName}
+    >
       <SliderRoot defaultValue={40}>
         <SliderControl>
           <SliderTrack>
@@ -53,7 +57,7 @@ export const WithLabel: Story = {
           </SliderTrack>
         </SliderControl>
       </SliderRoot>
-    </Field.Root>
+    </Field>
   ),
 };
 

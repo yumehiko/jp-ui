@@ -6,6 +6,7 @@
   height: var(--positioner-height);
   max-width: var(--available-width);
   max-height: var(--available-height);
+  z-index: var(--z-overlay);
 }
 
 .Popup {
@@ -20,6 +21,7 @@
   box-shadow: var(--elevation-2);
   transform-origin: var(--transform-origin);
   overflow: hidden;
+  z-index: var(--z-overlay);
 }
 
 .Arrow {

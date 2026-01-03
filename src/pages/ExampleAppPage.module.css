@@ -1,0 +1,204 @@
+.Page {
+  padding: 32px 16px 80px;
+  background-color: var(--surface);
+  color: var(--on-surface);
+}
+
+.Container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  /* Container keeps readable width for the two-column demo layout. */
+}
+
+.Header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.Title {
+  margin: 0;
+}
+
+.Lead {
+  margin: 12px 0 0;
+  color: var(--on-surface-variant);
+}
+
+.HeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.Grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.Section {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  border-radius: var(--radius-l);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+}
+
+.SectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.SectionTitle {
+  margin: 0;
+}
+
+.SectionDescription {
+  margin: 8px 0 0;
+  color: var(--on-surface-variant);
+}
+
+.SectionActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.Form {
+  display: grid;
+  gap: 16px;
+}
+
+.FieldGrid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.FieldGrid > * {
+  min-width: 0;
+}
+
+.ControlColumn {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.InputFull {
+  width: 100%;
+}
+
+.SelectTrigger {
+  width: 100%;
+}
+
+.ControlLabel {
+  color: var(--on-surface);
+}
+
+.ControlHint {
+  margin: 0;
+  color: var(--on-surface-variant);
+}
+
+.SplitRow {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.SplitRow > * {
+  min-width: 0;
+}
+
+.CheckboxStack {
+  display: grid;
+  gap: 12px;
+}
+
+.RadioGroup {
+  display: grid;
+  gap: 12px;
+}
+
+.Divider {
+  margin: 8px 0;
+}
+
+.ActionRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.AccordionContent {
+  color: var(--on-surface-variant);
+}
+
+.PanelCard {
+  padding: 16px;
+  border-radius: var(--radius-s);
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  display: grid;
+  gap: 12px;
+}
+
+.MemberRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.MemberRow:not(:last-child) {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.Avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.MemberName {
+  color: var(--on-surface);
+}
+
+.MemberRole {
+  color: var(--on-surface-variant);
+}
+
+.MemberAction {
+  margin-left: auto;
+}
+
+@media (max-width: 960px) {
+  .Header {
+    flex-direction: column;
+  }
+
+  .Grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .FieldGrid,
+  .SplitRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .SectionActions {
+    flex-wrap: wrap;
+  }
+}

@@ -82,8 +82,12 @@
   --focus-ring-offset: 2px;
   --focus-ring-color: var(--outline);
 
+  --z-overlay: 900;
+  --z-tooltip: 950;
   --z-dialog-backdrop: 1000;
   --z-dialog-popup: 1001;
+  --z-toast: 1100;
+  --scrim-opacity: 0.32;
 
   --shadow-rgb: 0 0 0;
   --elevation-0: none;
@@ -100,6 +104,10 @@
 
   --true-white: #ffffff;
   --true-black: #000000;
+}
+
+.theme-dark {
+  --scrim-opacity: 0.56;
 }
 
 *,

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { RadioGroup } from '@base-ui/react/radio-group';
 import { Radio } from './Radio';
+import { RadioGroup } from '../radio-group/RadioGroup';
 import styles from './Radio.module.css';
 
 const meta: Meta<typeof Radio> = {
@@ -16,7 +16,7 @@ const labelClassName = `typesetting-label typesetting-tsumegumi ${styles.Label}`
 
 export const Default: Story = {
   render: () => (
-    <RadioGroup defaultValue="tokyo" style={{ display: 'grid', gap: 12 }}>
+    <RadioGroup defaultValue="tokyo">
       <label className={labelClassName}>
         <Radio value="tokyo" />
         Tokyo

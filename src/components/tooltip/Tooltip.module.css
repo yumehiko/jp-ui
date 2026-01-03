@@ -3,6 +3,7 @@
   height: var(--positioner-height);
   max-width: var(--available-width);
   max-height: var(--available-height);
+  z-index: var(--z-tooltip);
 }
 
 .Popup {
@@ -22,6 +23,7 @@
   box-shadow: var(--elevation-1);
   transform-origin: var(--transform-origin);
   transition: transform 150ms ease, opacity 150ms ease;
+  z-index: var(--z-tooltip);
 }
 
 .Popup[data-starting-style],
