@@ -27,7 +27,7 @@ const DefaultStory = () => (
     <PopoverRoot>
       <PopoverTrigger render={(props) => <Button {...props}>設定を開く</Button>} />
       <PopoverPortal>
-        <PopoverPositioner sideOffset={8}>
+        <PopoverPositioner sideOffset={12}>
           <PopoverPopup>
             <PopoverTitle>通知設定</PopoverTitle>
             <PopoverDescription>

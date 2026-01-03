@@ -16,17 +16,46 @@
   align-items: flex-start;
   gap: var(--space-4);
   padding: var(--space-4);
-  border-radius: var(--radius-l);
+  border-radius: var(--radius-m);
   background-color: var(--surface-container-low);
   color: var(--on-surface);
   box-shadow: var(--elevation-2);
+  outline: 1px solid var(--outline-variant);
   transform-origin: var(--transform-origin);
   overflow: hidden;
   z-index: var(--z-overlay);
 }
 
 .Arrow {
+  position: absolute;
   display: flex;
+}
+
+.Arrow[data-side='top'] {
+  bottom: -8px;
+  transform: rotate(180deg);
+}
+
+.Arrow[data-side='bottom'] {
+  top: -8px;
+}
+
+.Arrow[data-side='left'] {
+  right: -13px;
+  transform: rotate(90deg);
+}
+
+.Arrow[data-side='right'] {
+  left: -13px;
+  transform: rotate(-90deg);
+}
+
+.ArrowFill {
+  fill: var(--surface-container-low);
+}
+
+.ArrowStroke {
+  fill: var(--outline-variant);
 }
 
 .Title {

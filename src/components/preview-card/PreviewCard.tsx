@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { PreviewCard as BasePreviewCard } from '@base-ui/react/preview-card';
+import { ArrowSvg } from '../utils/Arrow';
 import { mergeClassName } from '../utils/mergeClassName';
 import styles from './PreviewCard.module.css';
 
@@ -68,12 +69,14 @@ PreviewCardPositioner.displayName = 'PreviewCardPositioner';
 
 type PreviewCardPopupProps = React.ComponentPropsWithoutRef<
   typeof BasePreviewCard.Popup
->;
+> & {
+  withArrow?: boolean;
+};
 
 export const PreviewCardPopup = React.forwardRef<
   React.ElementRef<typeof BasePreviewCard.Popup>,
   PreviewCardPopupProps
->(({ className, ...props }, ref) => (
+>(({ className, children, withArrow = true, ...props }, ref) => (
   <BasePreviewCard.Popup
     ref={ref}
     className={mergeClassName<typeof BasePreviewCard.Popup>(
@@ -81,7 +84,17 @@ export const PreviewCardPopup = React.forwardRef<
       styles.Popup,
     )}
     {...props}
-  />
+  >
+    {withArrow ? (
+      <PreviewCardArrow>
+        <ArrowSvg
+          fillClassName={styles.ArrowFill}
+          strokeClassName={styles.ArrowOuterStroke}
+        />
+      </PreviewCardArrow>
+    ) : null}
+    {children}
+  </BasePreviewCard.Popup>
 ));
 
 PreviewCardPopup.displayName = 'PreviewCardPopup';

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Popover as BasePopover } from '@base-ui/react/popover';
+import { ArrowSvg } from '../utils/Arrow';
 import { mergeClassName } from '../utils/mergeClassName';
 import styles from './Popover.module.css';
 
@@ -47,17 +48,29 @@ export const PopoverPositioner = React.forwardRef<
 
 PopoverPositioner.displayName = 'PopoverPositioner';
 
-type PopoverPopupProps = React.ComponentPropsWithoutRef<typeof BasePopover.Popup>;
+type PopoverPopupProps = React.ComponentPropsWithoutRef<typeof BasePopover.Popup> & {
+  withArrow?: boolean;
+};
 
 export const PopoverPopup = React.forwardRef<
   React.ElementRef<typeof BasePopover.Popup>,
   PopoverPopupProps
->(({ className, ...props }, ref) => (
+>(({ className, children, withArrow = true, ...props }, ref) => (
   <BasePopover.Popup
     ref={ref}
     className={mergeClassName<typeof BasePopover.Popup>(className, styles.Popup)}
     {...props}
-  />
+  >
+    {withArrow ? (
+      <PopoverArrow>
+        <ArrowSvg
+          fillClassName={styles.ArrowFill}
+          strokeClassName={styles.ArrowStroke}
+        />
+      </PopoverArrow>
+    ) : null}
+    {children}
+  </BasePopover.Popup>
 ));
 
 PopoverPopup.displayName = 'PopoverPopup';
