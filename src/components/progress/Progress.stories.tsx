@@ -6,7 +6,7 @@ import {
   ProgressRoot,
   ProgressTrack,
   ProgressValue,
-} from './Progress';
+} from '..';
 
 const meta: Meta = {
   title: 'Components/Progress',
@@ -23,34 +23,36 @@ export default meta;
 
 type Story = StoryObj;
 
+const DefaultStory = () => {
+  const [value, setValue] = React.useState(32);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setValue((current) => Math.min(100, current + 12));
+    }, 900);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <ProgressRoot value={value} aria-label="処理の進捗">
+      <ProgressLabel>データ書き出し</ProgressLabel>
+      <ProgressValue>{(formatted, raw) => (raw === null ? '-' : formatted)}</ProgressValue>
+      <ProgressTrack>
+        <ProgressIndicator />
+      </ProgressTrack>
+    </ProgressRoot>
+  );
+};
+
 export const Default: Story = {
-  render: () => {
-    const [value, setValue] = React.useState(32);
-
-    React.useEffect(() => {
-      const interval = setInterval(() => {
-        setValue((current) => Math.min(100, current + 12));
-      }, 900);
-      return () => clearInterval(interval);
-    }, []);
-
-    return (
-      <ProgressRoot value={value} aria-label="処理の進捗">
-        <ProgressLabel>データ書き出し</ProgressLabel>
-        <ProgressValue>{(formatted, raw) => (raw === null ? '-' : formatted)}</ProgressValue>
-        <ProgressTrack>
-          <ProgressIndicator />
-        </ProgressTrack>
-      </ProgressRoot>
-    );
-  },
+  render: () => <DefaultStory />,
 };
 
 export const Indeterminate: Story = {
   render: () => (
     <ProgressRoot value={null} aria-label="処理の進捗">
       <ProgressLabel>同期中</ProgressLabel>
-      <ProgressValue>--</ProgressValue>
+      <ProgressValue>{() => '--'}</ProgressValue>
       <ProgressTrack>
         <ProgressIndicator />
       </ProgressTrack>

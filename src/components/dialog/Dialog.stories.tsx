@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
-import { Button } from '../button/Button';
+import { Button } from '..';
 import {
   DialogActions,
   DialogBackdrop,
@@ -15,7 +14,7 @@ import {
   DialogTrigger,
   DialogTitle,
   DialogViewport,
-} from './Dialog';
+} from '..';
 
 const meta: Meta = {
   title: 'Components/Dialog',

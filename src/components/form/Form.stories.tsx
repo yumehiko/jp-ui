@@ -1,9 +1,9 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '../button/Button';
-import { Field } from '../field/Field';
-import { InputBox } from '../input-box/InputBox';
-import { Form } from './Form';
+import { Button } from '..';
+import { Field } from '..';
+import { InputBox } from '..';
+import { Form } from '..';
 import styles from './Form.module.css';
 
 type StoryArgs = {

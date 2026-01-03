@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Checkbox } from '../checkbox/Checkbox';
+import { Checkbox } from '..';
 import checkboxStyles from '../checkbox/Checkbox.module.css';
-import { CheckboxGroup } from './CheckboxGroup';
+import { CheckboxGroup } from '..';
 import styles from './CheckboxGroup.module.css';
 
 const meta: Meta<typeof CheckboxGroup> = {
@@ -22,40 +22,44 @@ const options = [
   { label: 'ヒントを受け取る', value: 'tips' },
 ];
 
+const DefaultStory = () => {
+  const id = React.useId();
+  return (
+    <CheckboxGroup aria-labelledby={id} defaultValue={['news']}>
+      <div id={id} className={styles.Caption}>
+        通知設定
+      </div>
+      {options.map((option) => (
+        <label key={option.value} className={labelClassName}>
+          <Checkbox name="notifications" value={option.value} />
+          {option.label}
+        </label>
+      ))}
+    </CheckboxGroup>
+  );
+};
+
 export const Default: Story = {
-  render: () => {
-    const id = React.useId();
-    return (
-      <CheckboxGroup aria-labelledby={id} defaultValue={['news']}>
-        <div id={id} className={styles.Caption}>
-          通知設定
-        </div>
-        {options.map((option) => (
-          <label key={option.value} className={labelClassName}>
-            <Checkbox name="notifications" value={option.value} />
-            {option.label}
-          </label>
-        ))}
-      </CheckboxGroup>
-    );
-  },
+  render: () => <DefaultStory />,
+};
+
+const DisabledStory = () => {
+  const id = React.useId();
+  return (
+    <CheckboxGroup aria-labelledby={id} defaultValue={['news']} disabled>
+      <div id={id} className={styles.Caption}>
+        通知設定（無効）
+      </div>
+      {options.map((option) => (
+        <label key={option.value} className={labelClassName}>
+          <Checkbox name="notifications" value={option.value} />
+          {option.label}
+        </label>
+      ))}
+    </CheckboxGroup>
+  );
 };
 
 export const Disabled: Story = {
-  render: () => {
-    const id = React.useId();
-    return (
-      <CheckboxGroup aria-labelledby={id} defaultValue={['news']} disabled>
-        <div id={id} className={styles.Caption}>
-          通知設定（無効）
-        </div>
-        {options.map((option) => (
-          <label key={option.value} className={labelClassName}>
-            <Checkbox name="notifications" value={option.value} />
-            {option.label}
-          </label>
-        ))}
-      </CheckboxGroup>
-    );
-  },
+  render: () => <DisabledStory />,
 };

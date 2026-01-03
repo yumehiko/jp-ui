@@ -3,14 +3,9 @@ import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { mergeProps } from '@base-ui/react/merge-props';
 import { ScrollArea as BaseScrollArea } from '@base-ui/react/scroll-area';
 import { useRender } from '@base-ui/react/use-render';
+import { MenuSizeContext, useMenuSize, type MenuSize } from './MenuSizeContext';
 import { mergeClassName } from '../utils/mergeClassName';
 import styles from './Menu.module.css';
-
-export type MenuSize = 'large' | 'small';
-
-const MenuSizeContext = React.createContext<MenuSize>('large');
-
-export const useMenuSize = () => React.useContext(MenuSizeContext);
 
 type MenuRootProps = React.ComponentPropsWithoutRef<typeof BaseMenu.Root> & {
   size?: MenuSize;

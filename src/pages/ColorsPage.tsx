@@ -1,6 +1,6 @@
 import roles from '../../tokens/roles.light.json';
 import source from '../../tokens/source.json';
-import { ColorChip } from '../components/color-chip/ColorChip';
+import { ColorChip } from '../components';
 import styles from './ColorsPage.module.css';
 
 type RoleEntry = {

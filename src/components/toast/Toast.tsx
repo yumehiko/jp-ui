@@ -8,8 +8,6 @@ import styles from './Toast.module.css';
 
 export const ToastProvider = BaseToast.Provider;
 export const ToastPortal = BaseToast.Portal;
-export const useToastManager = BaseToast.useToastManager;
-export const createToastManager = BaseToast.createToastManager;
 
 type ToastViewportProps = React.ComponentPropsWithoutRef<
   typeof BaseToast.Viewport

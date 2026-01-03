@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
-import { AutocompleteInputBox } from './AutocompleteInputBox';
+import { AutocompleteInputBox } from '..';
 import {
   AutocompletePortal,
   AutocompletePositioner,
@@ -8,7 +8,7 @@ import {
   AutocompleteList,
   AutocompleteItem,
   AutocompleteEmpty,
-} from './Autocomplete';
+} from '..';
 
 const meta: Meta = {
   title: 'Components/Autocomplete',

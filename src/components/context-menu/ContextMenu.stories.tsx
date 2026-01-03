@@ -11,7 +11,7 @@ import {
   ContextMenuSubmenuRoot,
   ContextMenuSubmenuTrigger,
   ContextMenuTrigger,
-} from './ContextMenu';
+} from '..';
 import menuStyles from '../menu/Menu.module.css';
 
 const meta: Meta = {

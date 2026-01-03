@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
-import { useMenuSize } from '../menu/Menu';
+import { useMenuSize } from '../menu/MenuSizeContext';
 import { Input } from '../input/Input';
 import styles from './MenuInputBox.module.css';
 
 type MenuInputBoxBaseProps = Omit<
   React.ComponentPropsWithoutRef<typeof Input>,
-  'className' | 'children' | 'value' | 'defaultValue' | 'onChange'
+  'className' | 'children' | 'value' | 'defaultValue' | 'onChange' | 'size'
 > & {
   size?: 'large' | 'small';
   leadingIcon?: React.ReactNode;

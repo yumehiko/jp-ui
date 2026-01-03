@@ -6,7 +6,7 @@ import {
   AccordionPanel,
   AccordionRoot,
   AccordionTrigger,
-} from './Accordion';
+} from '..';
 
 const meta: Meta = {
   title: 'Components/Accordion',

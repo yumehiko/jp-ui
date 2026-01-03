@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Field } from '../field/Field';
+import { Field } from '..';
 import {
   SliderControl,
   SliderIndicator,
@@ -7,7 +7,7 @@ import {
   SliderThumb,
   SliderTrack,
   SliderValue,
-} from './Slider';
+} from '..';
 import styles from './Slider.module.css';
 
 const meta: Meta = {

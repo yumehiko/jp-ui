@@ -7,7 +7,7 @@ import {
   TabsTab,
   TabsIndicator,
   TabsPanel,
-} from './Tabs';
+} from '..';
 
 const meta: Meta = {
   title: 'Components/Tabs',

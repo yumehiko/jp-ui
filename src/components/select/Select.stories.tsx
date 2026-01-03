@@ -15,7 +15,7 @@ import {
   SelectGroupLabel,
   SelectScrollUpArrow,
   SelectScrollDownArrow,
-} from './Select';
+} from '..';
 
 const meta: Meta = {
   title: 'Components/Select',

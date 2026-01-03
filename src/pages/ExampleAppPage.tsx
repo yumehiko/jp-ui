@@ -1,28 +1,95 @@
 import * as React from 'react';
 import { Icon } from '../assets/icons/Icon';
-import { AccordionContent, AccordionHeader, AccordionItem, AccordionPanel, AccordionRoot, AccordionTrigger } from '../components/accordion/Accordion';
-import { AlertDialogActions, AlertDialogBackdrop, AlertDialogClose, AlertDialogContent, AlertDialogDescription, AlertDialogPopup, AlertDialogPortal, AlertDialogRoot, AlertDialogTitle, AlertDialogTrigger, AlertDialogViewport } from '../components/alert-dialog/AlertDialog';
-import { AvatarFallback, AvatarImage, AvatarRoot } from '../components/avatar/Avatar';
-import { Button } from '../components/button/Button';
-import { IconButton } from '../components/button/IconButton';
-import { Checkbox } from '../components/checkbox/Checkbox';
-import { CheckboxGroup } from '../components/checkbox-group/CheckboxGroup';
-import { DialogActions, DialogBackdrop, DialogClose, DialogContent, DialogDescription, DialogPopup, DialogPortal, DialogRoot, DialogTitle, DialogTrigger, DialogViewport } from '../components/dialog/Dialog';
-import { Field } from '../components/field/Field';
-import { Form } from '../components/form/Form';
-import { InputBox } from '../components/input-box/InputBox';
-import { NumberFieldDecrement, NumberFieldGroup, NumberFieldIncrement, NumberFieldInput, NumberFieldRoot, NumberFieldScrubArea } from '../components/number-field/NumberField';
-import { PopoverClose, PopoverDescription, PopoverPopup, PopoverPortal, PopoverPositioner, PopoverRoot, PopoverTitle, PopoverTrigger } from '../components/popover/Popover';
-import { Radio } from '../components/radio/Radio';
-import { RadioGroup } from '../components/radio-group/RadioGroup';
-import { SelectItem, SelectList, SelectPopup, SelectPortal, SelectPositioner, SelectRoot, SelectTrigger, SelectValue } from '../components/select/Select';
-import { Separator } from '../components/separator/Separator';
-import { SliderControl, SliderIndicator, SliderRoot, SliderThumb, SliderTrack, SliderValue } from '../components/slider/Slider';
-import { Switch } from '../components/switch/Switch';
-import { TabsIndicator, TabsList, TabsPanel, TabsRoot, TabsTab } from '../components/tabs/Tabs';
-import { AutocompleteEmpty, AutocompleteItem, AutocompleteList, AutocompletePopup, AutocompletePortal, AutocompletePositioner } from '../components/autocomplete/Autocomplete';
-import { AutocompleteInputBox } from '../components/autocomplete/AutocompleteInputBox';
-import { TooltipPopup, TooltipPortal, TooltipPositioner, TooltipProvider, TooltipRoot, TooltipTrigger } from '../components/tooltip/Tooltip';
+import {
+  AccordionContent,
+  AccordionHeader,
+  AccordionItem,
+  AccordionPanel,
+  AccordionRoot,
+  AccordionTrigger,
+  AlertDialogActions,
+  AlertDialogBackdrop,
+  AlertDialogClose,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogPopup,
+  AlertDialogPortal,
+  AlertDialogRoot,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  AlertDialogViewport,
+  AutocompleteEmpty,
+  AutocompleteInputBox,
+  AutocompleteItem,
+  AutocompleteList,
+  AutocompletePopup,
+  AutocompletePortal,
+  AutocompletePositioner,
+  AvatarFallback,
+  AvatarImage,
+  AvatarRoot,
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  DialogActions,
+  DialogBackdrop,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogPopup,
+  DialogPortal,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
+  DialogViewport,
+  Field,
+  Form,
+  IconButton,
+  InputBox,
+  NumberFieldDecrement,
+  NumberFieldGroup,
+  NumberFieldIncrement,
+  NumberFieldInput,
+  NumberFieldRoot,
+  NumberFieldScrubArea,
+  PopoverClose,
+  PopoverDescription,
+  PopoverPopup,
+  PopoverPortal,
+  PopoverPositioner,
+  PopoverRoot,
+  PopoverTitle,
+  PopoverTrigger,
+  Radio,
+  RadioGroup,
+  SelectItem,
+  SelectList,
+  SelectPopup,
+  SelectPortal,
+  SelectPositioner,
+  SelectRoot,
+  SelectTrigger,
+  SelectValue,
+  Separator,
+  SliderControl,
+  SliderIndicator,
+  SliderRoot,
+  SliderThumb,
+  SliderTrack,
+  SliderValue,
+  Switch,
+  TabsIndicator,
+  TabsList,
+  TabsPanel,
+  TabsRoot,
+  TabsTab,
+  TooltipPopup,
+  TooltipPortal,
+  TooltipPositioner,
+  TooltipProvider,
+  TooltipRoot,
+  TooltipTrigger,
+} from '../components';
 import checkboxStyles from '../components/checkbox/Checkbox.module.css';
 import checkboxGroupStyles from '../components/checkbox-group/CheckboxGroup.module.css';
 import numberFieldStyles from '../components/number-field/NumberField.module.css';
@@ -310,7 +377,13 @@ export function ExampleAppPage() {
               labelClassName={sliderLabelClassName}
               className={styles.ControlColumn}
             >
-              <SliderRoot value={volume} onValueChange={([next]) => setVolume(next)}>
+              <SliderRoot
+                value={volume}
+                onValueChange={(next) => {
+                  const [nextValue] = Array.isArray(next) ? next : [next];
+                  setVolume(nextValue);
+                }}
+              >
                 <SliderControl>
                   <SliderTrack>
                     <SliderIndicator />

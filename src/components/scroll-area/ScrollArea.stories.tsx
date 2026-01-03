@@ -6,7 +6,7 @@ import {
   ScrollAreaScrollbar,
   ScrollAreaThumb,
   ScrollAreaViewport,
-} from './ScrollArea';
+} from '..';
 
 const meta: Meta = {
   title: 'Components/ScrollArea',

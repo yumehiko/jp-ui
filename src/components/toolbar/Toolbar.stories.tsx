@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
-import { IconButton } from '../button/IconButton';
-import { ToolbarButton, ToolbarGroup, ToolbarRoot, ToolbarSeparator } from './Toolbar';
+import { IconButton } from '..';
+import { ToolbarButton, ToolbarGroup, ToolbarRoot, ToolbarSeparator } from '..';
 
 const meta: Meta<typeof ToolbarRoot> = {
   title: 'Components/Toolbar',
@@ -23,7 +23,14 @@ export const Default: Story = {
   render: () => (
     <ToolbarRoot>
       <ToolbarButton
-        render={<IconButton variant="ghost" size="small" />}
+        render={
+          <IconButton
+            nativeButton
+            variant="ghost"
+            size="small"
+            aria-label="メニュー"
+          />
+        }
         unstyled
         aria-label="メニュー"
       >
@@ -36,14 +43,28 @@ export const Default: Story = {
       </ToolbarGroup>
       <ToolbarSeparator />
       <ToolbarButton
-        render={<IconButton variant="ghost" size="small" />}
+        render={
+          <IconButton
+            nativeButton
+            variant="ghost"
+            size="small"
+            aria-label="編集"
+          />
+        }
         unstyled
         aria-label="編集"
       >
         <Icon name="edit" size={16} />
       </ToolbarButton>
       <ToolbarButton
-        render={<IconButton variant="ghost" size="small" />}
+        render={
+          <IconButton
+            nativeButton
+            variant="ghost"
+            size="small"
+            aria-label="フォルダ"
+          />
+        }
         unstyled
         aria-label="フォルダ"
       >

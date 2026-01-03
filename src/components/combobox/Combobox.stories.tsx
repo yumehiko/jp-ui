@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
-import { Field } from '../field/Field';
+import { Field } from '..';
 import {
   ComboboxRoot,
   ComboboxInput,
@@ -14,7 +14,7 @@ import {
   ComboboxItem,
   ComboboxItemIndicator,
   ComboboxEmpty,
-} from './Combobox';
+} from '..';
 import styles from './Combobox.module.css';
 
 const meta: Meta = {

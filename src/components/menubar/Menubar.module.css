@@ -1,0 +1,89 @@
+.Menubar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border-radius: var(--radius-m);
+  border: 1px solid var(--outline-variant);
+  background-color: var(--surface-container);
+  box-shadow: var(--elevation-1);
+}
+
+.Trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 var(--space-3);
+  margin: 0;
+  border: 0;
+  border-radius: var(--radius-s);
+  background: transparent;
+  color: var(--on-surface);
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label-small);
+  font-weight: var(--font-weight-label-small);
+  line-height: var(--line-height-label-small);
+  letter-spacing: var(--letter-spacing-label-small);
+  user-select: none;
+  cursor: pointer;
+  outline: none;
+
+  --menubar-trigger-state-opacity: 0;
+}
+
+.Trigger::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--on-surface);
+  opacity: var(--menubar-trigger-state-opacity);
+  transition: opacity 150ms ease-out;
+  pointer-events: none;
+}
+
+.Trigger::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  border: var(--focus-ring-width) solid var(--focus-ring-color);
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.Trigger[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Trigger[data-disabled]::before {
+  opacity: 0;
+}
+
+.Trigger[data-popup-open],
+.Trigger[data-pressed] {
+  --menubar-trigger-state-opacity: 0.12;
+}
+
+.Trigger:focus-visible,
+.Trigger[data-focused] {
+  --menubar-trigger-state-opacity: 0.12;
+}
+
+.Trigger:focus-visible::after,
+.Trigger[data-focused]::after {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .Trigger:hover:not([data-disabled]) {
+    --menubar-trigger-state-opacity: 0.08;
+  }
+}
+
+.Trigger:active:not([data-disabled]) {
+  --menubar-trigger-state-opacity: 0.16;
+}

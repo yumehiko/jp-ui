@@ -1,6 +1,5 @@
 import { Icon } from '../assets/icons/Icon';
-import { ToggleGroup } from '../components/toggle-group/ToggleGroup';
-import { Toggle } from '../components/toggle/Toggle';
+import { Toggle, ToggleGroup } from '../components';
 import toggleStyles from '../components/toggle/Toggle.module.css';
 import styles from './TogglePage.module.css';
 

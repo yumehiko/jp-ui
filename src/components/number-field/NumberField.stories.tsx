@@ -9,7 +9,7 @@ import {
   NumberFieldRoot,
   NumberFieldScrubArea,
   NumberFieldScrubAreaCursor,
-} from './NumberField';
+} from '..';
 import styles from './NumberField.module.css';
 
 const meta: Meta = {
@@ -29,55 +29,59 @@ type Story = StoryObj;
 
 const labelClassName = `typesetting-label typesetting-tsumegumi ${styles.Label}`;
 
+const DefaultStory = () => {
+  const id = React.useId();
+  return (
+    <NumberFieldRoot id={id} defaultValue={12} min={0} max={120}>
+      <NumberFieldScrubArea>
+        <label htmlFor={id} className={labelClassName}>
+          数量
+        </label>
+        <NumberFieldScrubAreaCursor>
+          <CursorGrowIcon />
+        </NumberFieldScrubAreaCursor>
+      </NumberFieldScrubArea>
+      <NumberFieldGroup>
+        <NumberFieldDecrement aria-label="減らす">
+          <Icon name="minus" size={16} />
+        </NumberFieldDecrement>
+        <NumberFieldInput />
+        <NumberFieldIncrement aria-label="増やす">
+          <Icon name="plus" size={16} />
+        </NumberFieldIncrement>
+      </NumberFieldGroup>
+    </NumberFieldRoot>
+  );
+};
+
 export const Default: Story = {
-  render: () => {
-    const id = React.useId();
-    return (
-      <NumberFieldRoot id={id} defaultValue={12} min={0} max={120}>
-        <NumberFieldScrubArea>
-          <label htmlFor={id} className={labelClassName}>
-            数量
-          </label>
-          <NumberFieldScrubAreaCursor>
-            <CursorGrowIcon />
-          </NumberFieldScrubAreaCursor>
-        </NumberFieldScrubArea>
-        <NumberFieldGroup>
-          <NumberFieldDecrement aria-label="減らす">
-            <Icon name="minus" size={16} />
-          </NumberFieldDecrement>
-          <NumberFieldInput />
-          <NumberFieldIncrement aria-label="増やす">
-            <Icon name="plus" size={16} />
-          </NumberFieldIncrement>
-        </NumberFieldGroup>
-      </NumberFieldRoot>
-    );
-  },
+  render: () => <DefaultStory />,
+};
+
+const DisabledStory = () => {
+  const id = React.useId();
+  return (
+    <NumberFieldRoot id={id} defaultValue={4} disabled>
+      <NumberFieldScrubArea>
+        <label htmlFor={id} className={labelClassName}>
+          個数
+        </label>
+      </NumberFieldScrubArea>
+      <NumberFieldGroup>
+        <NumberFieldDecrement aria-label="減らす">
+          <Icon name="minus" size={16} />
+        </NumberFieldDecrement>
+        <NumberFieldInput />
+        <NumberFieldIncrement aria-label="増やす">
+          <Icon name="plus" size={16} />
+        </NumberFieldIncrement>
+      </NumberFieldGroup>
+    </NumberFieldRoot>
+  );
 };
 
 export const Disabled: Story = {
-  render: () => {
-    const id = React.useId();
-    return (
-      <NumberFieldRoot id={id} defaultValue={4} disabled>
-        <NumberFieldScrubArea>
-          <label htmlFor={id} className={labelClassName}>
-            個数
-          </label>
-        </NumberFieldScrubArea>
-        <NumberFieldGroup>
-          <NumberFieldDecrement aria-label="減らす">
-            <Icon name="minus" size={16} />
-          </NumberFieldDecrement>
-          <NumberFieldInput />
-          <NumberFieldIncrement aria-label="増やす">
-            <Icon name="plus" size={16} />
-          </NumberFieldIncrement>
-        </NumberFieldGroup>
-      </NumberFieldRoot>
-    );
-  },
+  render: () => <DisabledStory />,
 };
 
 function CursorGrowIcon(props: React.ComponentProps<'svg'>) {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Field } from '@base-ui/react/field';
-import { Switch } from './Switch';
+import { Switch } from '..';
 import styles from './Switch.module.css';
 
 const meta: Meta<typeof Switch> = {

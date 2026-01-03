@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
-import { Button } from '../button/Button';
+import { Button } from '..';
 import {
   PopoverClose,
   PopoverDescription,
@@ -10,7 +9,7 @@ import {
   PopoverRoot,
   PopoverTitle,
   PopoverTrigger,
-} from './Popover';
+} from '..';
 
 const meta: Meta = {
   title: 'Components/Popover',

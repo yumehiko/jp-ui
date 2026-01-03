@@ -5,7 +5,7 @@ import {
   MeterRoot,
   MeterTrack,
   MeterValue,
-} from './Meter';
+} from '..';
 
 const meta: Meta = {
   title: 'Components/Meter',

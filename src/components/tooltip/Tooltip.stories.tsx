@@ -1,16 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
-import { IconButton } from '../button/IconButton';
+import { IconButton } from '..';
 import {
-  TooltipArrow,
   TooltipPopup,
   TooltipPortal,
   TooltipPositioner,
   TooltipProvider,
   TooltipRoot,
   TooltipTrigger,
-} from './Tooltip';
+} from '..';
 
 const meta: Meta = {
   title: 'Components/Tooltip',

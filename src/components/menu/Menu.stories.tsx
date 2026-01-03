@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
-import { Button } from '../button/Button';
-import { MenuInputBox } from '../menu-input-box/MenuInputBox';
+import { Button } from '..';
+import { MenuInputBox } from '..';
 import {
   MenuCheckboxItem,
   MenuCheckboxItemIndicator,
@@ -27,7 +26,7 @@ import {
   MenuSubmenuRoot,
   MenuSubmenuTrigger,
   MenuTrigger,
-} from './Menu';
+} from '..';
 import styles from './Menu.module.css';
 
 const meta: Meta = {

@@ -4,7 +4,7 @@ import {
   CollapsiblePanel,
   CollapsibleRoot,
   CollapsibleTrigger,
-} from './Collapsible';
+} from '..';
 
 const meta: Meta = {
   title: 'Components/Collapsible',

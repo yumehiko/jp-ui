@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
-import { InputBox } from '../input-box/InputBox';
-import { Field } from './Field';
+import { InputBox } from '..';
+import { Field } from '..';
 
 type StoryArgs = {
   label: string;
