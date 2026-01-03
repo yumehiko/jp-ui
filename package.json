@@ -2,6 +2,15 @@
   "name": "@yumehiko/jp-ui",
   "version": "0.2.0",
   "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yumehiko/jp-ui.git"
+  },
+  "homepage": "https://github.com/yumehiko/jp-ui#readme",
+  "bugs": {
+    "url": "https://github.com/yumehiko/jp-ui/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -32,6 +41,7 @@
   },
   "files": [
     "dist",
+    "LICENSE",
     "README.md"
   ],
   "sideEffects": [
