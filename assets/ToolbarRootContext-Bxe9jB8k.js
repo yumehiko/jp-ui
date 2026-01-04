@@ -1,1 +1,0 @@
-import{f as e}from"./mergeClassName-4BJ6eZC9.js";import{r as t}from"./iframe-DXOI1E9u.js";const n=t.createContext(void 0);function x(r){const o=t.useContext(n);if(o===void 0&&!r)throw new Error(e(69));return o}export{n as T,x as u};

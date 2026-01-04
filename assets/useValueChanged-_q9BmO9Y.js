@@ -1,1 +1,0 @@
-import{r as a}from"./iframe-DXOI1E9u.js";import{b as o}from"./mergeClassName-4BJ6eZC9.js";import{u as n}from"./useStableCallback-BG29bmz1.js";function m(r,s){const t=a.useRef(r),e=n(s);o(()=>{t.current!==r&&e(t.current)},[r,e]),o(()=>{t.current=r},[r])}export{m as u};
