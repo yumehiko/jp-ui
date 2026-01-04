@@ -1,6 +1,6 @@
 ---
 name: jp-ui-consumer
-description: Use when consuming jp-ui in an app: installation, CSS/theme setup, component selection, and token usage; guide Codex to the jp-ui docs and types for implementation details.
+description: "Use when consuming jp-ui in an app: installation, CSS/theme setup, component selection, and token usage; guide Codex to the jp-ui docs and types for implementation details."
 ---
 
 # jp-ui Consumer
