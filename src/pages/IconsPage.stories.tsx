@@ -13,6 +13,7 @@ const meta: Meta<typeof IconsPage> = {
   ],
   parameters: {
     layout: 'fullscreen',
+    centeredStage: false,
   },
 };
 

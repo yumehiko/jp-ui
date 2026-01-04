@@ -6,6 +6,7 @@ const meta: Meta<typeof TypesettingPage> = {
   component: TypesettingPage,
   parameters: {
     layout: 'fullscreen',
+    centeredStage: false,
   },
   args: {
     displayText: 'Display: 日本語の視認性を強く押し出す',

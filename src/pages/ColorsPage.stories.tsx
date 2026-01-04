@@ -13,6 +13,7 @@ const meta: Meta<typeof ColorsPage> = {
   ],
   parameters: {
     layout: 'fullscreen',
+    centeredStage: false,
   },
 };
 
