@@ -45,6 +45,18 @@ export const Disabled: Story = {
   ),
 };
 
+export const Small: Story = {
+  args: {
+    size: 'small',
+  },
+  render: (args) => (
+    <label className={labelClassName}>
+      <Switch {...args} />
+      通知を有効にする
+    </label>
+  ),
+};
+
 export const WithFieldLabel: Story = {
   render: (args) => (
     <Field.Root name="notifications">

@@ -9,12 +9,13 @@ type SwitchProps = Omit<
   'children'
 > & {
   icon?: React.ReactNode;
+  size?: 'large' | 'small';
 };
 
 type SwitchElement = React.ElementRef<typeof BaseSwitch.Root>;
 
 export const Switch = React.forwardRef<SwitchElement, SwitchProps>(
-  ({ className, icon, ...props }, ref) => {
+  ({ className, icon, size = 'large', ...props }, ref) => {
     return (
       <BaseSwitch.Root
         ref={ref}
@@ -22,6 +23,7 @@ export const Switch = React.forwardRef<SwitchElement, SwitchProps>(
           className,
           styles.Switch,
         )}
+        data-size={size}
         {...props}
       >
         <span aria-hidden="true" className={styles.StateLayer} />

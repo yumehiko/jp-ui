@@ -21,6 +21,7 @@
   letter-spacing: var(--button-letter-spacing);
   user-select: none;
   cursor: pointer;
+  transition: color 150ms ease-out;
 
   --button-base-color: var(--inverse-surface);
   --button-base-opacity: 1;
@@ -54,11 +55,14 @@
   background-color: var(--button-base-color);
   opacity: var(--button-base-opacity);
   box-shadow: var(--button-border-shadow);
+  transition: background-color 150ms ease-out, opacity 150ms ease-out,
+    box-shadow 150ms ease-out;
 }
 
 .Button::after {
   background-color: var(--button-state-color);
   opacity: var(--button-state-opacity);
+  transition: background-color 150ms ease-out, opacity 150ms ease-out;
 }
 
 .Button > * {

@@ -14,8 +14,8 @@
 .Switch {
   position: relative;
   display: inline-flex;
-  width: 56px;
-  height: 32px;
+  width: var(--switch-width);
+  height: var(--switch-height);
   align-items: center;
   justify-content: center;
   padding: 0;
@@ -29,6 +29,12 @@
   --switch-base-opacity: 0.08;
   --switch-state-color: var(--on-surface);
   --switch-state-opacity: 0;
+  --switch-width: 56px;
+  --switch-height: 32px;
+  --switch-thumb-size: 24px;
+  --switch-thumb-offset: 4px;
+  --switch-thumb-translate: 24px;
+  --switch-icon-size: 20px;
 }
 
 .Switch::before {
@@ -62,10 +68,10 @@
 
 .Thumb {
   position: absolute;
-  left: 2px;
-  top: 2px;
-  width: 28px;
-  height: 28px;
+  left: var(--switch-thumb-offset);
+  top: var(--switch-thumb-offset);
+  width: var(--switch-thumb-size);
+  height: var(--switch-thumb-size);
   border-radius: var(--radius-full);
   background-color: var(--on-surface);
   color: var(--on-surface);
@@ -73,21 +79,26 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: transform 150ms ease-out, background-color 150ms ease-out;
+  transition: transform 150ms ease-out, background-color 150ms ease-out,
+    width 150ms ease-out, height 150ms ease-out, left 150ms ease-out,
+    top 150ms ease-out;
 }
 
 .Icon {
-  width: 20px;
-  height: 20px;
+  width: var(--switch-icon-size);
+  height: var(--switch-icon-size);
 }
 
 .Switch[data-checked] {
   --switch-base-opacity: 1;
   --switch-state-color: var(--surface);
+  --switch-thumb-size: 28px;
+  --switch-thumb-offset: 2px;
+  --switch-thumb-translate: 24px;
 }
 
 .Switch[data-checked] .Thumb {
-  transform: translateX(24px);
+  transform: translateX(var(--switch-thumb-translate));
   background-color: var(--surface);
 }
 
@@ -98,6 +109,21 @@
 
 .Switch[data-disabled] .StateLayer {
   opacity: 0;
+}
+
+.Switch[data-size='small'] {
+  --switch-width: 42px;
+  --switch-height: 24px;
+  --switch-thumb-size: 18px;
+  --switch-thumb-offset: 3px;
+  --switch-thumb-translate: 18px;
+  --switch-icon-size: 15px;
+}
+
+.Switch[data-size='small'][data-checked] {
+  --switch-thumb-size: 20px;
+  --switch-thumb-offset: 2px;
+  --switch-thumb-translate: 18px;
 }
 
 .Switch:focus-visible,
