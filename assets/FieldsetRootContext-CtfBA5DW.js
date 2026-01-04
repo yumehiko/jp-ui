@@ -1,0 +1,1 @@
+import{f as r}from"./mergeClassName-IXwn37SS.js";import{r as e}from"./iframe-CbECxjq5.js";const s=e.createContext({legendId:void 0,setLegendId:()=>{},disabled:void 0});function d(o=!1){const t=e.useContext(s);if(!t&&!o)throw new Error(r(86));return t}export{s as F,d as u};
