@@ -39,13 +39,16 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
 }
 ```
 
-To enable dark tokens, add `theme-dark` to a root element.
+Light tokens are applied by default. Add `theme-dark` to a root element to enable dark tokens.
+Use `theme-light` to scope the light theme to a subtree if needed.
 
 ## Docs
 
 - `docs/usage.md`
 - `docs/components.md`
 - `docs/tokens.md`
+- `docs/icons.md`
+- Storybook (GitHub Pages): `https://yumehiko.github.io/jp-ui/`
 
 ## Codex skill (optional)
 
@@ -61,7 +64,7 @@ mkdir -p .codex/skills && cp -R node_modules/@yumehiko/jp-ui/docs/skills/jp-ui-c
 - `pnpm build`
 - `pnpm lint`
 - `pnpm typecheck`
-- `pnpm storybook`
+- `pnpm storybook` (component examples)
 - `pnpm build-storybook`
 - `pnpm gen:icons`
 - `pnpm gen:tones`

@@ -10,6 +10,7 @@ description: "Use when consuming jp-ui in an app: installation, CSS/theme setup,
 - Read `docs/usage.md` for install, CSS import, and providers.
 - Read `docs/components.md` to find exported component names.
 - Read `docs/tokens.md` for token sources and theming.
+- Read `docs/icons.md` for icon name guidance.
 
 ## Component details
 

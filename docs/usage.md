@@ -27,6 +27,7 @@ export function App() {
 - Use `TooltipProvider` once near the app root when you use Tooltip components.
 - Use `ToastProvider` once near the app root when you use Toast components.
 - Use `createToastManager` or `useToastManager` to manage toast state.
+- Component-specific examples live in Storybook.
 
 ### Minimal providers example
 
@@ -54,5 +55,6 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
 
 ## Theme
 
-- Default is light tokens.
+- Light tokens are applied by default via `:root`.
 - Add `theme-dark` to a root element to enable dark tokens.
+- Use `theme-light` to scope the light theme to a subtree if needed.
