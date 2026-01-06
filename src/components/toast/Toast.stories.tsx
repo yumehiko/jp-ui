@@ -15,6 +15,7 @@ import {
   useToastManager,
 } from '..';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 
 const meta: Meta = {
   title: 'Components/Toast',
@@ -31,10 +32,10 @@ function ToastList() {
     <ToastRoot key={toast.id} toast={toast}>
       <ToastContent>
         {toast.type === 'primary' ? (
-          <ToastLeadingIcon icon={<Icon name="check" size={24} />} />
+          <ToastLeadingIcon icon={<Icon icon={Icons.Check} size={24} />} />
         ) : null}
         {toast.type === 'error' ? (
-          <ToastLeadingIcon icon={<Icon name="exclamation-circle" size={24} />} />
+          <ToastLeadingIcon icon={<Icon icon={Icons.ExclamationCircle} size={24} />} />
         ) : null}
         <ToastBody>
           <ToastTitle />

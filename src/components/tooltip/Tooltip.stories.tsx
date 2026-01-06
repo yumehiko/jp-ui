@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import { IconButton } from '..';
 import {
   TooltipPopup,
@@ -39,7 +40,7 @@ const DefaultStory = () => (
           <TooltipTrigger
             render={(props) => (
               <IconButton {...props} aria-label="編集" variant="ghost">
-                <Icon name="edit" size={20} />
+                <Icon icon={Icons.Edit} size={20} />
               </IconButton>
             )}
           />
@@ -56,7 +57,7 @@ const DefaultStory = () => (
           <TooltipTrigger
             render={(props) => (
               <IconButton {...props} aria-label="削除" variant="ghost">
-                <Icon name="trash" size={20} />
+                <Icon icon={Icons.Trash} size={20} />
               </IconButton>
             )}
           />
@@ -73,7 +74,7 @@ const DefaultStory = () => (
           <TooltipTrigger
             render={(props) => (
               <IconButton {...props} aria-label="設定" variant="ghost">
-                <Icon name="settings" size={20} />
+                <Icon icon={Icons.Settings} size={20} />
               </IconButton>
             )}
           />

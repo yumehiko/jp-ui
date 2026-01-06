@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import { InputBox } from '..';
 
 type StoryArgs = {
@@ -50,14 +51,14 @@ const InputBoxStory = (args: StoryArgs) => {
   return (
     <InputBox
       floatingLabel={<span>Label</span>}
-      leadingIcon={<Icon name="dummy" size={24} />}
+      leadingIcon={<Icon icon={Icons.Dummy} size={24} />}
       value={value}
       onValueChange={setValue}
       invalid={args.invalid}
       readOnly={args.readOnly}
       placeholder={args.placeholder}
       trailingIcon={
-        args.invalid ? <Icon name="exclamation-circle" size={24} /> : undefined
+        args.invalid ? <Icon icon={Icons.ExclamationCircle} size={24} /> : undefined
       }
       disabled={args.disabled}
     />

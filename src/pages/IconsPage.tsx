@@ -1,15 +1,13 @@
 import { Icon } from '../assets/icons/Icon';
-import { icons } from '../assets/icons/icons';
-import type { IconName } from '../assets/icons/icons';
+import { Icons } from '../assets/icons/icons';
 import styles from './IconsPage.module.css';
 
-const iconNames = (Object.keys(icons) as IconName[]).sort();
+const iconEntries = Object.entries(Icons).sort(([a], [b]) => a.localeCompare(b));
 
 const toTitle = (value: string) =>
   value
-    .split('-')
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(' ');
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/([a-zA-Z])([0-9])/g, '$1 $2');
 
 export function IconsPage() {
   return (
@@ -17,9 +15,9 @@ export function IconsPage() {
       <div className={styles.Container}>
         <h1 className={`typesetting-title ${styles.Title}`}>Icons</h1>
         <div className={styles.Grid}>
-          {iconNames.map((name) => (
+          {iconEntries.map(([name, IconComponent]) => (
             <div key={name} className={styles.IconItem}>
-              <Icon name={name} size={24} />
+              <Icon icon={IconComponent} size={24} />
               <span className={`typesetting-label ${styles.IconLabel}`}>
                 {toTitle(name)}
               </span>

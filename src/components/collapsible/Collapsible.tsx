@@ -3,6 +3,7 @@ import { Collapsible as BaseCollapsible } from '@base-ui/react/collapsible';
 import { mergeProps } from '@base-ui/react/merge-props';
 import { useRender } from '@base-ui/react/use-render';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import { Button } from '../button/Button';
 import { mergeClassName } from '../utils/mergeClassName';
 import styles from './Collapsible.module.css';
@@ -54,7 +55,7 @@ export const CollapsibleTrigger = React.forwardRef<
     },
     ref,
   ) => {
-    const triggerIcon = icon ?? <Icon name="chevron-right" size={24} />;
+    const triggerIcon = icon ?? <Icon icon={Icons.ChevronRight} size={24} />;
     const content = (
       <>
         <span aria-hidden="true" className={styles.TriggerIcon}>

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import { Button } from '..';
 import {
   DialogActions,
@@ -56,7 +57,7 @@ const DefaultStory = () => (
             <DialogClose
               render={(props) => (
                 <Button {...props}>
-                  <Icon name="dummy" size={24} />
+                  <Icon icon={Icons.Dummy} size={24} />
                   保存
                 </Button>
               )}

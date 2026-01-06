@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import { useMenuSize } from '../menu/MenuSizeContext';
 import { Input } from '../input/Input';
 import styles from './MenuInputBox.module.css';
@@ -98,7 +99,7 @@ export function MenuInputBox({
       {showClearButton ? (
         <button type="button" className={styles.ClearButton} onClick={handleClear}>
           <Icon
-            name="x"
+            icon={Icons.X}
             size={resolvedSize === 'small' ? 16 : 24}
             aria-label={clearLabel}
           />

@@ -1,27 +1,34 @@
-import type { SVGProps } from 'react';
+import type { ComponentType, SVGProps } from 'react';
+import { mergeProps } from '@base-ui/react/merge-props';
+import { useRender } from '@base-ui/react/use-render';
 
-import { iconMap } from './iconMap.generated';
-import type { IconName } from './iconMap.generated';
-export type { IconName } from './iconMap.generated';
-
-export type IconProps = SVGProps<SVGSVGElement> & {
-  name: IconName;
+export type IconProps = useRender.ComponentProps<'svg'> & {
   size?: number;
+  icon?: ComponentType<SVGProps<SVGSVGElement>>;
 };
 
-export function Icon({ name, size = 24, className, style, ...rest }: IconProps) {
-  const Component = iconMap[name];
-  const mergedClass = ['ui-icon', className].filter(Boolean).join(' ');
+export function Icon({ render, icon, size = 24, ...props }: IconProps) {
+  const IconComponent = icon;
+  const mergedRender = render ?? (IconComponent ? <IconComponent /> : undefined);
+  const element = useRender({
+    defaultTagName: 'svg',
+    render: mergedRender,
+    props: mergeProps<'svg'>(
+      {
+        className: 'ui-icon',
+        width: size,
+        height: size,
+        focusable: 'false',
+        'aria-hidden': props['aria-label'] ? undefined : true,
+        style: {
+          display: 'inline-block',
+          flexShrink: 0,
+          color: 'currentColor',
+        },
+      },
+      props,
+    ),
+  });
 
-  return (
-    <Component
-      className={mergedClass}
-      width={size}
-      height={size}
-      focusable="false"
-      aria-hidden={rest['aria-label'] ? undefined : true}
-      style={{ display: 'inline-block', flexShrink: 0, color: 'currentColor', ...style }}
-      {...rest}
-    />
-  );
+  return element;
 }

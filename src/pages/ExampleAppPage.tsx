@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Icon } from '../assets/icons/Icon';
+import { Icons } from '../assets/icons/icons';
 import {
   AccordionContent,
   AccordionHeader,
@@ -160,7 +161,7 @@ export function ExampleAppPage() {
             </div>
             <div className={styles.HeaderActions}>
               <Button>
-                <Icon name="device-floppy" size={20} />
+                <Icon icon={Icons.DeviceFloppy} size={20} />
                 保存
               </Button>
               <Button variant="ghost">下書き</Button>
@@ -168,7 +169,7 @@ export function ExampleAppPage() {
                 <TooltipTrigger
                   render={(props) => (
                     <IconButton {...props} aria-label="設定" variant="ghost">
-                      <Icon name="settings" size={20} />
+                      <Icon icon={Icons.Settings} size={20} />
                     </IconButton>
                   )}
                 />
@@ -197,7 +198,7 @@ export function ExampleAppPage() {
                 <PopoverTrigger
                   render={(props) => (
                     <Button {...props} variant="ghost">
-                      <Icon name="note" size={18} />
+                      <Icon icon={Icons.Note} size={18} />
                       ガイド
                     </Button>
                   )}
@@ -224,7 +225,7 @@ export function ExampleAppPage() {
                 >
                   <InputBox
                     placeholder="例: jp-ui design"
-                    leadingIcon={<Icon name="folder" size={20} />}
+                    leadingIcon={<Icon icon={Icons.Folder} size={20} />}
                     className={styles.InputFull}
                   />
                 </Field>
@@ -236,7 +237,7 @@ export function ExampleAppPage() {
                 >
                   <InputBox
                     placeholder="例: jp-ui-core"
-                    leadingIcon={<Icon name="note" size={20} />}
+                    leadingIcon={<Icon icon={Icons.Note} size={20} />}
                     className={styles.InputFull}
                   />
                 </Field>
@@ -250,7 +251,7 @@ export function ExampleAppPage() {
                   <SelectRoot items={regions} value={region} onValueChange={setRegion}>
                     <SelectTrigger
                       floatingLabel={<span>地域</span>}
-                      leadingIcon={<Icon name="menu" size={20} />}
+                      leadingIcon={<Icon icon={Icons.Menu} size={20} />}
                       filled={region !== null}
                       className={styles.SelectTrigger}
                     >
@@ -280,7 +281,7 @@ export function ExampleAppPage() {
                   value={tagValue}
                   onValueChange={setTagValue}
                   placeholder="例: component"
-                  leadingIcon={<Icon name="search" size={20} />}
+                  leadingIcon={<Icon icon={Icons.Search} size={20} />}
                   className={styles.InputFull}
                   fieldProps={{ label: 'タグ検索' }}
                 >
@@ -339,7 +340,7 @@ export function ExampleAppPage() {
 
               <div className={styles.ActionRow}>
                 <Button type="submit">
-                  <Icon name="plus" size={20} />
+                  <Icon icon={Icons.Plus} size={20} />
                   作成する
                 </Button>
                 <Button variant="outlined">下書き保存</Button>
@@ -400,11 +401,11 @@ export function ExampleAppPage() {
               </NumberFieldScrubArea>
               <NumberFieldGroup>
                 <NumberFieldDecrement aria-label="減らす">
-                  <Icon name="minus" size={16} />
+                  <Icon icon={Icons.Minus} size={16} />
                 </NumberFieldDecrement>
                 <NumberFieldInput />
                 <NumberFieldIncrement aria-label="増やす">
-                  <Icon name="plus" size={16} />
+                  <Icon icon={Icons.Plus} size={16} />
                 </NumberFieldIncrement>
               </NumberFieldGroup>
             </NumberFieldRoot>
@@ -439,7 +440,7 @@ export function ExampleAppPage() {
                 <DialogTrigger
                   render={(props) => (
                     <Button {...props} variant="tonal">
-                      <Icon name="user" size={20} />
+                      <Icon icon={Icons.User} size={20} />
                       招待を送る
                     </Button>
                   )}
@@ -474,7 +475,7 @@ export function ExampleAppPage() {
                 <AlertDialogTrigger
                   render={(props) => (
                     <Button {...props} variant="outlined">
-                      <Icon name="trash" size={20} />
+                      <Icon icon={Icons.Trash} size={20} />
                       削除
                     </Button>
                   )}
@@ -506,9 +507,9 @@ export function ExampleAppPage() {
 
           <TabsRoot defaultValue="members">
             <TabsList>
-              <TabsTab value="members" label="メンバー" icon={<Icon name="user" size={20} />} />
-              <TabsTab value="roles" label="権限" icon={<Icon name="settings" size={20} />} />
-              <TabsTab value="logs" label="ログ" icon={<Icon name="note" size={20} />} />
+              <TabsTab value="members" label="メンバー" icon={<Icon icon={Icons.User} size={20} />} />
+              <TabsTab value="roles" label="権限" icon={<Icon icon={Icons.Settings} size={20} />} />
+              <TabsTab value="logs" label="ログ" icon={<Icon icon={Icons.Note} size={20} />} />
               <TabsIndicator />
             </TabsList>
 

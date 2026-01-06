@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import {
   ContextMenuItem,
   ContextMenuContent,
@@ -51,7 +52,7 @@ export const Default: Story = {
                 <ContextMenuSubmenuTrigger>
                   <span className={menuStyles.ItemLabel}>移動</span>
                   <span className={menuStyles.ItemTrailingIcon}>
-                    <Icon name="caret-right" size={16} />
+                    <Icon icon={Icons.CaretRight} size={16} />
                   </span>
                 </ContextMenuSubmenuTrigger>
                 <ContextMenuPortal>

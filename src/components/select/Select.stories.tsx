@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import {
   SelectRoot,
   SelectTrigger,
@@ -65,7 +66,7 @@ const DefaultStory = () => {
     >
       <SelectTrigger
         floatingLabel={<span>Label</span>}
-        leadingIcon={<Icon name="dummy" size={24} />}
+        leadingIcon={<Icon icon={Icons.Dummy} size={24} />}
         filled={filled}
       >
         <SelectValue />
@@ -100,7 +101,7 @@ const ManyItemsStory = () => {
     >
       <SelectTrigger
         floatingLabel={<span>Label</span>}
-        leadingIcon={<Icon name="dummy" size={24} />}
+        leadingIcon={<Icon icon={Icons.Dummy} size={24} />}
         filled={filled}
       >
         <SelectValue />

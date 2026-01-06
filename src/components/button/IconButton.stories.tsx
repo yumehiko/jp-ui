@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import { IconButton } from '..';
 
 const meta: Meta<typeof IconButton> = {
@@ -8,7 +9,7 @@ const meta: Meta<typeof IconButton> = {
   args: {
     variant: 'filled',
     'aria-label': '編集',
-    children: <Icon name="edit" size={24} />,
+    children: <Icon icon={Icons.Edit} size={24} />,
   },
 };
 
@@ -39,6 +40,6 @@ export const Ghost: Story = {
 export const Small: Story = {
   args: {
     size: 'small',
-    children: <Icon name="edit" size={16} />,
+    children: <Icon icon={Icons.Edit} size={16} />,
   },
 };

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import { InputBox } from '..';
 import { Field } from '..';
 
@@ -65,7 +66,7 @@ const FieldStory = (args: StoryArgs) => {
       readOnly={args.readOnly}
     >
       <InputBox
-        leadingIcon={<Icon name="edit" size={24} />}
+        leadingIcon={<Icon icon={Icons.Edit} size={24} />}
         value={value}
         onValueChange={setValue}
         invalid={args.invalid}
@@ -73,7 +74,7 @@ const FieldStory = (args: StoryArgs) => {
         readOnly={args.readOnly}
         placeholder={args.placeholder}
         trailingIcon={
-          args.invalid ? <Icon name="exclamation-circle" size={24} /> : undefined
+          args.invalid ? <Icon icon={Icons.ExclamationCircle} size={24} /> : undefined
         }
       />
     </Field>

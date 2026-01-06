@@ -8,3 +8,11 @@ Source files:
 - `tokens/roles.css` plus `tokens/roles.light.json` and `tokens/roles.dark.json` for role tokens
 
 You can override tokens by redefining CSS variables in your app.
+
+```css
+/* app.css */
+:root {
+  --tone-primary-60: #2d6cdf;
+  --role-primary: var(--tone-primary-60);
+}
+```

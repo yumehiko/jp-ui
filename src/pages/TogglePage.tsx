@@ -1,4 +1,5 @@
 import { Icon } from '../assets/icons/Icon';
+import { Icons } from '../assets/icons/icons';
 import { Toggle, ToggleGroup } from '../components';
 import toggleStyles from '../components/toggle/Toggle.module.css';
 import styles from './TogglePage.module.css';
@@ -11,10 +12,10 @@ export function TogglePage() {
           <h2 className={`typesetting-title ${styles.SectionTitle}`}>Toggle</h2>
           <div className={styles.Row}>
             <Toggle aria-label="お気に入り">
-              <Icon name="dummy" size={24} className={toggleStyles.Icon} />
+              <Icon icon={Icons.Dummy} size={24} className={toggleStyles.Icon} />
             </Toggle>
             <Toggle aria-label="お気に入り" defaultPressed>
-              <Icon name="dummy" size={24} className={toggleStyles.Icon} />
+              <Icon icon={Icons.Dummy} size={24} className={toggleStyles.Icon} />
             </Toggle>
           </div>
         </section>
@@ -25,13 +26,13 @@ export function TogglePage() {
           </h2>
           <ToggleGroup defaultValue={['bold']} className={styles.Group}>
             <Toggle value="bold" aria-label="太字">
-              <Icon name="dummy" size={24} className={toggleStyles.Icon} />
+              <Icon icon={Icons.Dummy} size={24} className={toggleStyles.Icon} />
             </Toggle>
             <Toggle value="italic" aria-label="斜体">
-              <Icon name="dummy" size={24} className={toggleStyles.Icon} />
+              <Icon icon={Icons.Dummy} size={24} className={toggleStyles.Icon} />
             </Toggle>
             <Toggle value="underline" aria-label="下線">
-              <Icon name="dummy" size={24} className={toggleStyles.Icon} />
+              <Icon icon={Icons.Dummy} size={24} className={toggleStyles.Icon} />
             </Toggle>
           </ToggleGroup>
         </section>
@@ -46,13 +47,13 @@ export function TogglePage() {
             className={styles.Group}
           >
             <Toggle value="bold" aria-label="太字">
-              <Icon name="dummy" size={24} className={toggleStyles.Icon} />
+              <Icon icon={Icons.Dummy} size={24} className={toggleStyles.Icon} />
             </Toggle>
             <Toggle value="italic" aria-label="斜体">
-              <Icon name="dummy" size={24} className={toggleStyles.Icon} />
+              <Icon icon={Icons.Dummy} size={24} className={toggleStyles.Icon} />
             </Toggle>
             <Toggle value="underline" aria-label="下線">
-              <Icon name="dummy" size={24} className={toggleStyles.Icon} />
+              <Icon icon={Icons.Dummy} size={24} className={toggleStyles.Icon} />
             </Toggle>
           </ToggleGroup>
         </section>

@@ -35,11 +35,11 @@ const lines = [
     ({ componentName, file }) => `import ${componentName} from './${file}?react';`,
   ),
   '',
-  'export const iconMap = {',
-  ...imports.map(({ name, componentName }) => `  '${name}': ${componentName},`),
+  'export const Icons = {',
+  ...imports.map(({ componentName }) => `  ${componentName},`),
   '} satisfies Record<string, ComponentType<SVGProps<SVGSVGElement>>>;',
   '',
-  'export type IconName = keyof typeof iconMap;',
+  ...imports.map(({ componentName }) => `export { ${componentName} };`),
   '',
 ];
 

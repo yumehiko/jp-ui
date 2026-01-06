@@ -44,6 +44,7 @@ Use `theme-light` to scope the light theme to a subtree if needed.
 
 ## Docs
 
+- `docs/overview.md`
 - `docs/usage.md`
 - `docs/components.md`
 - `docs/tokens.md`

@@ -3,6 +3,7 @@ import { Accordion as BaseAccordion } from '@base-ui/react/accordion';
 import { mergeProps } from '@base-ui/react/merge-props';
 import { useRender } from '@base-ui/react/use-render';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import { mergeClassName } from '../utils/mergeClassName';
 import styles from './Accordion.module.css';
 
@@ -69,8 +70,8 @@ export const AccordionTrigger = React.forwardRef<
     {
       className,
       children,
-      iconClosed = <Icon name="plus" size={24} />,
-      iconOpen = <Icon name="x" size={24} />,
+      iconClosed = <Icon icon={Icons.Plus} size={24} />,
+      iconOpen = <Icon icon={Icons.X} size={24} />,
       ...props
     },
     ref,

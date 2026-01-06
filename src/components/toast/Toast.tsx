@@ -3,6 +3,7 @@ import { Toast as BaseToast } from '@base-ui/react/toast';
 import { mergeProps } from '@base-ui/react/merge-props';
 import { useRender } from '@base-ui/react/use-render';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import { mergeClassName } from '../utils/mergeClassName';
 import styles from './Toast.module.css';
 
@@ -149,7 +150,7 @@ export const ToastClose = React.forwardRef<
     className={mergeClassName<typeof BaseToast.Close>(className, styles.Close)}
     {...props}
   >
-    {children ?? icon ?? <Icon name="x" size={24} className={styles.CloseIcon} />}
+    {children ?? icon ?? <Icon icon={Icons.X} size={24} className={styles.CloseIcon} />}
   </BaseToast.Close>
 ));
 
@@ -201,7 +202,7 @@ export function ToastLeadingIcon({
 }: ToastLeadingIconProps) {
   return (
     <span className={[styles.LeadingIcon, className].filter(Boolean).join(' ')} {...props}>
-      {icon ?? <Icon name="dummy" size={24} />}
+      {icon ?? <Icon icon={Icons.Dummy} size={24} />}
     </span>
   );
 }

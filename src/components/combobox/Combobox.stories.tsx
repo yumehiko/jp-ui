@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import { Field } from '..';
 import {
   ComboboxRoot,
@@ -64,10 +65,10 @@ const DefaultStory = () => {
           />
           <div className={styles.ActionButtons}>
             <ComboboxClear aria-label="選択をクリア">
-              <Icon name="x" size={20} />
+              <Icon icon={Icons.X} size={20} />
             </ComboboxClear>
             <ComboboxTrigger aria-label="候補を開く">
-              <Icon name="caret-down" size={20} />
+              <Icon icon={Icons.CaretDown} size={20} />
             </ComboboxTrigger>
           </div>
         </div>
@@ -80,7 +81,7 @@ const DefaultStory = () => {
               {(city: string) => (
                 <ComboboxItem key={city} value={city}>
                   <ComboboxItemIndicator>
-                    <Icon name="check" size={20} />
+                    <Icon icon={Icons.Check} size={20} />
                   </ComboboxItemIndicator>
                   <span className={styles.ItemText}>{city}</span>
                 </ComboboxItem>

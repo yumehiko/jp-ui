@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
+import { Icons } from '../../assets/icons/icons';
 import { Input } from '../input/Input';
 import { mergeClassName } from '../utils/mergeClassName';
 import styles from './InputBox.module.css';
@@ -119,7 +120,7 @@ export function InputBox({
       {control}
       {showClearButton ? (
         <button type="button" className={styles.ClearButton} onClick={handleClear}>
-          <Icon name="x" size={24} aria-label={clearLabel} />
+          <Icon icon={Icons.X} size={24} aria-label={clearLabel} />
         </button>
       ) : (
         trailingIcon && <span className={styles.TrailingIcon}>{trailingIcon}</span>
