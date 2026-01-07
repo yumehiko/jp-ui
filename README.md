@@ -2,7 +2,7 @@
 
 ## Install
 
-- `pnpm add @yumehiko/jp-ui @base-ui/react react react-dom`
+- `pnpm add @yumehiko/jp-ui @base-ui/react @tabler/icons-react react react-dom`
 
 ## Usage
 
