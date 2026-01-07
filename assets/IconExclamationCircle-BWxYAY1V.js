@@ -1,0 +1,1 @@
+import{c as a}from"./createReactComponent-BVoNDKa1.js";const c=[["path",{d:"M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0",key:"svg-0"}],["path",{d:"M12 9v4",key:"svg-1"}],["path",{d:"M12 16v.01",key:"svg-2"}]],o=a("outline","exclamation-circle","ExclamationCircle",c);export{o as I};
