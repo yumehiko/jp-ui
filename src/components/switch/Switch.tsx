@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Switch as BaseSwitch } from '@base-ui/react/switch';
 import { Icon } from '../../assets/icons/Icon';
-import { Icons } from '../../assets/icons/icons';
+import { IconCheck } from '@tabler/icons-react';
 import { mergeClassName } from '../utils/mergeClassName';
 import styles from './Switch.module.css';
 
@@ -29,7 +29,7 @@ export const Switch = React.forwardRef<SwitchElement, SwitchProps>(
       >
         <span aria-hidden="true" className={styles.StateLayer} />
         <BaseSwitch.Thumb className={styles.Thumb}>
-          {icon ?? <Icon icon={Icons.Check} size={16} className={styles.Icon} />}
+          {icon ?? <Icon icon={IconCheck} size={16} className={styles.Icon} />}
         </BaseSwitch.Thumb>
       </BaseSwitch.Root>
     );

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
-import { Icons } from '../../assets/icons/icons';
+import { IconEdit } from '@tabler/icons-react';
 import { Button } from '..';
 
 const meta: Meta<typeof Button> = {
@@ -52,7 +52,7 @@ export const IconWithLabel: Story = {
   args: {
     children: (
       <>
-        <Icon icon={Icons.Edit} size={24} />
+        <Icon icon={IconEdit} size={24} />
         ラベル付き
       </>
     ),
@@ -64,7 +64,7 @@ export const Small: Story = {
     size: 'small',
     children: (
       <>
-        <Icon icon={Icons.Edit} size={16} />
+        <Icon icon={IconEdit} size={16} />
         Small
       </>
     ),

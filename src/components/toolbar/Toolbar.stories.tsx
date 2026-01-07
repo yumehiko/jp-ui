@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
-import { Icons } from '../../assets/icons/icons';
+import { IconEdit, IconFolder, IconMenu } from '@tabler/icons-react';
 import { IconButton } from '..';
 import { ToolbarButton, ToolbarGroup, ToolbarRoot, ToolbarSeparator } from '..';
 
@@ -35,7 +35,7 @@ export const Default: Story = {
         unstyled
         aria-label="メニュー"
       >
-        <Icon icon={Icons.Menu} size={16} />
+        <Icon icon={IconMenu} size={16} />
       </ToolbarButton>
       <ToolbarSeparator />
       <ToolbarGroup>
@@ -55,7 +55,7 @@ export const Default: Story = {
         unstyled
         aria-label="編集"
       >
-        <Icon icon={Icons.Edit} size={16} />
+        <Icon icon={IconEdit} size={16} />
       </ToolbarButton>
       <ToolbarButton
         render={
@@ -69,7 +69,7 @@ export const Default: Story = {
         unstyled
         aria-label="フォルダ"
       >
-        <Icon icon={Icons.Folder} size={16} />
+        <Icon icon={IconFolder} size={16} />
       </ToolbarButton>
     </ToolbarRoot>
   ),

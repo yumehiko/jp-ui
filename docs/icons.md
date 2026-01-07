@@ -1,14 +1,18 @@
 # Icons
 
-## Built-in icons
+## Tabler icons
 
-Built-in icons are exported as `Icons`.
+jp-ui uses Tabler Icons via `@tabler/icons-react`. Import what you need and pass it to
+`Icon`. If you want to import Tabler icons directly in your app, add
+`@tabler/icons-react` to your dependencies (pnpm does not hoist transitive deps by
+default).
 
 ```tsx
-import { Icon, Icons } from '@yumehiko/jp-ui';
+import { Icon } from '@yumehiko/jp-ui';
+import { IconCheck } from '@tabler/icons-react';
 
 export function Example() {
-  return <Icon icon={Icons.Check} size={20} />;
+  return <Icon icon={IconCheck} size={20} />;
 }
 ```
 

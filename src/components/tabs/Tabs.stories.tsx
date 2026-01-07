@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 import { Icon } from '../../assets/icons/Icon';
-import { Icons } from '../../assets/icons/icons';
+import { IconFolder, IconNote, IconUser } from '@tabler/icons-react';
 import {
   TabsRoot,
   TabsList,
@@ -32,17 +32,17 @@ export const Default: Story = {
         <TabsTab
           value="overview"
           label="概要"
-          icon={<Icon icon={Icons.Note} size={24} />}
+          icon={<Icon icon={IconNote} size={24} />}
         />
         <TabsTab
           value="projects"
           label="プロジェクト"
-          icon={<Icon icon={Icons.Folder} size={24} />}
+          icon={<Icon icon={IconFolder} size={24} />}
         />
         <TabsTab
           value="account"
           label="アカウント"
-          icon={<Icon icon={Icons.User} size={24} />}
+          icon={<Icon icon={IconUser} size={24} />}
         />
         <TabsIndicator />
       </TabsList>
@@ -73,19 +73,19 @@ export const Small: Story = {
           value="overview"
           size="small"
           label="概要"
-          icon={<Icon icon={Icons.Note} size={16} />}
+          icon={<Icon icon={IconNote} size={16} />}
         />
         <TabsTab
           value="projects"
           size="small"
           label="プロジェクト"
-          icon={<Icon icon={Icons.Folder} size={16} />}
+          icon={<Icon icon={IconFolder} size={16} />}
         />
         <TabsTab
           value="account"
           size="small"
           label="アカウント"
-          icon={<Icon icon={Icons.User} size={16} />}
+          icon={<Icon icon={IconUser} size={16} />}
         />
         <TabsIndicator />
       </TabsList>

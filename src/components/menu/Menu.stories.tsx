@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
-import { Icons } from '../../assets/icons/icons';
+import {
+  IconCheck,
+  IconChevronRight,
+  IconDeviceFloppy,
+  IconPlus,
+  IconSearch,
+  IconTrash,
+} from '@tabler/icons-react';
 import { Button } from '..';
 import { MenuInputBox } from '..';
 import {
@@ -54,7 +61,7 @@ const DefaultStory = () => (
                   <MenuContent>
                     <MenuItem>
                       <span className={styles.ItemLeadingIcon}>
-                        <Icon icon={Icons.Plus} size={24} />
+                        <Icon icon={IconPlus} size={24} />
                       </span>
                       <span className={styles.ItemLabel}>新規作成</span>
                       <span className={styles.ItemRight}>
@@ -63,7 +70,7 @@ const DefaultStory = () => (
                     </MenuItem>
                     <MenuItem>
                       <span className={styles.ItemLeadingIcon}>
-                        <Icon icon={Icons.DeviceFloppy} size={24} />
+                        <Icon icon={IconDeviceFloppy} size={24} />
                       </span>
                       <span className={styles.ItemLabel}>保存</span>
                       <span className={styles.ItemRight}>
@@ -72,7 +79,7 @@ const DefaultStory = () => (
                     </MenuItem>
                   <MenuItem disabled>
                     <span className={styles.ItemLeadingIcon}>
-                      <Icon icon={Icons.Trash} size={24} />
+                      <Icon icon={IconTrash} size={24} />
                     </span>
                     <span className={styles.ItemLabel}>削除</span>
                     <span className={styles.ItemRight}>
@@ -82,20 +89,20 @@ const DefaultStory = () => (
                   <MenuSeparator />
                   <MenuInputBox
                     placeholder="検索"
-                    leadingIcon={<Icon icon={Icons.Search} size={24} />}
+                    leadingIcon={<Icon icon={IconSearch} size={24} />}
                   />
                   <MenuSeparator />
                   <MenuGroup>
                     <MenuGroupLabel>表示</MenuGroupLabel>
                     <MenuCheckboxItem defaultChecked>
                         <MenuCheckboxItemIndicator>
-                          <Icon icon={Icons.Check} size={24} />
+                          <Icon icon={IconCheck} size={24} />
                         </MenuCheckboxItemIndicator>
                         <span className={styles.OptionLabel}>サイドバー</span>
                       </MenuCheckboxItem>
                       <MenuCheckboxItem>
                         <MenuCheckboxItemIndicator>
-                          <Icon icon={Icons.Check} size={24} />
+                          <Icon icon={IconCheck} size={24} />
                         </MenuCheckboxItemIndicator>
                         <span className={styles.OptionLabel}>目次</span>
                       </MenuCheckboxItem>
@@ -106,13 +113,13 @@ const DefaultStory = () => (
                       <MenuRadioGroup defaultValue="date">
                         <MenuRadioItem value="date">
                           <MenuRadioItemIndicator>
-                            <Icon icon={Icons.Check} size={24} />
+                            <Icon icon={IconCheck} size={24} />
                           </MenuRadioItemIndicator>
                           <span className={styles.OptionLabel}>更新日</span>
                         </MenuRadioItem>
                         <MenuRadioItem value="name">
                           <MenuRadioItemIndicator>
-                            <Icon icon={Icons.Check} size={24} />
+                            <Icon icon={IconCheck} size={24} />
                           </MenuRadioItemIndicator>
                           <span className={styles.OptionLabel}>名前</span>
                         </MenuRadioItem>
@@ -123,7 +130,7 @@ const DefaultStory = () => (
                       <MenuSubmenuTrigger>
                         <span className={styles.ItemLabel}>詳細</span>
                         <span className={styles.ItemTrailingIcon}>
-                          <Icon icon={Icons.ChevronRight} size={24} />
+                          <Icon icon={IconChevronRight} size={24} />
                         </span>
                       </MenuSubmenuTrigger>
                       <MenuPortal>
@@ -181,7 +188,7 @@ const SmallStory = () => (
             <MenuContent>
               <MenuItem>
                 <span className={styles.ItemLeadingIcon}>
-                  <Icon icon={Icons.Plus} size={16} />
+                  <Icon icon={IconPlus} size={16} />
                 </span>
                 <span className={styles.ItemLabel}>新規作成</span>
               <span className={styles.ItemRight}>
@@ -190,7 +197,7 @@ const SmallStory = () => (
             </MenuItem>
                   <MenuItem>
                     <span className={styles.ItemLeadingIcon}>
-                      <Icon icon={Icons.DeviceFloppy} size={16} />
+                      <Icon icon={IconDeviceFloppy} size={16} />
                     </span>
                     <span className={styles.ItemLabel}>保存</span>
                     <span className={styles.ItemRight}>
@@ -201,20 +208,20 @@ const SmallStory = () => (
                   <MenuInputBox
                     size="small"
                     placeholder="検索"
-                    leadingIcon={<Icon icon={Icons.Search} size={16} />}
+                    leadingIcon={<Icon icon={IconSearch} size={16} />}
                   />
                   <MenuSeparator />
                   <MenuGroup>
                     <MenuGroupLabel>表示</MenuGroupLabel>
                     <MenuCheckboxItem defaultChecked>
                 <MenuCheckboxItemIndicator>
-                  <Icon icon={Icons.Check} size={16} />
+                  <Icon icon={IconCheck} size={16} />
                 </MenuCheckboxItemIndicator>
                 <span className={styles.OptionLabel}>サイドバー</span>
               </MenuCheckboxItem>
               <MenuCheckboxItem>
                 <MenuCheckboxItemIndicator>
-                  <Icon icon={Icons.Check} size={16} />
+                  <Icon icon={IconCheck} size={16} />
                 </MenuCheckboxItemIndicator>
                 <span className={styles.OptionLabel}>目次</span>
               </MenuCheckboxItem>
@@ -224,7 +231,7 @@ const SmallStory = () => (
               <MenuSubmenuTrigger>
                 <span className={styles.ItemLabel}>詳細</span>
                 <span className={styles.ItemTrailingIcon}>
-                  <Icon icon={Icons.ChevronRight} size={16} />
+                  <Icon icon={IconChevronRight} size={16} />
                 </span>
               </MenuSubmenuTrigger>
               <MenuPortal>

@@ -14,18 +14,20 @@ run lint/typecheck in your consuming project instead.
 
 ## Icons
 
-Built-in icons are exported as `Icons`. The `Icon` component uses Base UI's `useRender`,
-so you can swap icons by passing a render prop or an SVG component.
+jp-ui uses Tabler Icons via `@tabler/icons-react`. The `Icon` component uses Base UI's
+`useRender`, so you can pass any SVG component (including Tabler icons) as `render` or
+`icon`.
 
 ```tsx
-import { Icon, Icons } from '@yumehiko/jp-ui';
+import { Icon } from '@yumehiko/jp-ui';
+import { IconCheck } from '@tabler/icons-react';
 
-<Icon icon={Icons.Check} size={20} />;
-<Icon render={<Icons.Check />} size={20} />;
+<Icon icon={IconCheck} size={20} />;
+<Icon render={<IconCheck />} size={20} />;
 ```
 
-To use your own icons, import an SVG as a React component in your app and pass it to
-`Icon`. The `gen:icons` script is for this repository only.
+If you want to import Tabler icons directly in your app, add `@tabler/icons-react` to
+your dependencies as well (pnpm does not hoist transitive deps by default).
 
 ## Tokens
 

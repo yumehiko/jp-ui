@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Select as BaseSelect } from '@base-ui/react/select';
 import { Icon } from '../../assets/icons/Icon';
-import { Icons } from '../../assets/icons/icons';
+import { IconCaretDown, IconCaretUp, IconCheck } from '@tabler/icons-react';
 import { Separator } from '../separator/Separator';
 import { mergeClassName } from '../utils/mergeClassName';
 import listboxStyles from '../listbox/Listbox.module.css';
@@ -127,7 +127,7 @@ export const SelectScrollUpArrow = React.forwardRef<
     )}
     {...props}
   >
-    {children ?? <Icon icon={Icons.CaretUp} size={24} />}
+    {children ?? <Icon icon={IconCaretUp} size={24} />}
   </BaseSelect.ScrollUpArrow>
 ));
 
@@ -145,7 +145,7 @@ export const SelectScrollDownArrow = React.forwardRef<
     )}
     {...props}
   >
-    {children ?? <Icon icon={Icons.CaretDown} size={24} />}
+    {children ?? <Icon icon={IconCaretDown} size={24} />}
   </BaseSelect.ScrollDownArrow>
 ));
 
@@ -223,7 +223,7 @@ export const SelectTrigger = React.forwardRef<
         ) : null}
         <span className={styles.Value}>{content}</span>
         <BaseSelect.Icon className={styles.Icon}>
-          {trailingIcon ?? <Icon icon={Icons.CaretDown} size={24} />}
+          {trailingIcon ?? <Icon icon={IconCaretDown} size={24} />}
         </BaseSelect.Icon>
         <span aria-hidden="true" className={styles.StateLayer} />
       </BaseSelect.Trigger>
@@ -257,7 +257,7 @@ export const SelectItem = React.forwardRef<
     {...props}
   >
     <BaseSelect.ItemIndicator className={styles.ItemIndicator}>
-      {indicator ?? <Icon icon={Icons.Check} size={24} />}
+      {indicator ?? <Icon icon={IconCheck} size={24} />}
     </BaseSelect.ItemIndicator>
     <BaseSelect.ItemText className={styles.ItemText}>
       {children}

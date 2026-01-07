@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
-import { Icons } from '../../assets/icons/icons';
+import { IconChevronRight } from '@tabler/icons-react';
 import {
   MenuContent,
   MenuItem,
@@ -48,7 +48,7 @@ const DefaultStory = () => (
                   <MenuSubmenuTrigger>
                     <span className={menuStyles.ItemLabel}>書き出し</span>
                     <span className={menuStyles.ItemTrailingIcon}>
-                      <Icon icon={Icons.ChevronRight} size={24} />
+                      <Icon icon={IconChevronRight} size={24} />
                     </span>
                   </MenuSubmenuTrigger>
                   <MenuPortal>

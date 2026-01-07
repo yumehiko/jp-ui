@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
-import { Icons } from '../../assets/icons/icons';
+import { IconMinus, IconPlus } from '@tabler/icons-react';
 import {
   NumberFieldDecrement,
   NumberFieldGroup,
@@ -44,11 +44,11 @@ const DefaultStory = () => {
       </NumberFieldScrubArea>
       <NumberFieldGroup>
         <NumberFieldDecrement aria-label="減らす">
-          <Icon icon={Icons.Minus} size={16} />
+          <Icon icon={IconMinus} size={16} />
         </NumberFieldDecrement>
         <NumberFieldInput />
         <NumberFieldIncrement aria-label="増やす">
-          <Icon icon={Icons.Plus} size={16} />
+          <Icon icon={IconPlus} size={16} />
         </NumberFieldIncrement>
       </NumberFieldGroup>
     </NumberFieldRoot>
@@ -70,11 +70,11 @@ const DisabledStory = () => {
       </NumberFieldScrubArea>
       <NumberFieldGroup>
         <NumberFieldDecrement aria-label="減らす">
-          <Icon icon={Icons.Minus} size={16} />
+          <Icon icon={IconMinus} size={16} />
         </NumberFieldDecrement>
         <NumberFieldInput />
         <NumberFieldIncrement aria-label="増やす">
-          <Icon icon={Icons.Plus} size={16} />
+          <Icon icon={IconPlus} size={16} />
         </NumberFieldIncrement>
       </NumberFieldGroup>
     </NumberFieldRoot>

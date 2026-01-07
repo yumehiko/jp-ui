@@ -67,7 +67,6 @@ mkdir -p .codex/skills && cp -R node_modules/@yumehiko/jp-ui/docs/skills/jp-ui-c
 - `pnpm typecheck`
 - `pnpm storybook` (component examples)
 - `pnpm build-storybook`
-- `pnpm gen:icons`
 - `pnpm gen:tones`
 - `pnpm gen:roles`
 - `pnpm gen:roles-css`
