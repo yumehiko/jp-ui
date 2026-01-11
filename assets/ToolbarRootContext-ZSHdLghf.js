@@ -1,0 +1,1 @@
+import{f as e}from"./mergeClassName-dOdSFm9_.js";import{r as t}from"./iframe-Cmvfh17G.js";const n=t.createContext(void 0);function x(r){const o=t.useContext(n);if(o===void 0&&!r)throw new Error(e(69));return o}export{n as T,x as u};
