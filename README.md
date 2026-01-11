@@ -1,10 +1,18 @@
 # jp-ui
 
-## Install
+[Base UI](https://base-ui.com/) をベースに構築したUIコンポーネントライブラリです。日本語圏での利用を前提に、和文向けのコンポーネント、日本語組版を補助するテキストスタイル、一貫した色彩設計を提供します。
+
+## 特長
+
+- Base UIの体験を保ったラッパーコンポーネント
+- 日本語組版を補助するテキストスタイル
+- 一貫した色彩設計のトークン
+
+## インストール
 
 - `pnpm add @yumehiko/jp-ui @base-ui/react @tabler/icons-react react react-dom`
 
-## Usage
+## 使い方
 
 ```tsx
 import '@yumehiko/jp-ui/style.css';
@@ -15,7 +23,7 @@ export function App() {
 }
 ```
 
-## Providers / Theme
+## プロバイダー / テーマ
 
 ```tsx
 import {
@@ -39,33 +47,36 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
 }
 ```
 
-Light tokens are applied by default. Add `theme-dark` to a root element to enable dark tokens.
-Use `theme-light` to scope the light theme to a subtree if needed.
+ライトトークンはデフォルトで適用されます。ダークトークンを有効にするには、ルート要素に `theme-dark` を付与してください。必要に応じて `theme-light` を使うと、ライトテーマをサブツリーに限定できます。
 
-## Docs
+## ドキュメント
 
-- `docs/overview.md`
-- `docs/usage.md`
-- `docs/components.md`
-- `docs/tokens.md`
-- `docs/icons.md`
-- Storybook (GitHub Pages): `https://yumehiko.github.io/jp-ui/`
+- [概要](docs/overview.md)
+- [使い方](docs/usage.md)
+- [コンポーネント](docs/components.md)
+- [トークン](docs/tokens.md)
+- [アイコン](docs/icons.md)
+- [Storybook（GitHub Pages）](https://yumehiko.github.io/jp-ui/)
 
-## Codex skill (optional)
+## Codexスキル（任意）
 
-Copy the skill into your project so coding agents can load jp-ui usage guidance.
+コーディングエージェントがjp-uiの利用ガイドを読み込めるように、スキルをプロジェクトにコピーします。
 
 ```sh
 mkdir -p .codex/skills && cp -R node_modules/@yumehiko/jp-ui/docs/skills/jp-ui-consumer .codex/skills/
 ```
 
-## Scripts
+## 開発者向け
+
+このセクションはリポジトリ開発用です。パッケージ利用者が実行する必要はありません。
+
+### スクリプト
 
 - `pnpm dev`
 - `pnpm build`
 - `pnpm lint`
 - `pnpm typecheck`
-- `pnpm storybook` (component examples)
+- `pnpm storybook` (コンポーネント例)
 - `pnpm build-storybook`
 - `pnpm gen:tones`
 - `pnpm gen:roles`
