@@ -49,6 +49,25 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
 
 ライトトークンはデフォルトで適用されます。ダークトークンを有効にするには、ルート要素に `theme-dark` を付与してください。必要に応じて `theme-light` を使うと、ライトテーマをサブツリーに限定できます。
 
+## カスタムテーマ（3色指定）
+
+Primary / Secondary / Tertiary の3色からトーンとRoleを生成できます。HEXに加えてHCT指定も利用できます。`@yumehiko/jp-ui/style.css` の後に適用してください。
+
+```tsx
+import '@yumehiko/jp-ui/style.css';
+import { createTheme } from '@yumehiko/jp-ui';
+
+const { css } = createTheme({
+  primary: '#4f46e5',
+  secondary: '#f97316',
+  tertiary: { h: 145, c: 55, t: 65 },
+});
+
+const style = document.createElement('style');
+style.textContent = css;
+document.head.append(style);
+```
+
 ## ドキュメント
 
 - [概要](docs/overview.md)

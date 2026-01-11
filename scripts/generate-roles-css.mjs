@@ -104,6 +104,9 @@ for (const input of inputs) {
   const roleLines = await readRoles(input);
   const paletteLines = await readPaletteRoles(input.name);
   const combinedLines = [...roleLines, ...paletteLines].sort();
+  if (input.name === 'light') {
+    lines.push(':root,');
+  }
   lines.push(`.theme-${input.name} {`);
   lines.push(...combinedLines);
   lines.push('}');

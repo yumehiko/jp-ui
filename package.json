@@ -24,6 +24,8 @@
     "gen:tones": "node scripts/generate-tones.mjs",
     "gen:roles": "node scripts/extract-roles.mjs",
     "gen:roles-css": "node scripts/generate-roles-css.mjs",
+    "test:theme": "tsx scripts/verify-theme.ts",
+    "test:theme:dist": "tsx scripts/verify-theme-dist.ts",
     "typecheck": "tsc -b",
     "prepublishOnly": "pnpm build:package"
   },
@@ -58,7 +60,6 @@
   "devDependencies": {
     "@base-ui/react": "^1.0.0",
     "@eslint/js": "^9.39.2",
-    "@material/material-color-utilities": "^0.3.0",
     "@storybook/react": "^10.1.10",
     "@storybook/react-vite": "^10.1.10",
     "@types/node": "^24.10.4",
@@ -72,6 +73,7 @@
     "eslint-plugin-storybook": "^10.1.10",
     "globals": "^16.5.0",
     "storybook": "^10.1.10",
+    "tsx": "^4.20.5",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.50.1",
     "vite": "^7.3.0",
@@ -79,6 +81,7 @@
   },
   "packageManager": "pnpm@10.27.0+sha512.72d699da16b1179c14ba9e64dc71c9a40988cbdc65c264cb0e489db7de917f20dcf4d64d8723625f2969ba52d4b7e2a1170682d9ac2a5dcaeaab732b7e16f04a",
   "dependencies": {
+    "@material/material-color-utilities": "^0.3.0",
     "@tabler/icons-react": "^3.36.1"
   }
 }
