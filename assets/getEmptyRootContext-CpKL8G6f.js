@@ -1,0 +1,1 @@
+import{y as e,P as n}from"./popupStateMapping-BzQ7vyDq.js";function o(){return new e({open:!1,floatingElement:null,referenceElement:null,triggerElements:new n,floatingId:"",nested:!1,noEmit:!1,onOpenChange:void 0})}export{o as g};
