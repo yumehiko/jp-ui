@@ -103,6 +103,7 @@ export function NodeEditorSamplePage() {
     { from: 'filter-out', to: 'output-in' },
   ]);
   const selection = useNodeSelection({
+    selectionMode: 'multiple',
     defaultSelectedIds: canvasNodes.filter((node) => node.selected).map((node) => node.id),
   });
   const wireSelection = useNodeSelection({ selectionMode: 'multiple' });
@@ -121,10 +122,63 @@ export function NodeEditorSamplePage() {
     coordinateSpace: 'viewport',
     offset: viewportOffset,
   });
+  const isAdditiveEvent = React.useCallback(
+    (event: React.PointerEvent | React.MouseEvent) =>
+      event.shiftKey || event.metaKey || event.ctrlKey,
+    [],
+  );
   const clearSelection = React.useCallback(() => {
     selection.clear();
     wireSelection.clear();
   }, [selection, wireSelection]);
+  const applyNodeSelection = React.useCallback(
+    (ids: string[], additive: boolean) => {
+      if (additive) {
+        const next = new Set(selection.selectedIds);
+        ids.forEach((id) => next.add(id));
+        selection.setSelectedIds(Array.from(next));
+      } else {
+        selection.setSelectedIds(ids);
+      }
+      wireSelection.clear();
+    },
+    [selection, wireSelection],
+  );
+  const applyWireSelection = React.useCallback(
+    (ids: string[], additive: boolean) => {
+      if (additive) {
+        const next = new Set(wireSelection.selectedIds);
+        ids.forEach((id) => next.add(id));
+        wireSelection.setSelectedIds(Array.from(next));
+      } else {
+        wireSelection.setSelectedIds(ids);
+      }
+      selection.clear();
+    },
+    [selection, wireSelection],
+  );
+  const getWireIdsForRect = React.useCallback(
+    (rect: { x: number; y: number; width: number; height: number }) =>
+      wireDraft.connections
+        .map((connection) => {
+          const start = wireDraft.getPortPoint(connection.from);
+          const end = wireDraft.getPortPoint(connection.to);
+          if (!start || !end) return null;
+          const minX = Math.min(start.x, end.x);
+          const minY = Math.min(start.y, end.y);
+          const maxX = Math.max(start.x, end.x);
+          const maxY = Math.max(start.y, end.y);
+          const intersects = !(
+            maxX < rect.x ||
+            maxY < rect.y ||
+            minX > rect.x + rect.width ||
+            minY > rect.y + rect.height
+          );
+          return intersects ? `${connection.from}-${connection.to}` : null;
+        })
+        .filter((id): id is string => id !== null),
+    [wireDraft],
+  );
 
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -181,43 +235,16 @@ export function NodeEditorSamplePage() {
       return { id: node.id, ref: nodeRefs.current.get(node.id)! };
     }),
     onSelectionChange: (ids, options) => {
-      if (options.additive) {
-        const next = new Set(selection.selectedSet);
-        ids.forEach((id) => next.add(id));
-        selection.setSelectedIds(Array.from(next));
-        wireSelection.clear();
-        return;
-      }
       if (ids.length > 0) {
-        selection.setSelectedIds(ids);
-        wireSelection.clear();
+        applyNodeSelection(ids, options.additive);
         return;
       }
-      const wireIds = wireDraft.connections
-        .map((connection) => {
-          const start = wireDraft.getPortPoint(connection.from);
-          const end = wireDraft.getPortPoint(connection.to);
-          if (!start || !end) return null;
-          const minX = Math.min(start.x, end.x);
-          const minY = Math.min(start.y, end.y);
-          const maxX = Math.max(start.x, end.x);
-          const maxY = Math.max(start.y, end.y);
-          const intersects = !(
-            maxX < options.rect.x ||
-            maxY < options.rect.y ||
-            minX > options.rect.x + options.rect.width ||
-            minY > options.rect.y + options.rect.height
-          );
-          return intersects ? `${connection.from}-${connection.to}` : null;
-        })
-        .filter((id): id is string => id !== null);
+      const wireIds = getWireIdsForRect(options.rect);
       if (wireIds.length > 0) {
-        wireSelection.setSelectedIds(wireIds);
-        selection.clear();
+        applyWireSelection(wireIds, options.additive);
         return;
       }
-      selection.setSelectedIds(ids);
-      wireSelection.clear();
+      clearSelection();
     },
   });
   const stageProps = marquee.getStageProps();
@@ -278,12 +305,11 @@ export function NodeEditorSamplePage() {
               onScaleChange={setViewportScale}
               onOffsetChange={setViewportOffset}
               onPointerDown={(event) => {
+                const target = event.target instanceof Element ? event.target : null;
+                if (target?.closest(`.${styles.CanvasNode}`)) return;
+                if (target?.closest('[data-wire="true"]')) return;
                 stageProps.onPointerDown(event);
                 if (event.defaultPrevented) return;
-                const target = event.target instanceof Element ? event.target : null;
-                if (!target) return;
-                if (target.closest(`.${styles.CanvasNode}`)) return;
-                if (target.closest('[data-wire="true"]')) return;
                 clearSelection();
               }}
             >
@@ -295,7 +321,6 @@ export function NodeEditorSamplePage() {
                   const end = wireDraft.getPortPoint(connection.to);
                   if (!start || !end) return null;
                   const wireId = `${connection.from}-${connection.to}`;
-                  const wireProps = wireSelection.getNodeProps(wireId);
                   return (
                     <Wire
                       key={wireId}
@@ -307,10 +332,8 @@ export function NodeEditorSamplePage() {
                       viewHeight={worldHeight}
                       coordinateSystem="world"
                       onClick={(event) => {
-                        wireProps.onClick(event);
-                        if (!event.defaultPrevented) {
-                          selection.clear();
-                        }
+                        applyWireSelection([wireId], isAdditiveEvent(event));
+                        event.preventDefault();
                       }}
                       className={styles.CanvasWire}
                     />
@@ -334,7 +357,16 @@ export function NodeEditorSamplePage() {
                   }
                   const nodeRef = nodeRefs.current.get(node.id)!;
                   const dragProps = drag.getNodeProps(node.id);
-                  const selectionProps = selection.getNodeProps(node.id);
+                  const handleNodeSelect = (event: React.PointerEvent | React.MouseEvent) => {
+                    if (isAdditiveEvent(event)) {
+                      applyNodeSelection([node.id], true);
+                      return;
+                    }
+                    if (selection.isSelected(node.id)) {
+                      return;
+                    }
+                    applyNodeSelection([node.id], false);
+                  };
                   const nodePorts = ports.ports[node.id];
                   if (!nodePorts) return null;
                   const outputPorts = nodePorts.outputs.map((port) => (
@@ -375,7 +407,10 @@ export function NodeEditorSamplePage() {
                       ref={nodeRef}
                       className={styles.CanvasNode}
                       style={dragProps.style}
-                      onPointerDown={dragProps.onPointerDown}
+                      onPointerDown={(event) => {
+                        handleNodeSelect(event);
+                        dragProps.onPointerDown(event);
+                      }}
                     >
                       <Node
                         title={node.title}
@@ -387,13 +422,6 @@ export function NodeEditorSamplePage() {
                         outputs={outputPorts}
                         inputs={inputPorts}
                         onAddPort={handleAddPort}
-                        {...selectionProps}
-                        onClick={(event) => {
-                          selectionProps.onClick(event);
-                          if (!event.defaultPrevented) {
-                            wireSelection.clear();
-                          }
-                        }}
                       />
                     </div>
                   );
