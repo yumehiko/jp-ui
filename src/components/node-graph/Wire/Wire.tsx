@@ -53,7 +53,7 @@ export function Wire({
   render,
   ...rest
 }: WireProps) {
-  const { className, style } = rest;
+  const { className, style, onClick, onPointerDown, onPointerUp, ...restProps } = rest;
   const isFocused = state === 'focused';
   const strokeWidth = 2;
   const color = `var(--${keyColor}, var(--error))`;
@@ -85,7 +85,7 @@ export function Wire({
     ? `drop-shadow(0 0 1px ${color}) drop-shadow(0 0 4px ${color})`
     : undefined;
 
-  const mergedStyle = { overflow: 'visible', ...(style ?? {}) } as typeof style;
+  const mergedStyle = { overflow: 'visible', pointerEvents: 'none', ...(style ?? {}) } as typeof style;
   const element = useRender({
     defaultTagName: 'svg',
     render,
@@ -99,19 +99,35 @@ export function Wire({
         preserveAspectRatio: 'none',
         'aria-hidden': true,
         children: (
-          <path
-            d={path}
-            fill="none"
-            stroke={color}
-            strokeWidth={strokeWidth}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeDasharray={dash}
-            style={{ filter }}
-          />
+          <>
+            <path
+              d={path}
+              fill="none"
+              stroke="transparent"
+              strokeWidth={Math.max(12, strokeWidth * 6)}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeDasharray={dash}
+              data-wire="true"
+              style={{ pointerEvents: 'stroke' }}
+              onClick={onClick}
+              onPointerDown={onPointerDown}
+              onPointerUp={onPointerUp}
+            />
+            <path
+              d={path}
+              fill="none"
+              stroke={color}
+              strokeWidth={strokeWidth}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeDasharray={dash}
+              style={{ filter, pointerEvents: 'none' }}
+            />
+          </>
         ),
       },
-      rest,
+      restProps,
     ),
   });
 

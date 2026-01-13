@@ -11,6 +11,7 @@ export type NodeDragOptions = {
   positions?: NodePositions;
   defaultPositions?: NodePositions;
   scale?: number;
+  selectedIds?: string[];
   onPositionsChange?: (positions: NodePositions) => void;
 };
 
@@ -29,6 +30,7 @@ export function useNodeDrag({
   positions,
   defaultPositions = emptyPositions,
   scale = 1,
+  selectedIds = [],
   onPositionsChange,
 }: NodeDragOptions = {}): NodeDragReturn {
   const isControlled = positions !== undefined;
@@ -37,6 +39,7 @@ export function useNodeDrag({
 
   const positionsRef = React.useRef(resolvedPositions);
   const scaleRef = React.useRef(scale);
+  const selectionRef = React.useRef(selectedIds);
 
   React.useEffect(() => {
     positionsRef.current = resolvedPositions;
@@ -45,6 +48,10 @@ export function useNodeDrag({
   React.useEffect(() => {
     scaleRef.current = scale;
   }, [scale]);
+
+  React.useEffect(() => {
+    selectionRef.current = selectedIds;
+  }, [selectedIds]);
 
   const commit = React.useCallback(
     (next: NodePositions) => {
@@ -72,17 +79,26 @@ export function useNodeDrag({
           if (event.button !== 0) return;
           event.preventDefault();
 
-          const origin = positionsRef.current[id] ?? { x: 0, y: 0 };
+          const activeIds =
+            selectionRef.current.includes(id) && selectionRef.current.length > 0
+              ? selectionRef.current
+              : [id];
+          const origins = new Map(
+            activeIds.map((activeId) => [
+              activeId,
+              positionsRef.current[activeId] ?? { x: 0, y: 0 },
+            ]),
+          );
           const startX = event.clientX;
           const startY = event.clientY;
 
           const handlePointerMove = (moveEvent: PointerEvent) => {
             const dx = (moveEvent.clientX - startX) / (scaleRef.current || 1);
             const dy = (moveEvent.clientY - startY) / (scaleRef.current || 1);
-            const next = {
-              ...positionsRef.current,
-              [id]: { x: origin.x + dx, y: origin.y + dy },
-            };
+            const next = { ...positionsRef.current };
+            origins.forEach((origin, activeId) => {
+              next[activeId] = { x: origin.x + dx, y: origin.y + dy };
+            });
             commit(next);
           };
 

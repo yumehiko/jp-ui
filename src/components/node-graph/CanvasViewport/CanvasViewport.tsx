@@ -13,10 +13,20 @@ import styles from './CanvasViewport.module.css';
 
 type CanvasViewportProps = CanvasViewportOptions &
   useRender.ComponentProps<'div'> & {
+    rootRef?: React.Ref<HTMLDivElement>;
     contentClassName?: string;
     contentProps?: React.ComponentPropsWithoutRef<'div'>;
     backgroundProps?: Omit<CanvasBackgroundProps, 'scale' | 'offsetX' | 'offsetY'>;
   };
+
+const setRef = <T,>(ref: React.Ref<T> | undefined, value: T | null) => {
+  if (!ref) return;
+  if (typeof ref === 'function') {
+    ref(value);
+    return;
+  }
+  (ref as React.MutableRefObject<T | null>).current = value;
+};
 
 export function CanvasViewport({
   scale,
@@ -32,6 +42,7 @@ export function CanvasViewport({
   onScaleChange,
   onOffsetChange,
   render,
+  rootRef,
   className,
   children,
   contentClassName,
@@ -58,13 +69,20 @@ export function CanvasViewport({
     ...(contentProps?.style ?? {}),
     ...contentStyle,
   } as React.CSSProperties;
+  const handleRef = React.useCallback(
+    (node: HTMLDivElement | null) => {
+      setRef(ref, node);
+      setRef(rootRef, node);
+    },
+    [ref, rootRef],
+  );
 
   const element = useRender({
     defaultTagName: 'div',
     render,
     props: mergeProps<'div'>(
       {
-        ref,
+        ref: handleRef,
         className: mergeClassName(className, styles.root),
         children: (
           <CanvasBackground

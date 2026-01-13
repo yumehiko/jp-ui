@@ -16,6 +16,8 @@ type NodeSelectionReturn = {
   select: (id: string) => void;
   toggle: (id: string) => void;
   clear: () => void;
+  setSelectedIds: (ids: string[]) => void;
+  remove: (id: string) => void;
   getNodeProps: (id: string) => {
     onClick: (event: React.MouseEvent) => void;
   };
@@ -79,6 +81,22 @@ export function useNodeSelection({
     commit(new Set());
   }, [commit]);
 
+  const setSelectedIds = React.useCallback(
+    (ids: string[]) => {
+      commit(new Set(ids));
+    },
+    [commit],
+  );
+
+  const remove = React.useCallback(
+    (id: string) => {
+      const next = new Set(selectedSet);
+      next.delete(id);
+      commit(next);
+    },
+    [commit, selectedSet],
+  );
+
   const getNodeProps = React.useCallback(
     (id: string) => ({
       onClick: (event: React.MouseEvent) => {
@@ -103,6 +121,7 @@ export function useNodeSelection({
     select,
     toggle,
     clear,
+    setSelectedIds,
     getNodeProps,
   };
 }

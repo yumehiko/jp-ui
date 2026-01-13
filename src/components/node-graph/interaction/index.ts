@@ -2,6 +2,8 @@ export { useNodeSelection } from './useNodeSelection';
 export type { NodeSelectionMode, NodeSelectionOptions } from './useNodeSelection';
 export { useNodeDrag } from './useNodeDrag';
 export type { NodePosition, NodePositions, NodeDragOptions } from './useNodeDrag';
+export { useMarqueeSelection } from './useMarqueeSelection';
+export type { MarqueeItem, MarqueeSelectionOptions } from './useMarqueeSelection';
 export { usePorts } from './usePorts';
 export type {
   AddPortOptions,
