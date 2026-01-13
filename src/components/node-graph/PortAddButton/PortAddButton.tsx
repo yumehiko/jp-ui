@@ -132,48 +132,51 @@ export const PortAddButton = forwardRef<HTMLButtonElement, PortAddButtonProps>(f
     'data-static-state': isStaticState ? 'true' : undefined,
   } as Record<string, string | undefined>;
 
+  const mergedProps = mergeProps<'button'>(
+    {
+      className: styles.root,
+      type,
+      disabled: isDisabled,
+      style: mergedStyle,
+      onPointerEnter: handlePointerEnter,
+      onPointerMove: handlePointerMove,
+      onPointerLeave: handlePointerLeave,
+      onClick: handleClick,
+      ...dataAttributes,
+      children: (
+        <>
+          <span className={styles.pinSlot} data-side="input" aria-hidden>
+            <span className={styles.pin}>
+              <span className={styles.pinFocusRing} aria-hidden />
+              <span className={styles.pinBase} aria-hidden />
+              <span className={styles.pinEmpty} aria-hidden />
+            </span>
+          </span>
+          <span className={styles.labelArea}>
+            <span className={styles.icon} aria-hidden>
+              <Icon icon={icon} size={24} />
+            </span>
+            <span className={styles.label}>{label}</span>
+          </span>
+          <span className={styles.pinSlot} data-side="output" aria-hidden>
+            <span className={styles.pin}>
+              <span className={styles.pinFocusRing} aria-hidden />
+              <span className={styles.pinBase} aria-hidden />
+              <span className={styles.pinEmpty} aria-hidden />
+            </span>
+          </span>
+        </>
+      ),
+    } as useRender.ComponentProps<'button'>,
+    { ...rootProps, className },
+  );
+
+  mergedProps.ref = ref;
+
   const element = useRender({
     defaultTagName: 'button',
     render,
-    props: mergeProps<'button'>(
-      {
-        ref,
-        className: styles.root,
-        type,
-        disabled: isDisabled,
-        style: mergedStyle,
-        onPointerEnter: handlePointerEnter,
-        onPointerMove: handlePointerMove,
-        onPointerLeave: handlePointerLeave,
-        onClick: handleClick,
-        ...dataAttributes,
-        children: (
-          <>
-            <span className={styles.pinSlot} data-side="input" aria-hidden>
-              <span className={styles.pin}>
-                <span className={styles.pinFocusRing} aria-hidden />
-                <span className={styles.pinBase} aria-hidden />
-                <span className={styles.pinEmpty} aria-hidden />
-              </span>
-            </span>
-            <span className={styles.labelArea}>
-              <span className={styles.icon} aria-hidden>
-                <Icon icon={icon} size={24} />
-              </span>
-              <span className={styles.label}>{label}</span>
-            </span>
-            <span className={styles.pinSlot} data-side="output" aria-hidden>
-              <span className={styles.pin}>
-                <span className={styles.pinFocusRing} aria-hidden />
-                <span className={styles.pinBase} aria-hidden />
-                <span className={styles.pinEmpty} aria-hidden />
-              </span>
-            </span>
-          </>
-        ),
-      } as useRender.ComponentProps<'button'>,
-      { ...rootProps, className },
-    ),
+    props: mergedProps,
   });
 
   return element;

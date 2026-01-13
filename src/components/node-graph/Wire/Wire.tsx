@@ -54,6 +54,11 @@ export function Wire({
   ...rest
 }: WireProps) {
   const { className, style, onClick, onPointerDown, onPointerUp, ...restProps } = rest;
+  const handleClick = onClick as React.MouseEventHandler<SVGPathElement> | undefined;
+  const handlePointerDown =
+    onPointerDown as React.PointerEventHandler<SVGPathElement> | undefined;
+  const handlePointerUp =
+    onPointerUp as React.PointerEventHandler<SVGPathElement> | undefined;
   const isFocused = state === 'focused';
   const strokeWidth = 2;
   const color = `var(--${keyColor}, var(--error))`;
@@ -110,9 +115,9 @@ export function Wire({
               strokeDasharray={dash}
               data-wire="true"
               style={{ pointerEvents: 'stroke' }}
-              onClick={onClick}
-              onPointerDown={onPointerDown}
-              onPointerUp={onPointerUp}
+              onClick={handleClick}
+              onPointerDown={handlePointerDown}
+              onPointerUp={handlePointerUp}
             />
             <path
               d={path}

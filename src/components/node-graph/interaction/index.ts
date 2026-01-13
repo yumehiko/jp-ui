@@ -9,7 +9,7 @@ export type {
   AddPortOptions,
   NodePorts,
   PortDefinition,
-  PortDirection,
+  NodePortDirection,
   PortsByNode,
   UsePortsOptions,
 } from './usePorts';

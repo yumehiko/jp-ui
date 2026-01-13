@@ -86,8 +86,13 @@ const worldWidth = 2000;
 const worldHeight = 1200;
 
 export function NodeEditorSamplePage() {
-  const stageRef = React.useRef<HTMLDivElement>(null);
-  const nodeRefs = React.useRef(new Map<string, React.RefObject<HTMLDivElement>>());
+  const stageRef = React.useRef<HTMLDivElement | null>(null);
+  const [nodeRefs, setNodeRefs] = React.useState(
+    () =>
+      new Map<string, React.RefObject<HTMLDivElement | null>>(
+        canvasNodes.map((node) => [node.id, React.createRef<HTMLDivElement>()]),
+      ),
+  );
   const [nodes, setNodes] = React.useState(canvasNodes);
   const [viewportScale, setViewportScale] = React.useState(1);
   const [viewportOffset, setViewportOffset] = React.useState({ x: 0, y: 0 });
@@ -122,6 +127,19 @@ export function NodeEditorSamplePage() {
     coordinateSpace: 'viewport',
     offset: viewportOffset,
   });
+  React.useEffect(() => {
+    setNodeRefs((prev) => {
+      let changed = false;
+      const next = new Map(prev);
+      nodes.forEach((node) => {
+        if (!next.has(node.id)) {
+          next.set(node.id, React.createRef<HTMLDivElement>());
+          changed = true;
+        }
+      });
+      return changed ? next : prev;
+    });
+  }, [nodes]);
   const isAdditiveEvent = React.useCallback(
     (event: React.PointerEvent | React.MouseEvent) =>
       event.shiftKey || event.metaKey || event.ctrlKey,
@@ -228,12 +246,12 @@ export function NodeEditorSamplePage() {
     stageRef,
     scale: viewportScale,
     offset: viewportOffset,
-    items: nodes.map((node) => {
-      if (!nodeRefs.current.has(node.id)) {
-        nodeRefs.current.set(node.id, React.createRef<HTMLDivElement>());
-      }
-      return { id: node.id, ref: nodeRefs.current.get(node.id)! };
-    }),
+    items: nodes
+      .map((node) => {
+        const ref = nodeRefs.get(node.id);
+        return ref ? { id: node.id, ref } : null;
+      })
+      .filter((item): item is { id: string; ref: React.RefObject<HTMLDivElement | null> } => item !== null),
     onSelectionChange: (ids, options) => {
       if (ids.length > 0) {
         applyNodeSelection(ids, options.additive);
@@ -352,10 +370,8 @@ export function NodeEditorSamplePage() {
                   />
                 ) : null}
                 {nodes.map((node) => {
-                  if (!nodeRefs.current.has(node.id)) {
-                    nodeRefs.current.set(node.id, React.createRef<HTMLDivElement>());
-                  }
-                  const nodeRef = nodeRefs.current.get(node.id)!;
+                  const nodeRef = nodeRefs.get(node.id);
+                  if (!nodeRef) return null;
                   const dragProps = drag.getNodeProps(node.id);
                   const handleNodeSelect = (event: React.PointerEvent | React.MouseEvent) => {
                     if (isAdditiveEvent(event)) {

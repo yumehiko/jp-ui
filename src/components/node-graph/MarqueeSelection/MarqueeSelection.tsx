@@ -22,8 +22,6 @@ export function MarqueeSelection({
   render,
   ...rest
 }: MarqueeSelectionProps) {
-  if (!visible) return null;
-
   const { style } = rest;
   const mergedStyle: CSSProperties = {
     left: rect.x,
@@ -38,6 +36,8 @@ export function MarqueeSelection({
     render,
     props: mergeProps<'div'>({ className: styles.root, style: mergedStyle }, rest),
   });
+
+  if (!visible) return null;
 
   return element;
 }

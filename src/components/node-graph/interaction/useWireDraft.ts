@@ -21,7 +21,7 @@ export type WireDraft = {
 };
 
 export type WireDraftOptions = {
-  stageRef: React.RefObject<HTMLElement>;
+  stageRef: React.RefObject<HTMLElement | null>;
   scale?: number;
   offset?: CanvasViewportOffset;
   coordinateSpace?: 'content' | 'viewport';
@@ -35,7 +35,7 @@ export type WireDraftOptions = {
 type PortMeta = {
   direction: WirePortDirection;
   acceptsMultiple?: boolean;
-  ref: React.RefObject<HTMLButtonElement>;
+  ref: React.RefObject<HTMLButtonElement | null>;
 };
 
 const hitSlop = 6;
@@ -53,7 +53,10 @@ export function useWireDraft({
 }: WireDraftOptions) {
   const isControlled = connections !== undefined;
   const [internalConnections, setInternalConnections] = React.useState(defaultConnections);
-  const resolvedConnections = isControlled ? connections ?? [] : internalConnections;
+  const resolvedConnections = React.useMemo(
+    () => (isControlled ? connections ?? [] : internalConnections),
+    [connections, internalConnections, isControlled],
+  );
   const [draft, setDraft] = React.useState<WireDraft | null>(null);
   const [hoveredInputId, setHoveredInputId] = React.useState<string | null>(null);
   const [hoveredOutputId, setHoveredOutputId] = React.useState<string | null>(null);
@@ -235,7 +238,7 @@ export function useWireDraft({
               const active = activeRef.current;
               if (!active) return;
               const target = findTargetPort(upEvent.clientX, upEvent.clientY);
-              if (target) {
+              if (target && active.fromId) {
                 const [targetId] = target;
                 connectToInput({ from: active.fromId, to: targetId });
               }

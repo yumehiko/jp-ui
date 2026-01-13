@@ -69,29 +69,32 @@ export const Pin = forwardRef<HTMLButtonElement, PinProps>(function Pin(
     'data-connected': isConnected ? 'true' : 'false',
   } as Record<string, string | undefined>;
 
+  const mergedProps = mergeProps<'button'>(
+    {
+      type,
+      className: styles.root,
+      'aria-pressed': isConnected,
+      style: mergedStyle,
+      ...dataAttributes,
+      children: (
+        <>
+          <span className={styles.focusRing} aria-hidden />
+          <span className={styles.base} aria-hidden />
+          <span className={styles.empty} aria-hidden />
+          <span className={styles.drag} aria-hidden />
+          <span className={styles.overlay} aria-hidden />
+        </>
+      ),
+    } as useRender.ComponentProps<'button'>,
+    rest,
+  );
+
+  mergedProps.ref = ref;
+
   const element = useRender({
     defaultTagName: 'button',
     render,
-    props: mergeProps<'button'>(
-      {
-        type,
-        className: styles.root,
-        'aria-pressed': isConnected,
-        style: mergedStyle,
-        ref,
-        ...dataAttributes,
-        children: (
-          <>
-            <span className={styles.focusRing} aria-hidden />
-            <span className={styles.base} aria-hidden />
-            <span className={styles.empty} aria-hidden />
-            <span className={styles.drag} aria-hidden />
-            <span className={styles.overlay} aria-hidden />
-          </>
-        ),
-      } as useRender.ComponentProps<'button'>,
-      rest,
-    ),
+    props: mergedProps,
   });
 
   return element;

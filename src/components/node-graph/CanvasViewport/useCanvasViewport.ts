@@ -161,7 +161,7 @@ export function useCanvasViewport({
     setScale: updateScale,
     setOffset: updateOffset,
   } satisfies CanvasViewportState & {
-    ref: React.RefObject<HTMLDivElement>;
+    ref: React.RefObject<HTMLDivElement | null>;
     contentStyle: React.CSSProperties;
     setScale: (next: UpdateValue<number>) => void;
     setOffset: (next: UpdateValue<CanvasViewportOffset>) => void;

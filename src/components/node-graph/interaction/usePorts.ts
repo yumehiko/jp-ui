@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-export type PortDirection = 'input' | 'output';
+export type NodePortDirection = 'input' | 'output';
 
 export type PortDefinition = {
   id: string;
   label: string;
-  direction: PortDirection;
+  direction: NodePortDirection;
   acceptsMultiple?: boolean;
 };
 
@@ -51,7 +51,7 @@ export function usePorts({
   );
 
   const addPort = React.useCallback(
-    (nodeId: string, direction: PortDirection, options: AddPortOptions = {}) => {
+    (nodeId: string, direction: NodePortDirection, options: AddPortOptions = {}) => {
       const key = `${nodeId}:${direction}`;
       const prevNodePorts = resolvedPorts[nodeId] ?? { inputs: [], outputs: [] };
       const baseCount =

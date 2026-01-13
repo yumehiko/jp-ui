@@ -4,11 +4,11 @@ import type { MarqueeRect } from '../MarqueeSelection';
 
 export type MarqueeItem = {
   id: string;
-  ref: React.RefObject<HTMLElement>;
+  ref: React.RefObject<HTMLElement | null>;
 };
 
 export type MarqueeSelectionOptions = {
-  stageRef: React.RefObject<HTMLElement>;
+  stageRef: React.RefObject<HTMLElement | null>;
   items: MarqueeItem[];
   minDragDistance?: number;
   scale?: number;
