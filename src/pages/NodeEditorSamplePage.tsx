@@ -19,9 +19,10 @@ import {
   Wire,
   useNodeDrag,
   useNodeSelection,
+  usePorts,
   useWireDraft,
   type NodePositions,
-  type WireConnection,
+  type PortsByNode,
   type PinKeyColor,
 } from '../components';
 import styles from './NodeEditorSamplePage.module.css';
@@ -34,11 +35,6 @@ type CanvasNode = {
   y: number;
   keyColor: PinKeyColor;
   selected?: boolean;
-};
-
-type PortDefinition = {
-  id: string;
-  label: string;
 };
 
 const canvasNodes: CanvasNode[] = [
@@ -69,17 +65,17 @@ const canvasNodes: CanvasNode[] = [
   },
 ];
 
-const portDefinitions: Record<string, { inputs: PortDefinition[]; outputs: PortDefinition[] }> = {
+const initialPorts: PortsByNode = {
   input: {
     inputs: [],
-    outputs: [{ id: 'input-out', label: 'Out' }],
+    outputs: [{ id: 'input-out', label: 'Out', direction: 'output' }],
   },
   filter: {
-    inputs: [{ id: 'filter-in', label: 'In' }],
-    outputs: [{ id: 'filter-out', label: 'Out' }],
+    inputs: [{ id: 'filter-in', label: 'In', direction: 'input', acceptsMultiple: true }],
+    outputs: [{ id: 'filter-out', label: 'Out', direction: 'output' }],
   },
   output: {
-    inputs: [{ id: 'output-in', label: 'In' }],
+    inputs: [{ id: 'output-in', label: 'In', direction: 'input' }],
     outputs: [],
   },
 };
@@ -91,10 +87,6 @@ export function NodeEditorSamplePage() {
   const stageRef = React.useRef<HTMLDivElement>(null);
   const [viewportScale, setViewportScale] = React.useState(1);
   const [viewportOffset, setViewportOffset] = React.useState({ x: 0, y: 0 });
-  const [connections, setConnections] = React.useState<WireConnection[]>([
-    { from: 'input-out', to: 'filter-in' },
-    { from: 'filter-out', to: 'output-in' },
-  ]);
   const initialPositions = React.useMemo<NodePositions>(() => {
     return canvasNodes.reduce<NodePositions>((acc, node) => {
       acc[node.id] = { x: node.x, y: node.y };
@@ -104,6 +96,7 @@ export function NodeEditorSamplePage() {
   const selection = useNodeSelection({
     defaultSelectedIds: canvasNodes.filter((node) => node.selected).map((node) => node.id),
   });
+  const ports = usePorts({ defaultPorts: initialPorts });
   const drag = useNodeDrag({
     defaultPositions: initialPositions,
     scale: viewportScale,
@@ -111,14 +104,10 @@ export function NodeEditorSamplePage() {
   const wireDraft = useWireDraft({
     stageRef,
     scale: viewportScale,
-    onConnect: (connection) => {
-      setConnections((previous) => {
-        if (previous.some((item) => item.from === connection.from && item.to === connection.to)) {
-          return previous;
-        }
-        return [...previous, connection];
-      });
-    },
+    defaultConnections: [
+      { from: 'input-out', to: 'filter-in' },
+      { from: 'filter-out', to: 'output-in' },
+    ],
   });
 
   return (
@@ -177,7 +166,7 @@ export function NodeEditorSamplePage() {
               onOffsetChange={setViewportOffset}
             >
               <div className={styles.CanvasStage} ref={stageRef}>
-                {connections.map((connection) => {
+                {wireDraft.connections.map((connection) => {
                   const start = wireDraft.getPortPoint(connection.from);
                   const end = wireDraft.getPortPoint(connection.to);
                   if (!start || !end) return null;
@@ -209,13 +198,16 @@ export function NodeEditorSamplePage() {
                 {canvasNodes.map((node) => {
                   const dragProps = drag.getNodeProps(node.id);
                   const selectionProps = selection.getNodeProps(node.id);
-                  const nodePorts = portDefinitions[node.id];
+                  const nodePorts = ports.ports[node.id];
+                  if (!nodePorts) return null;
                   const outputPorts = nodePorts.outputs.map((port) => (
                     <Port
                       key={port.id}
                       direction="output"
                       label={port.label}
                       pinKeyColor={node.keyColor}
+                      pinConnected={wireDraft.connections.some((item) => item.from === port.id)}
+                      pinState={wireDraft.hoveredOutputId === port.id ? 'dragged' : 'enabled'}
                       pinProps={wireDraft.getPortProps(port.id, 'output')}
                       pinRef={wireDraft.getPortRef(port.id, 'output')}
                     />
@@ -226,10 +218,20 @@ export function NodeEditorSamplePage() {
                       direction="input"
                       label={port.label}
                       pinKeyColor={node.keyColor}
-                      pinProps={wireDraft.getPortProps(port.id, 'input')}
-                      pinRef={wireDraft.getPortRef(port.id, 'input')}
+                      pinConnected={wireDraft.connections.some((item) => item.to === port.id)}
+                      pinState={wireDraft.hoveredInputId === port.id ? 'dragged' : 'enabled'}
+                      pinProps={wireDraft.getPortProps(port.id, {
+                        direction: 'input',
+                        acceptsMultiple: port.acceptsMultiple,
+                      })}
+                      pinRef={wireDraft.getPortRef(port.id, 'input', port.acceptsMultiple)}
                     />
                   ));
+                  const handleAddPort = (side: 'input' | 'output') => {
+                    ports.addPort(node.id, side, {
+                      label: side === 'input' ? 'Input' : 'Output',
+                    });
+                  };
                   return (
                     <Node
                       key={node.id}
@@ -242,6 +244,7 @@ export function NodeEditorSamplePage() {
                       className={styles.CanvasNode}
                       outputs={outputPorts}
                       inputs={inputPorts}
+                      onAddPort={handleAddPort}
                       {...dragProps}
                       {...selectionProps}
                     />
