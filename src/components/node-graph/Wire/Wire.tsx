@@ -22,6 +22,8 @@ export type WireProps = {
   keyColor?: PinKeyColor;
   viewWidth?: number;
   viewHeight?: number;
+  viewBoxX?: number;
+  viewBoxY?: number;
   coordinateSystem?: WireCoordinateSystem;
 } & Omit<useRender.ComponentProps<'svg'>, 'start' | 'end'>;
 
@@ -45,6 +47,8 @@ export function Wire({
   keyColor = 'red',
   viewWidth,
   viewHeight,
+  viewBoxX = 0,
+  viewBoxY = 0,
   coordinateSystem,
   render,
   ...rest
@@ -81,16 +85,17 @@ export function Wire({
     ? `drop-shadow(0 0 1px ${color}) drop-shadow(0 0 4px ${color})`
     : undefined;
 
+  const mergedStyle = { overflow: 'visible', ...(style ?? {}) } as typeof style;
   const element = useRender({
     defaultTagName: 'svg',
     render,
     props: mergeProps<'svg'>(
       {
         className,
-        style,
+        style: mergedStyle,
         width: resolvedViewWidth,
         height: resolvedViewHeight,
-        viewBox: `0 0 ${resolvedViewWidth} ${resolvedViewHeight}`,
+        viewBox: `${viewBoxX} ${viewBoxY} ${resolvedViewWidth} ${resolvedViewHeight}`,
         preserveAspectRatio: 'none',
         'aria-hidden': true,
         children: (

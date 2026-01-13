@@ -1,4 +1,6 @@
 export * from './CanvasBackground';
+export * from './CanvasViewport';
+export * from './interaction';
 export * from './MarqueeSelection';
 export * from './Node';
 export * from './Pin';

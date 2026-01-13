@@ -1,0 +1,139 @@
+.Page {
+  padding: 32px 16px 80px;
+  background-color: var(--surface);
+  color: var(--on-surface);
+}
+
+.Container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* Container keeps room for canvas + side panels. */
+}
+
+.Header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.Title {
+  margin: 0;
+}
+
+.Lead {
+  margin: 12px 0 0;
+  color: var(--on-surface-variant);
+}
+
+.HeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.Layout {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 220px minmax(0, 1fr);
+  align-items: stretch;
+  min-height: 520px;
+}
+
+.Sidebar {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--radius-m);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  align-self: start;
+}
+
+.PanelTitle {
+  color: var(--on-surface);
+}
+
+.PanelDivider {
+  margin: 0;
+}
+
+.SidebarList {
+  display: grid;
+  gap: 8px;
+}
+
+.SidebarItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--outline-variant);
+  background: var(--surface-container-high);
+  color: var(--on-surface);
+  cursor: pointer;
+}
+
+.SidebarItem:hover {
+  background: var(--surface-container-highest);
+}
+
+.SidebarHint {
+  margin: 0;
+  color: var(--on-surface-variant);
+}
+
+.CanvasPanel {
+  min-width: 0;
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  border: 1px solid var(--outline-variant);
+  min-height: 520px;
+  display: flex;
+  position: relative;
+  align-self: stretch;
+}
+
+.CanvasViewport {
+  width: 100%;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.CanvasStage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.CanvasToolbar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+}
+
+
+.CanvasWire {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.CanvasNode {
+  position: absolute;
+}
+
+
+@media (max-width: 1100px) {
+  .Layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
