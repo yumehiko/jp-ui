@@ -24,6 +24,7 @@ export * from './menu-input-box/MenuInputBox';
 export * from './meter/Meter';
 export * from './number-field/NumberField';
 export * from './navigation-menu/NavigationMenu';
+export * from './node-graph';
 export * from './popover/Popover';
 export * from './preview-card/PreviewCard';
 export * from './progress/Progress';

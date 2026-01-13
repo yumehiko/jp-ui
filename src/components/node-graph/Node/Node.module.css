@@ -1,0 +1,109 @@
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 288px;
+  min-width: 256px;
+  padding: 0 0 16px;
+  border-radius: var(--rounded-l, 16px);
+  background-color: var(--surface-container);
+  color: var(--on-surface);
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  padding: 12px 20px;
+  border-top-left-radius: var(--rounded-l, 16px);
+  border-top-right-radius: var(--rounded-l, 16px);
+  background-color: var(--node-key-container, var(--surface-container-high, #f4f3f5));
+  color: var(--node-on-key-container, var(--on-surface));
+  box-sizing: border-box;
+  cursor: grab;
+}
+
+.title[data-valid='false'] {
+  background-color: var(--node-key-color, var(--error));
+  color: var(--node-on-key, var(--on-error));
+  padding-right: 12px;
+}
+
+.titleText {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  font-feature-settings: "palt" 1;
+  color: currentColor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.titleIcon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+.stateBorder {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--rounded-l, 16px);
+  border: 2px solid var(--node-key-color, var(--error));
+  box-sizing: border-box;
+  pointer-events: none;
+  opacity: var(--node-outline-opacity, 0);
+  transition: opacity 150ms ease;
+}
+
+.outputs,
+.inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.outputs {
+  padding-left: 16px;
+  margin-right: -16px;
+}
+
+.inputs {
+  padding-right: 16px;
+  margin-left: -16px;
+}
+
+.portRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: calc(100% + 16px);
+}
+
+.addButtonRow {
+  width: calc(100% + 32px);
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-left: -16px;
+  padding: 0;
+}
+
+.portAddButton {
+  width: 100%;
+  display: flex;
+}

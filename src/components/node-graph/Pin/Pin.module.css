@@ -1,0 +1,132 @@
+.root {
+  position: relative;
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  border-radius: 9999px;
+  cursor: crosshair;
+  appearance: none;
+
+  --pin-overlay-hover-opacity: 0.08;
+  --pin-overlay-focused-opacity: 0.12;
+  --pin-overlay-dragged-opacity: 0.16;
+  --pin-base-inset-x: 8px;
+  --pin-base-inset-y: 8px;
+  --pin-empty-inset-x: 10px;
+  --pin-empty-inset-y: 10px;
+  --pin-drag-inset-x: 10px;
+  --pin-drag-inset-y: 10px;
+}
+
+.root:focus-visible {
+  outline: none;
+}
+
+.root:disabled {
+  cursor: not-allowed;
+}
+
+.root[data-shape='capsule'] {
+  --pin-base-inset-x: 8px;
+  --pin-base-inset-y: 4px;
+  --pin-empty-inset-x: 10px;
+  --pin-empty-inset-y: 6px;
+  --pin-drag-inset-x: 10px;
+  --pin-drag-inset-y: 6px;
+}
+
+.focusRing {
+  position: absolute;
+  inset: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  border-radius: inherit;
+  border: var(--focus-ring-width) solid var(--focus-ring-color);
+  box-sizing: border-box;
+  opacity: var(--pin-focus-opacity, 0);
+  transition: opacity 150ms ease;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.base {
+  position: absolute;
+  inset: var(--pin-base-inset-y) var(--pin-base-inset-x);
+  border-radius: 9999px;
+  background-color: var(--pin-base-color, var(--error));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.empty {
+  position: absolute;
+  inset: var(--pin-empty-inset-y) var(--pin-empty-inset-x);
+  border-radius: 9999px;
+  background-color: var(--pin-empty-color, var(--surface));
+  opacity: var(--pin-empty-opacity, 1);
+  transition: opacity 150ms ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.drag {
+  position: absolute;
+  inset: var(--pin-drag-inset-y) var(--pin-drag-inset-x);
+  border-radius: 9999px;
+  background-color: var(--pin-base-color, var(--error));
+  border: 2px solid var(--pin-empty-color, var(--surface));
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--pin-overlay-color, var(--error));
+  opacity: var(--pin-overlay-opacity, 0);
+  transition: opacity 150ms ease;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.root:not([data-static-state='true']):hover .overlay {
+  opacity: var(--pin-overlay-hover-opacity);
+}
+
+.root:not([data-static-state='true']):focus-visible .overlay {
+  opacity: var(--pin-overlay-focused-opacity);
+}
+
+.root:not([data-static-state='true']):active .overlay {
+  opacity: var(--pin-overlay-dragged-opacity);
+}
+
+.root:not([data-static-state='true']):focus-visible .focusRing {
+  opacity: 1;
+}
+
+.root[data-state='hovered'] .overlay {
+  opacity: var(--pin-overlay-hover-opacity);
+}
+
+.root[data-state='focused'] .overlay {
+  opacity: var(--pin-overlay-focused-opacity);
+}
+
+.root[data-state='dragged'] .overlay {
+  opacity: var(--pin-overlay-dragged-opacity);
+}
+
+.root[data-state='dragged'] .drag {
+  opacity: 1;
+}
+
+.root[data-state='focused'] .focusRing {
+  opacity: 1;
+}

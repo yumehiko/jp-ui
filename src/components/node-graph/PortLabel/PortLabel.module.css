@@ -1,0 +1,121 @@
+.root {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 224px;
+  max-width: 100%;
+  min-height: 32px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: var(--rounded-xs, 4px);
+  background: none;
+  color: var(--on-surface);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.root::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--port-label-overlay, var(--on-surface));
+  opacity: var(--port-label-overlay-opacity, 0);
+  transition: opacity 150ms ease;
+  pointer-events: none;
+}
+
+.root::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  border-radius: calc(var(--rounded-xs, 4px) + var(--focus-ring-width));
+  border: var(--focus-ring-width) solid var(--focus-ring-color);
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  pointer-events: none;
+}
+
+.root:focus-visible {
+  outline: none;
+}
+
+.root:focus-visible::after {
+  opacity: 1;
+}
+
+.root:not([data-static-state="true"]):hover::before {
+  opacity: 0.08;
+}
+
+.root:not([data-static-state="true"]):active::before {
+  opacity: 0.16;
+}
+
+.root[data-state="hovered"]::before {
+  opacity: 0.08;
+}
+
+.root[data-state="pressed"]::before {
+  opacity: 0.16;
+}
+
+.root:focus-visible::before,
+.root[data-state="focused"]::before {
+  opacity: 0.12;
+}
+
+.root[data-direction="output"] {
+  justify-content: flex-end;
+}
+
+.root[data-direction="input"] {
+  justify-content: flex-start;
+}
+
+.label {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  font-feature-settings: "palt" 1;
+  color: currentColor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.root[data-direction="output"] .label {
+  text-align: right;
+}
+
+.root[data-direction="input"] .label {
+  text-align: left;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.root:not([data-static-state="true"]):hover .icon,
+.root:not([data-static-state="true"]):active .icon,
+.root:not([data-static-state="true"]):focus-visible .icon,
+.root[data-state="hovered"] .icon,
+.root[data-state="pressed"] .icon,
+.root[data-state="focused"] .icon {
+  opacity: 1;
+}

@@ -1,0 +1,17 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  min-width: 0;
+  color: var(--on-surface);
+}
+
+.root[data-direction='output'] {
+  justify-content: flex-start;
+}
+
+.root[data-direction='input'] {
+  justify-content: flex-start;
+}

@@ -1,0 +1,15 @@
+.root {
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid var(--primary);
+  pointer-events: none;
+}
+
+.root::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--primary);
+  opacity: 0.1;
+}
+
