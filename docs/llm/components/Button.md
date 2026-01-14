@@ -36,19 +36,3 @@ type ButtonProps = React.ComponentPropsWithoutRef<typeof BaseButton> & {
     size?: ButtonSize;
 };
 ```
-
-Source: dist/components/button/IconButton.d.ts
-
-## Types
-
-```ts
-type ButtonVariant = 'filled' | 'tonal' | 'outlined' | 'ghost';
-
-type ButtonSize = 'large' | 'small';
-
-type IconButtonProps = React.ComponentPropsWithoutRef<typeof BaseButton> & {
-    'aria-label': string;
-    variant?: ButtonVariant;
-    size?: ButtonSize;
-};
-```
