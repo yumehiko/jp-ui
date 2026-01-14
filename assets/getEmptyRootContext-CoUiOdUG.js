@@ -1,1 +1,0 @@
-import{v as e,r as n}from"./popupStateMapping-Csy42F0a.js";function o(){return new e({open:!1,floatingElement:null,referenceElement:null,triggerElements:new n,floatingId:"",nested:!1,noEmit:!1,onOpenChange:void 0})}export{o as g};
