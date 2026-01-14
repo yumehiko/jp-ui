@@ -28,7 +28,7 @@
     "test:theme": "tsx scripts/verify-theme.ts",
     "test:theme:dist": "tsx scripts/verify-theme-dist.ts",
     "typecheck": "tsc -b",
-    "prepublishOnly": "pnpm build:package"
+    "prepublishOnly": "pnpm build:package && pnpm gen:llm-docs"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",

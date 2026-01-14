@@ -41,6 +41,12 @@ description: jp-uiのコンポーネント作成とStorybook Page作成のルー
    - Base UIラッパーは `templates/base-ui-wrapper.tsx` をベースに作成する。
    - 自前コンポーネントは `templates/custom-use-render.tsx` をベースに作成する。
 
+4) **Exampleを正にする**
+   - 各コンポーネントには `Example.tsx` を同階層に作り、**Exampleを実装例の正**とする。
+   - Storybookの`Default`は `render: () => <Example />` を基本とする。
+   - `docs/llm` は Example を元に自動生成されるため、**Exampleが実装例の唯一の情報源**になる。
+   - 同一ディレクトリに複数コンポーネントがある場合は `*Example.tsx` で区別して良い。
+
 ## 推奨構成（最小形）
 
 ```tsx

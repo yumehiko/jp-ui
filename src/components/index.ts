@@ -36,6 +36,7 @@ export * from './separator/Separator';
 export * from './slider/Slider';
 export * from './switch/Switch';
 export * from './tabs/Tabs';
+export * from './textarea/Textarea';
 export * from './toast/Toast';
 export * from './toast/ToastManager';
 export * from './toggle/Toggle';

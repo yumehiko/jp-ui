@@ -1,0 +1,186 @@
+.TextareaBox {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+  border: 1px solid var(--on-surface-variant);
+  border-radius: var(--radius-s);
+  background-color: transparent;
+  color: var(--on-surface);
+  transition: border-color 150ms ease-out;
+
+  --textarea-state-opacity: 0;
+  --textarea-state-color: var(--on-surface);
+  --textarea-label-offset: 15px;
+  --textarea-label-float-offset: 15px;
+  --textarea-label-float-y: -7px;
+}
+
+.TextareaBox::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 2px solid var(--outline);
+  border-radius: calc(var(--radius-s) + 4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+  z-index: 0;
+}
+
+
+.Label {
+  position: absolute;
+  left: var(--textarea-label-offset);
+  top: 11px;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--on-surface);
+  pointer-events: none;
+  padding: 0;
+  background-color: transparent;
+  transition:
+    transform 150ms ease-out,
+    color 150ms ease-out,
+    top 150ms ease-out,
+    font-size 150ms ease-out,
+    line-height 150ms ease-out;
+  z-index: 1;
+}
+
+.Control {
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 0;
+  min-height: 96px;
+  margin: 0;
+  padding: 11px 15px;
+  border: 0;
+  background-color: transparent;
+  color: var(--on-surface);
+  font-family: var(--font-brand);
+  font-size: var(--font-size-editable-label);
+  font-weight: var(--font-weight-editable-label);
+  line-height: var(--line-height-editable-label);
+  letter-spacing: var(--letter-spacing-editable-label);
+  font-feature-settings: "palt" 0;
+  caret-color: var(--on-surface);
+  outline: none;
+  resize: vertical;
+  position: relative;
+  z-index: 3;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--outline) 50%, transparent) transparent;
+}
+
+.Control::placeholder {
+  color: var(--on-surface-variant);
+}
+
+.Control::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.Control::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.Control::-webkit-scrollbar-thumb {
+  border-radius: var(--radius-full);
+  background-color: color-mix(in srgb, var(--outline) 50%, transparent);
+  border: 4px solid transparent;
+  background-clip: content-box;
+}
+
+.Control::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, var(--outline) 70%, transparent);
+}
+
+.Control::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.StateLayer {
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-s);
+  background-color: var(--textarea-state-color);
+  opacity: var(--textarea-state-opacity);
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+  z-index: 2;
+}
+
+.TextareaBox[data-filled] {
+  border-color: var(--on-surface);
+}
+
+.TextareaBox[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.TextareaBox[data-disabled] .StateLayer {
+  opacity: 0;
+}
+
+.TextareaBox[data-readonly] {
+  cursor: default;
+}
+
+.TextareaBox[data-readonly] .StateLayer {
+  opacity: 0.12;
+}
+
+.TextareaBox[data-readonly][data-filled] {
+  border-color: transparent;
+}
+
+.TextareaBox[data-invalid] {
+  border-color: var(--error);
+  --textarea-state-color: var(--error);
+}
+
+.TextareaBox[data-invalid] .Label {
+  color: var(--error);
+}
+
+.TextareaBox:focus-within:not([data-readonly]):not([data-disabled]) {
+  --textarea-state-opacity: 0;
+}
+
+.TextareaBox:focus-within:not([data-readonly]):not([data-disabled])::after {
+  opacity: 1;
+}
+
+.TextareaBox:focus-within:not([data-readonly]):not([data-disabled]):not([data-invalid]) {
+  border-color: var(--on-surface);
+}
+
+.TextareaBox:focus-within .Label,
+.TextareaBox[data-filled] .Label {
+  top: var(--textarea-label-float-y);
+  left: var(--textarea-label-float-offset);
+  font-size: 10px;
+  line-height: 12px;
+  background-color: var(--surface);
+  padding: 0 4px;
+}
+
+@media (hover: hover) {
+  .TextareaBox:hover:not([data-disabled]):not([data-readonly]) {
+    --textarea-state-opacity: 0.08;
+  }
+}
+
+.TextareaBox:active:not([data-disabled]):not([data-readonly]) {
+  --textarea-state-opacity: 0.16;
+}
+
+.TextareaBox:not(:focus-within):not([data-filled]) .Control::placeholder {
+  color: transparent;
+}

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Field as BaseField } from '@base-ui/react/field';
 import { InputBox } from '../input-box/InputBox';
+import { Textarea } from '../textarea/Textarea';
 import styles from './Field.module.css';
 
 type FieldProps = {
@@ -56,12 +57,13 @@ export function Field({
       {label}
     </BaseField.Label>
   );
-  const isInputBox =
-    React.isValidElement(children) && children.type === InputBox;
+  const isFloatingLabelControl =
+    React.isValidElement(children) &&
+    (children.type === InputBox || children.type === Textarea);
   const control = React.isValidElement<ControlElementProps>(children)
     ? React.cloneElement(children, {
         className: mergeControlClassName(children.props.className, styles.Control),
-        ...(isInputBox
+        ...(isFloatingLabelControl
           ? {
               floatingLabel: labelNode,
               invalid: children.props.invalid ?? invalid,
@@ -80,9 +82,9 @@ export function Field({
       invalid={invalid}
       {...props}
     >
-      {!isInputBox && labelPlacement === 'start' ? labelNode : null}
+      {!isFloatingLabelControl && labelPlacement === 'start' ? labelNode : null}
       {control}
-      {!isInputBox && labelPlacement !== 'start' ? labelNode : null}
+      {!isFloatingLabelControl && labelPlacement !== 'start' ? labelNode : null}
       {supportingText && (
         <BaseField.Description className={styles.SupportingText}>
           {supportingText}
