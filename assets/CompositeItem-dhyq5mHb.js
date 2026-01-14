@@ -1,1 +1,0 @@
-import{c,E as t,u as f}from"./useRenderElement-CqRI3zig.js";import{u as E}from"./useCompositeItem-CIOHtT9s.js";function A(e){const{render:d,className:C,state:s=c,props:o=t,refs:r=t,metadata:a,stateAttributesMapping:m,tag:p="div",...i}=e,{compositeProps:n,compositeRef:u}=E({metadata:a});return f(p,e,{state:s,ref:[...r,u],props:[n,...o,i],stateAttributesMapping:m})}export{A as C};
