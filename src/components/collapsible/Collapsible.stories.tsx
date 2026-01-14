@@ -5,6 +5,7 @@ import {
   CollapsibleRoot,
   CollapsibleTrigger,
 } from '..';
+import { Example } from './Example';
 
 const meta: Meta = {
   title: 'Components/Collapsible',
@@ -22,16 +23,7 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () => (
-    <CollapsibleRoot>
-      <CollapsibleTrigger>詳細を表示</CollapsibleTrigger>
-      <CollapsiblePanel>
-        <CollapsibleContent className="typesetting-body">
-          これは折りたたみ式の内容です。トリガーをクリックすると開閉します。
-        </CollapsibleContent>
-      </CollapsiblePanel>
-    </CollapsibleRoot>
-  ),
+  render: () => <Example />,
 };
 
 export const DefaultOpen: Story = {

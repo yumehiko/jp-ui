@@ -4,6 +4,7 @@ import { Checkbox } from '..';
 import checkboxStyles from '../checkbox/Checkbox.module.css';
 import { CheckboxGroup } from '..';
 import styles from './CheckboxGroup.module.css';
+import { Example } from './Example';
 
 const meta: Meta<typeof CheckboxGroup> = {
   title: 'Components/Checkbox/Group',
@@ -22,25 +23,8 @@ const options = [
   { label: 'ヒントを受け取る', value: 'tips' },
 ];
 
-const DefaultStory = () => {
-  const id = React.useId();
-  return (
-    <CheckboxGroup aria-labelledby={id} defaultValue={['news']}>
-      <div id={id} className={styles.Caption}>
-        通知設定
-      </div>
-      {options.map((option) => (
-        <label key={option.value} className={labelClassName}>
-          <Checkbox name="notifications" value={option.value} />
-          {option.label}
-        </label>
-      ))}
-    </CheckboxGroup>
-  );
-};
-
 export const Default: Story = {
-  render: () => <DefaultStory />,
+  render: () => <Example />,
 };
 
 const DisabledStory = () => {

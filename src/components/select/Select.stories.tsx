@@ -17,6 +17,7 @@ import {
   SelectScrollUpArrow,
   SelectScrollDownArrow,
 } from '..';
+import { Example } from './Example';
 
 const meta: Meta = {
   title: 'Components/Select',
@@ -33,12 +34,6 @@ export default meta;
 
 type Story = StoryObj;
 
-const itemsDefault = [
-  { label: 'Tokyo', value: 'tokyo' },
-  { label: 'Osaka', value: 'osaka' },
-  { label: 'Sapporo', value: 'sapporo' },
-];
-
 const itemsMany = [
   { label: 'Tokyo', value: 'tokyo' },
   { label: 'Osaka', value: 'osaka' },
@@ -52,41 +47,6 @@ const itemsMany = [
   { label: 'Kanazawa', value: 'kanazawa' },
   { label: 'Naha', value: 'naha' },
 ];
-
-const DefaultStory = () => {
-  const [value, setValue] = React.useState<string | null>(null);
-  const filled = value !== null;
-  return (
-    <SelectRoot
-      items={itemsDefault}
-      value={value}
-      onValueChange={setValue}
-      defaultOpen
-      highlightItemOnHover={false}
-    >
-      <SelectTrigger
-        floatingLabel={<span>Label</span>}
-        leadingIcon={<Icon icon={IconCircleFilled} size={24} />}
-        filled={filled}
-      >
-        <SelectValue />
-      </SelectTrigger>
-      <SelectPortal>
-        <SelectPositioner sideOffset={8}>
-          <SelectPopup>
-            <SelectList>
-              {itemsDefault.map((item) => (
-                <SelectItem key={item.label} value={item.value}>
-                  {item.label}
-                </SelectItem>
-              ))}
-            </SelectList>
-          </SelectPopup>
-        </SelectPositioner>
-      </SelectPortal>
-    </SelectRoot>
-  );
-};
 
 const ManyItemsStory = () => {
   const [value, setValue] = React.useState<string | null>(null);
@@ -142,7 +102,7 @@ const ManyItemsStory = () => {
 };
 
 export const Default: Story = {
-  render: () => <DefaultStory />,
+  render: () => <Example />,
 };
 
 export const ManyItems: Story = {

@@ -1,9 +1,5 @@
-import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Icon } from '../../assets/icons/Icon';
-import { IconEdit, IconExclamationCircle } from '@tabler/icons-react';
-import { InputBox } from '..';
-import { Field } from '..';
+import { Example } from './Example';
 
 type StoryArgs = {
   label: string;
@@ -49,38 +45,6 @@ export default meta;
 
 type Story = StoryObj<StoryArgs>;
 
-const FieldStory = (args: StoryArgs) => {
-  const [value, setValue] = React.useState(args.defaultValue ?? '');
-
-  React.useEffect(() => {
-    setValue(args.defaultValue ?? '');
-  }, [args.defaultValue]);
-
-  return (
-    <Field
-      label={args.label}
-      supportingText={args.supportingText}
-      errorMessage={args.errorMessage}
-      invalid={args.invalid}
-      disabled={args.disabled}
-      readOnly={args.readOnly}
-    >
-      <InputBox
-        leadingIcon={<Icon icon={IconEdit} size={24} />}
-        value={value}
-        onValueChange={setValue}
-        invalid={args.invalid}
-        disabled={args.disabled}
-        readOnly={args.readOnly}
-        placeholder={args.placeholder}
-        trailingIcon={
-          args.invalid ? <Icon icon={IconExclamationCircle} size={24} /> : undefined
-        }
-      />
-    </Field>
-  );
-};
-
 export const Default: Story = {
-  render: (args) => <FieldStory {...args} />,
+  render: (args) => <Example {...args} />,
 };

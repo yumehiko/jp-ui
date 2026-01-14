@@ -1,0 +1,188 @@
+# Switch
+
+Source: src/components/switch/Example.tsx
+
+## Example
+
+```tsx
+import * as React from 'react';
+import { Switch } from '..';
+import styles from './Switch.module.css';
+
+type ExampleProps = React.ComponentProps<typeof Switch>;
+
+const labelClassName = `typesetting-label typesetting-tsumegumi ${styles.Label}`;
+
+export function Example(props: ExampleProps) {
+  return (
+    <label className={labelClassName}>
+      <Switch {...props} />
+      通知を有効にする
+    </label>
+  );
+}
+
+```
+
+Source: src/components/switch/Switch.module.css
+
+## Styles
+
+```css
+.Label {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--on-surface);
+  cursor: pointer;
+}
+
+.Label:has(.Switch[data-disabled]) {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Switch {
+  position: relative;
+  display: inline-flex;
+  width: var(--switch-width);
+  height: var(--switch-height);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+
+  --switch-base-color: var(--on-surface);
+  --switch-base-opacity: 0.08;
+  --switch-state-color: var(--on-surface);
+  --switch-state-opacity: 0;
+  --switch-width: 56px;
+  --switch-height: 32px;
+  --switch-thumb-size: 24px;
+  --switch-thumb-offset: 4px;
+  --switch-thumb-translate: 24px;
+  --switch-icon-size: 20px;
+}
+
+.Switch::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--switch-base-color);
+  opacity: var(--switch-base-opacity);
+}
+
+.Switch::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  border: var(--focus-ring-width) solid var(--focus-ring-color);
+  border-radius: var(--radius-full);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.StateLayer {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--switch-state-color);
+  opacity: var(--switch-state-opacity);
+  transition: opacity 150ms ease-out;
+  pointer-events: none;
+}
+
+.Thumb {
+  position: absolute;
+  left: var(--switch-thumb-offset);
+  top: var(--switch-thumb-offset);
+  width: var(--switch-thumb-size);
+  height: var(--switch-thumb-size);
+  border-radius: var(--radius-full);
+  background-color: var(--on-surface);
+  color: var(--on-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 150ms ease-out, background-color 150ms ease-out,
+    width 150ms ease-out, height 150ms ease-out, left 150ms ease-out,
+    top 150ms ease-out;
+}
+
+.Icon {
+  width: var(--switch-icon-size);
+  height: var(--switch-icon-size);
+}
+
+.Switch[data-checked] {
+  --switch-base-opacity: 1;
+  --switch-state-color: var(--surface);
+  --switch-thumb-size: 28px;
+  --switch-thumb-offset: 2px;
+  --switch-thumb-translate: 24px;
+}
+
+.Switch[data-checked] .Thumb {
+  transform: translateX(var(--switch-thumb-translate));
+  background-color: var(--surface);
+}
+
+.Switch[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Switch[data-disabled] .StateLayer {
+  opacity: 0;
+}
+
+.Switch[data-size='small'] {
+  --switch-width: 42px;
+  --switch-height: 24px;
+  --switch-thumb-size: 18px;
+  --switch-thumb-offset: 3px;
+  --switch-thumb-translate: 18px;
+  --switch-icon-size: 15px;
+}
+
+.Switch[data-size='small'][data-checked] {
+  --switch-thumb-size: 20px;
+  --switch-thumb-offset: 2px;
+  --switch-thumb-translate: 18px;
+}
+
+.Switch:focus-visible,
+.Switch[data-focused] {
+  --switch-state-opacity: 0.12;
+}
+
+.Switch:focus-visible::after,
+.Switch[data-focused]::after {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .Switch:hover:not([data-disabled]) {
+    --switch-state-opacity: 0.08;
+  }
+
+  .Label:hover .Switch:not([data-disabled]) {
+    --switch-state-opacity: 0.08;
+  }
+}
+
+.Switch:active:not([data-disabled]) {
+  --switch-state-opacity: 0.16;
+}
+
+.Label:active .Switch:not([data-disabled]) {
+  --switch-state-opacity: 0.16;
+}
+
+```

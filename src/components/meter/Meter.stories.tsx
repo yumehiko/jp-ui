@@ -6,6 +6,7 @@ import {
   MeterTrack,
   MeterValue,
 } from '..';
+import { Example } from './Example';
 
 const meta: Meta = {
   title: 'Components/Meter',
@@ -23,15 +24,7 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () => (
-    <MeterRoot value={24} aria-label="使用量">
-      <MeterLabel>ストレージ使用量</MeterLabel>
-      <MeterValue>{(_, value) => `${value}%`}</MeterValue>
-      <MeterTrack>
-        <MeterIndicator />
-      </MeterTrack>
-    </MeterRoot>
-  ),
+  render: () => <Example />,
 };
 
 export const CustomRange: Story = {

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Input } from '..';
+import { Example } from './Example';
 
 const meta: Meta<typeof Input> = {
   title: 'Components/Input',
@@ -22,20 +23,20 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 export const Placeholder: Story = {
-  render: (args) => <Input {...args} />,
+  render: (args) => <Example {...args} />,
 };
 
 export const Filled: Story = {
   args: {
     defaultValue: 'Input Text',
   },
-  render: (args) => <Input {...args} />,
+  render: (args) => <Example {...args} />,
 };
 
 export const WithFixedWidth: Story = {
   render: (args) => (
     <div style={{ width: 320 }}>
-      <Input {...args} />
+      <Example {...args} />
     </div>
   ),
 };

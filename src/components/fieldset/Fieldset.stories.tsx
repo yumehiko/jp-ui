@@ -1,8 +1,5 @@
-import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Field } from '..';
-import { InputBox } from '..';
-import { FieldsetLegend, FieldsetRoot } from '..';
+import { Example } from './Example';
 
 type StoryArgs = {
   legend: string;
@@ -35,33 +32,6 @@ export default meta;
 
 type Story = StoryObj<StoryArgs>;
 
-const FieldsetStory = (args: StoryArgs) => {
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-
-  return (
-    <FieldsetRoot disabled={args.disabled}>
-      <FieldsetLegend>{args.legend}</FieldsetLegend>
-      <Field label="氏名">
-        <InputBox
-          value={name}
-          onValueChange={setName}
-          disabled={args.disabled}
-          placeholder={args.placeholder}
-        />
-      </Field>
-      <Field label="メールアドレス">
-        <InputBox
-          value={email}
-          onValueChange={setEmail}
-          disabled={args.disabled}
-          placeholder={args.placeholder}
-        />
-      </Field>
-    </FieldsetRoot>
-  );
-};
-
 export const Default: Story = {
-  render: (args) => <FieldsetStory {...args} />,
+  render: (args) => <Example {...args} />,
 };

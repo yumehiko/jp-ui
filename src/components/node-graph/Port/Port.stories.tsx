@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Port } from '..';
+import { Example } from './Example';
 
 const meta: Meta<typeof Port> = {
   title: 'Components/Node Graph/Port',
@@ -15,10 +16,5 @@ export default meta;
 type Story = StoryObj<typeof Port>;
 
 export const Default: Story = {
-  render: (args) => (
-    <div style={{ display: 'grid', gap: 16, maxWidth: 360 }}>
-      <Port {...args} direction="input" />
-      <Port {...args} direction="output" />
-    </div>
-  ),
+  render: (args) => <Example {...args} />,
 };

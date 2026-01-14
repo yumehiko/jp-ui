@@ -7,6 +7,7 @@ import {
   ScrollAreaThumb,
   ScrollAreaViewport,
 } from '..';
+import { Example } from './Example';
 
 const meta: Meta = {
   title: 'Components/ScrollArea',
@@ -19,35 +20,8 @@ export default meta;
 
 type Story = StoryObj;
 
-const DefaultStory = () => (
-  <ScrollAreaRoot style={{ width: 320, height: 196 }}>
-    <ScrollAreaViewport>
-      <ScrollAreaContent>
-        <p className="typesetting-body">
-          文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。
-        </p>
-        <p className="typesetting-body">
-          文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。
-        </p>
-        <p className="typesetting-body">
-          文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。
-        </p>
-        <p className="typesetting-body">
-          文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。
-        </p>
-        <p className="typesetting-body">
-          文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。文を増やしてスクロールが発生する状態にします。
-        </p>
-      </ScrollAreaContent>
-    </ScrollAreaViewport>
-    <ScrollAreaScrollbar>
-      <ScrollAreaThumb />
-    </ScrollAreaScrollbar>
-  </ScrollAreaRoot>
-);
-
 export const Default: Story = {
-  render: () => <DefaultStory />,
+  render: () => <Example />,
 };
 
 const HorizontalStory = () => (

@@ -4,7 +4,7 @@ export * from './autocomplete/Autocomplete';
 export * from './autocomplete/AutocompleteInputBox';
 export * from './avatar/Avatar';
 export * from './button/Button';
-export * from './button/IconButton';
+export * from './icon-button/IconButton';
 export * from './checkbox/Checkbox';
 export * from './checkbox-group/CheckboxGroup';
 export * from './collapsible/Collapsible';

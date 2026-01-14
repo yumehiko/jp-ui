@@ -1,0 +1,173 @@
+# Checkbox
+
+Source: src/components/checkbox/Example.tsx
+
+## Example
+
+```tsx
+import * as React from 'react';
+import { Checkbox } from '..';
+import styles from './Checkbox.module.css';
+
+type ExampleProps = React.ComponentProps<typeof Checkbox>;
+
+const labelClassName = `typesetting-label typesetting-tsumegumi ${styles.Label}`;
+
+export function Example(props: ExampleProps) {
+  return (
+    <div style={{ display: 'grid', gap: 12 }}>
+      <label className={labelClassName}>
+        <Checkbox {...props} />
+        通知を有効にする
+      </label>
+      <label className={labelClassName}>
+        <Checkbox {...props} defaultChecked />
+        通知を有効にする（選択済み）
+      </label>
+      <label className={labelClassName}>
+        <Checkbox {...props} disabled />
+        通知を有効にする（無効）
+      </label>
+    </div>
+  );
+}
+
+```
+
+Source: src/components/checkbox/Checkbox.module.css
+
+## Styles
+
+```css
+.Label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--on-surface);
+  cursor: pointer;
+}
+
+.Label:has(.Checkbox[data-disabled]) {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Checkbox {
+  position: relative;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  color: var(--inverse-on-surface);
+  cursor: pointer;
+  outline: none;
+
+  --checkbox-state-opacity: 0;
+}
+
+.Checkbox::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  top: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  width: calc(24px + 2 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  height: calc(24px + 2 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  border: var(--focus-ring-width) solid var(--focus-ring-color);
+  border-radius: var(--radius-full);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.Box {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--outline);
+  background-color: transparent;
+}
+
+.StateLayer {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background-color: var(--on-surface);
+  opacity: var(--checkbox-state-opacity);
+  transition: opacity 150ms ease-out;
+  pointer-events: none;
+}
+
+.Indicator {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--inverse-on-surface);
+}
+
+.Icon {
+  width: 12px;
+  height: 12px;
+}
+
+.Checkbox[data-unchecked] .Indicator {
+  opacity: 0;
+}
+
+.Checkbox[data-checked] .Box {
+  border: 0;
+  background-color: var(--inverse-surface);
+}
+
+.Checkbox[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Checkbox[data-disabled] .StateLayer {
+  opacity: 0;
+}
+
+.Checkbox:focus-visible,
+.Checkbox[data-focused] {
+  --checkbox-state-opacity: 0.12;
+}
+
+.Checkbox:focus-visible::after,
+.Checkbox[data-focused]::after {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .Checkbox:hover:not([data-disabled]) {
+    --checkbox-state-opacity: 0.08;
+  }
+
+  .Label:hover .Checkbox:not([data-disabled]) {
+    --checkbox-state-opacity: 0.08;
+  }
+}
+
+.Checkbox:active:not([data-disabled]) {
+  --checkbox-state-opacity: 0.16;
+}
+
+.Label:active .Checkbox:not([data-disabled]) {
+  --checkbox-state-opacity: 0.16;
+}
+
+```

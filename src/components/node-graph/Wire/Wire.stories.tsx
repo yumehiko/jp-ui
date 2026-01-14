@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Wire } from '..';
+import { Example } from './Example';
 
 const meta: Meta<typeof Wire> = {
   title: 'Components/Node Graph/Wire',
@@ -21,11 +22,7 @@ export default meta;
 type Story = StoryObj<typeof Wire>;
 
 export const Default: Story = {
-  render: (args) => (
-    <div style={{ padding: 24, background: 'var(--surface)', maxWidth: 360 }}>
-      <Wire {...args} />
-    </div>
-  ),
+  render: (args) => <Example {...args} />,
 };
 
 export const Variants: Story = {

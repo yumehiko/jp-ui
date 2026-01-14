@@ -6,8 +6,8 @@ import {
   SliderRoot,
   SliderThumb,
   SliderTrack,
-  SliderValue,
 } from '..';
+import { Example } from './Example';
 import styles from './Slider.module.css';
 
 const meta: Meta = {
@@ -28,17 +28,7 @@ type Story = StoryObj;
 const labelClassName = `typesetting-label typesetting-tsumegumi ${styles.Label}`;
 
 export const Default: Story = {
-  render: () => (
-    <SliderRoot defaultValue={25}>
-      <SliderControl>
-        <SliderTrack>
-          <SliderIndicator />
-          <SliderThumb aria-label="音量" />
-        </SliderTrack>
-      </SliderControl>
-      <SliderValue>{([value]) => `${value}%`}</SliderValue>
-    </SliderRoot>
-  ),
+  render: () => <Example />,
 };
 
 export const WithLabel: Story = {

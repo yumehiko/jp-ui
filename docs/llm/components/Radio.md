@@ -1,0 +1,174 @@
+# Radio
+
+Source: src/components/radio/Example.tsx
+
+## Example
+
+```tsx
+import { Radio } from '..';
+import { RadioGroup } from '..';
+import styles from './Radio.module.css';
+
+const labelClassName = `typesetting-label typesetting-tsumegumi ${styles.Label}`;
+
+export function Example() {
+  return (
+    <RadioGroup defaultValue="tokyo">
+      <label className={labelClassName}>
+        <Radio value="tokyo" />
+        Tokyo
+      </label>
+      <label className={labelClassName}>
+        <Radio value="osaka" />
+        Osaka
+      </label>
+      <label className={labelClassName}>
+        <Radio value="sapporo" disabled />
+        Sapporo
+      </label>
+    </RadioGroup>
+  );
+}
+
+```
+
+Source: src/components/radio/Radio.module.css
+
+## Styles
+
+```css
+.Label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--on-surface);
+  cursor: pointer;
+}
+
+.Label:has(.Radio[data-disabled]) {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Radio {
+  position: relative;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+
+  --radio-state-opacity: 0;
+}
+
+.Radio::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  top: calc(-1 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  width: calc(24px + 2 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  height: calc(24px + 2 * (var(--focus-ring-offset) + var(--focus-ring-width)));
+  border: var(--focus-ring-width) solid var(--focus-ring-color);
+  border-radius: var(--radius-full);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.Base {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--on-surface);
+  background-color: transparent;
+}
+
+.StateLayer {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background-color: var(--on-surface);
+  opacity: var(--radio-state-opacity);
+  transition: opacity 150ms ease-out;
+  pointer-events: none;
+}
+
+.Indicator {
+  position: absolute;
+  left: 7px;
+  top: 7px;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--on-surface);
+}
+
+.Radio[data-unchecked] .Indicator {
+  opacity: 0;
+}
+
+.Radio[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.Radio[data-disabled] .StateLayer {
+  opacity: 0;
+}
+
+.Radio:focus-visible,
+.Radio[data-focused] {
+  --radio-state-opacity: 0.12;
+}
+
+.Radio:focus-visible::after,
+.Radio[data-focused]::after {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .Radio:hover:not([data-disabled]) {
+    --radio-state-opacity: 0.08;
+  }
+
+  .Label:hover .Radio:not([data-disabled]) {
+    --radio-state-opacity: 0.08;
+  }
+}
+
+.Radio:active:not([data-disabled]) {
+  --radio-state-opacity: 0.16;
+}
+
+.Label:active .Radio:not([data-disabled]) {
+  --radio-state-opacity: 0.16;
+}
+
+```
+
+Source: dist/components/radio/Radio.d.ts
+
+## Types
+
+```ts
+type RadioProps = Omit<React.ComponentPropsWithoutRef<typeof BaseRadio.Root>, 'children'>;
+```

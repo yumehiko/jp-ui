@@ -12,6 +12,8 @@
   "include": ["src"],
   "exclude": [
     "src/**/*.stories.tsx",
+    "src/**/Example.tsx",
+    "src/**/*Example.tsx",
     "src/pages/**",
     "src/main.tsx",
     "src/App.tsx",

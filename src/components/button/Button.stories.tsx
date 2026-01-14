@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from '../../assets/icons/Icon';
 import { IconEdit } from '@tabler/icons-react';
 import { Button } from '..';
+import { Example } from './Example';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -16,7 +17,9 @@ export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => <Example {...args} />,
+};
 
 export const Filled: Story = {
   args: {

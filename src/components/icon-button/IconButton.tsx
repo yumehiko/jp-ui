@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button as BaseButton } from '@base-ui/react/button';
 import { mergeClassName } from '../utils/mergeClassName';
-import styles from './Button.module.css';
+import styles from '../button/Button.module.css';
 
 type ButtonVariant = 'filled' | 'tonal' | 'outlined' | 'ghost';
 type ButtonSize = 'large' | 'small';

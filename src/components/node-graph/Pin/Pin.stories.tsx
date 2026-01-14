@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Pin } from '..';
+import { Example } from './Example';
 
 const meta: Meta<typeof Pin> = {
   title: 'Components/Node Graph/Pin',
@@ -16,7 +17,9 @@ export default meta;
 
 type Story = StoryObj<typeof Pin>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => <Example {...args} />,
+};
 
 export const States: Story = {
   render: (args) => (

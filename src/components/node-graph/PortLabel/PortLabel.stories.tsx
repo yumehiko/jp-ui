@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { PortLabel } from '..';
+import { Example } from './Example';
 
 const meta: Meta<typeof PortLabel> = {
   title: 'Components/Node Graph/Port Label',
@@ -15,7 +16,9 @@ export default meta;
 
 type Story = StoryObj<typeof PortLabel>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => <Example {...args} />,
+};
 
 export const Directions: Story = {
   render: (args) => (

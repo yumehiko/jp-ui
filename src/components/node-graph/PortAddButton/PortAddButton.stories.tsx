@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { PortAddButton } from '..';
+import { Example } from './Example';
 
 const meta: Meta<typeof PortAddButton> = {
   title: 'Components/Node Graph/Port Add Button',
@@ -14,7 +15,9 @@ export default meta;
 
 type Story = StoryObj<typeof PortAddButton>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => <Example {...args} />,
+};
 
 export const StaticStates: Story = {
   render: (args) => (
