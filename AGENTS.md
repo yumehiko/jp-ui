@@ -4,3 +4,4 @@
 - Base UIコンポーネントは原則ラッパーTSXを定義し、利用体験を統一する（className自動付与・variant/slotの共通化など）。
 - 例外として、ラッパーが不要なほど単純な場合のみBase UIを直接使用する。挙動を変える独自ロジックが必要な場合は事前に相談する。
 - ラッパーは原則としてBase UIの`render`/`useRender`の仕組みを維持し、`render`を透過できるAPIにする。
+- `docs/llm` は各コンポーネントの `Example.tsx` を正として自動生成されるため、ドキュメント更新はExampleを先に更新する。
