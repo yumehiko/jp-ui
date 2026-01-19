@@ -1,0 +1,1 @@
+import{u as i}from"./useRender-VSZd6TiO.js";import{m}from"./useRenderElement-Bkl9eyxk.js";const a="_root_9ev61_1",u={root:a};function f({rect:e,visible:o=!0,render:r,...t}){const{style:s}=t,n={left:e.x,top:e.y,width:e.width,height:e.height,...s},l=i({defaultTagName:"div",render:r,props:m({className:u.root,style:n},t)});return o?l:null}export{f as M};
