@@ -98,7 +98,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: rgb(0 0 0 / 0.05);
+  background: rgb(0 0 0 / 0.2);
   pointer-events: none;
 }
 
