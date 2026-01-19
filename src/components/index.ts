@@ -15,6 +15,7 @@ export * from './dialog/Dialog';
 export * from './field/Field';
 export * from './fieldset/Fieldset';
 export * from './form/Form';
+export * from './file-drop-input-box/FileDropInputBox';
 export * from './input/Input';
 export * from './input-box/InputBox';
 export * from './menu/Menu';

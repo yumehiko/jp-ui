@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Field as BaseField } from '@base-ui/react/field';
+import { FileDropInputBox } from '../file-drop-input-box/FileDropInputBox';
 import { InputBox } from '../input-box/InputBox';
 import { Textarea } from '../textarea/Textarea';
 import styles from './Field.module.css';
@@ -59,7 +60,9 @@ export function Field({
   );
   const isFloatingLabelControl =
     React.isValidElement(children) &&
-    (children.type === InputBox || children.type === Textarea);
+    (children.type === InputBox ||
+      children.type === Textarea ||
+      children.type === FileDropInputBox);
   const control = React.isValidElement<ControlElementProps>(children)
     ? React.cloneElement(children, {
         className: mergeControlClassName(children.props.className, styles.Control),

@@ -1,0 +1,171 @@
+.FileDropInputBox {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  padding: 11px 15px;
+  border: 1px dashed var(--filedrop-border-color);
+  border-radius: var(--radius-s);
+  background-color: transparent;
+  color: var(--on-surface);
+  transition: border-color 150ms ease-out;
+  cursor: pointer;
+
+  --filedrop-state-opacity: 0;
+  --filedrop-state-color: var(--on-surface);
+  --filedrop-border-color: var(--on-surface-variant);
+  --filedrop-label-offset: 15px;
+  --filedrop-label-float-offset: 15px;
+  --filedrop-label-float-y: -7px;
+}
+
+.FileDropInputBox::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 2px solid var(--outline);
+  border-radius: calc(var(--radius-s) + 4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+  z-index: 0;
+}
+
+.Label {
+  position: absolute;
+  left: var(--filedrop-label-offset);
+  top: 11px;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--on-surface);
+  pointer-events: none;
+  padding: 0;
+  background-color: transparent;
+  transition:
+    transform 150ms ease-out,
+    color 150ms ease-out,
+    top 150ms ease-out,
+    font-size 150ms ease-out,
+    line-height 150ms ease-out;
+  z-index: 1;
+}
+
+.Value {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-brand);
+  font-size: var(--font-size-editable-label);
+  font-weight: var(--font-weight-editable-label);
+  line-height: var(--line-height-editable-label);
+  letter-spacing: var(--letter-spacing-editable-label);
+  font-feature-settings: "palt" 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Value[data-placeholder] {
+  color: var(--on-surface-variant);
+}
+
+.HiddenInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.StateLayer {
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-s);
+  background-color: var(--filedrop-state-color);
+  opacity: var(--filedrop-state-opacity);
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+  z-index: 2;
+}
+
+.FileDropInputBox[data-filled] {
+  --filedrop-border-color: var(--on-surface);
+}
+
+.FileDropInputBox[data-disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.FileDropInputBox[data-disabled] .StateLayer {
+  opacity: 0;
+}
+
+.FileDropInputBox[data-readonly] {
+  cursor: default;
+}
+
+.FileDropInputBox[data-readonly] .StateLayer {
+  opacity: 0.12;
+}
+
+.FileDropInputBox[data-readonly][data-filled] {
+  --filedrop-border-color: transparent;
+}
+
+.FileDropInputBox[data-invalid] {
+  --filedrop-border-color: var(--error);
+  --filedrop-state-color: var(--error);
+}
+
+.FileDropInputBox[data-invalid] .Label {
+  color: var(--error);
+}
+
+.FileDropInputBox[data-dragging]:not([data-disabled]):not([data-readonly]) {
+  --filedrop-border-color: var(--on-surface);
+  --filedrop-state-opacity: 0.08;
+}
+
+.FileDropInputBox:focus-within:not([data-readonly]):not([data-disabled]) {
+  --filedrop-state-opacity: 0;
+}
+
+.FileDropInputBox:focus-within:not([data-readonly]):not([data-disabled])::after {
+  opacity: 1;
+}
+
+.FileDropInputBox:focus-within:not([data-readonly]):not([data-disabled]):not([data-invalid]) {
+  --filedrop-border-color: var(--on-surface);
+}
+
+.FileDropInputBox:focus-within .Label,
+.FileDropInputBox[data-filled] .Label {
+  top: var(--filedrop-label-float-y);
+  left: var(--filedrop-label-float-offset);
+  font-size: 10px;
+  line-height: 12px;
+  background-color: var(--surface);
+  padding: 0 4px;
+}
+
+@media (hover: hover) {
+  .FileDropInputBox:hover:not([data-disabled]):not([data-readonly]) {
+    --filedrop-state-opacity: 0.08;
+  }
+}
+
+.FileDropInputBox:active:not([data-disabled]):not([data-readonly]) {
+  --filedrop-state-opacity: 0.16;
+}
+
+.FileDropInputBox:not(:focus-within):not([data-filled]) .Value[data-placeholder] {
+  color: transparent;
+}
