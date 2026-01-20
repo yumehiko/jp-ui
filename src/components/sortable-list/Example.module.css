@@ -1,0 +1,91 @@
+.Frame {
+  width: 320px;
+}
+
+.ItemButton {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-2);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--surface-container);
+  color: var(--on-surface);
+  text-align: left;
+  cursor: grab;
+  touch-action: none;
+}
+
+.ItemButton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--on-surface);
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+  pointer-events: none;
+}
+
+.ItemButton:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.ItemButton:focus-visible::after {
+  opacity: 0.12;
+}
+
+.ItemButton:active::after {
+  opacity: 0.16;
+}
+
+.ItemButtonDragging {
+  cursor: grabbing;
+}
+
+@media (hover: hover) {
+  .ItemButton:hover::after {
+    opacity: 0.08;
+  }
+}
+
+.IconWrap {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--inverse-surface);
+}
+
+.Icon {
+  width: 24px;
+  height: 24px;
+}
+
+.TextStack {
+  display: grid;
+  gap: 4px;
+}
+
+.Label {
+  font-family: var(--font-brand);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--letter-spacing-label);
+  font-feature-settings: 'palt' 1;
+}
+
+.Caption {
+  font-family: var(--font-brand);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-caption);
+  line-height: var(--line-height-caption);
+  letter-spacing: var(--letter-spacing-caption);
+  font-feature-settings: 'palt' 0;
+}

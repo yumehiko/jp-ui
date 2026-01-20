@@ -34,6 +34,7 @@ export * from './scroll-area/ScrollArea';
 export * from './select/Select';
 export * from './separator/Separator';
 export * from './slider/Slider';
+export * from './sortable-list/SortableList';
 export * from './switch/Switch';
 export * from './tabs/Tabs';
 export * from './textarea/Textarea';
