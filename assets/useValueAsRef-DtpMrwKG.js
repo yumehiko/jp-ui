@@ -1,0 +1,1 @@
+import{u as r}from"./mergeClassName-Cpuz3u4l.js";import{b as n}from"./useRenderElement-DLa1BfJJ.js";function c(e){const t=n(f,e).current;return t.next=e,r(t.effect),t}function f(e){const t={current:e,next:e,effect:()=>{t.current=t.next}};return t}export{c as u};
