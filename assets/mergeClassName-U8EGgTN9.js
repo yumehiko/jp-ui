@@ -1,0 +1,1 @@
+import{r}from"./iframe-BbjfZeeI.js";const f=()=>{},u=typeof document<"u"?r.useLayoutEffect:f;function s(o,...e){const t=e.filter(Boolean).join(" ");return o?typeof o=="function"?(n=>[t,o(n)].filter(Boolean).join(" ")):[t,o].filter(Boolean).join(" "):t}export{s as m,u};
