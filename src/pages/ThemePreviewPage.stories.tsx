@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { createTheme } from '../theme';
 import { ThemePreviewPage } from './ThemePreviewPage';
 

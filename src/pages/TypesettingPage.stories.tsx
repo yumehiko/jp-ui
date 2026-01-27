@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { TypesettingPage } from './TypesettingPage';
 
 const meta: Meta<typeof TypesettingPage> = {

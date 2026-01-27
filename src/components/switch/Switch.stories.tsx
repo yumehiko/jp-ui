@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Field } from '@base-ui/react/field';
 import { Switch } from '..';
 import styles from './Switch.module.css';

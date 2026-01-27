@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { TogglePage } from '../../pages/TogglePage';
 
 const meta: Meta<typeof TogglePage> = {

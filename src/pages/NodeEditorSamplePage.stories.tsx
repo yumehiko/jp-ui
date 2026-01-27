@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { NodeEditorSamplePage } from './NodeEditorSamplePage';
 
 const meta: Meta<typeof NodeEditorSamplePage> = {
