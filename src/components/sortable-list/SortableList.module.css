@@ -1,0 +1,33 @@
+.Root {
+  width: 100%;
+}
+
+.List {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--sortable-list-gap, var(--space-2));
+}
+
+.Item {
+  position: relative;
+  touch-action: none;
+  will-change: transform;
+}
+
+.ItemDraggable {
+  cursor: grab;
+}
+
+.ItemDraggable:active {
+  cursor: grabbing;
+}
+
+.ItemHandleOnly {
+  cursor: default;
+}
+
+.Item[data-dragging] {
+  z-index: 1;
+}
